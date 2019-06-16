@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="75.420433mm"
+   height="46.699944mm"
+   viewBox="0 0 75.420433 46.699944"
+   version="1.1"
+   id="svg217"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="nymlogoblanc.svg">
+  <defs
+     id="defs211" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.63710937"
+     inkscape:cx="-86.878477"
+     inkscape:cy="50.238361"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="677"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata214">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-49.084799,-98.814135)">
+    <g
+       transform="matrix(0.35277777,0,0,-0.35277777,89.505123,117.47742)"
+       id="g195"
+       style="fill:#ffffff">
+      <g
+         transform="translate(-112.7153,52.9038)"
+         id="g146"
+         style="fill:#ffffff">
+        <path
+           inkscape:connector-curvature="0"
+           id="path148"
+           style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           d="M 0,0 C -1.196,0 -1.862,-0.666 -1.862,-1.862 V -49.18 c 0,-1.196 0.664,-1.862 1.86,-1.862 h 11.699 c 1.196,0 1.862,0.666 1.862,1.862 v 34.559 h 17.147 c 11.033,0 17.015,-7.711 17.015,-18.479 v -16.08 c 0,-1.196 0.666,-1.862 1.862,-1.862 H 61.28 c 1.198,0 1.862,0.666 1.862,1.862 v 16.214 C 63.142,-14.223 50.645,0 30.706,0 Z" />
+      </g>
+      <g
+         transform="translate(-13.5571,32.149402)"
+         id="g150"
+         style="fill:#ffffff">
+        <path
+           inkscape:connector-curvature="0"
+           id="path152"
+           style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           d="m 0,0 c -1.196,0 -1.862,-0.666 -1.862,-1.862 v -10.795 c 0,-1.196 0.664,-1.861 1.86,-1.861 l 30.708,-0.103 c 11.033,0 17.015,-7.711 17.015,-18.479 v -9.503 c 0,-1.196 0.666,-1.862 1.862,-1.862 h 0.045 11.652 0.045 c 1.196,0 1.862,0.666 1.862,1.862 v 9.503 c 0,10.768 5.982,18.479 17.015,18.479 h 0.132 c 11.033,0 17.015,-7.711 17.015,-18.479 v -9.503 c 0,-1.196 0.666,-1.862 1.862,-1.862 h 11.697 c 1.198,0 1.862,0.666 1.862,1.862 v 9.637 C 112.77,-14.223 100.273,0 80.334,0 H 80.202 C 69.59,0 61.088,-4.029 55.454,-10.623 49.82,-4.029 41.318,0 30.706,0 Z" />
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path156"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="m 0,0 c 0,1.196 -0.664,1.862 -1.86,1.862 h -11.699 c -1.196,0 -1.862,-0.666 -1.862,-1.862 v -33.409 h -17.147 c -10.376,0 -16.348,6.908 -17.015,16.677 v 1.123 c 0,1.196 -0.666,1.862 -1.862,1.862 h -11.697 c -1.135,0 -1.77,-0.615 -1.836,-1.695 0.004,-0.128 0.008,-1.112 0.013,-1.24 0.701,-17.936 13.037,-31.348 32.397,-31.348 h 17.149 v -0.17 c -0.493,-9.667 -7.226,-15.237 -16.629,-15.879 h -1.123 c -1.196,0 -1.862,-0.666 -1.862,-1.861 v -11.697 c 0,-1.135 0.615,-1.77 1.695,-1.837 0.128,0.005 1.112,0.009 1.24,0.014 17.616,0.688 31.58,12.49 32.075,31.255 0.002,0.013 0.011,0.599 0.011,0.599 C -0.01,-47.424 0,0 0,0" />
+    </g>
+  </g>
+</svg>

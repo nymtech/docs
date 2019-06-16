@@ -1,0 +1,67 @@
+theme = "docuapi"
+languageCode = "en-us"
+
+ # This may or may not work in a subfolder once deployed at e.g. http://nymtech.net/docs.
+ # See https://discourse.gohugo.io/t/issue-when-baseurl-have-subdirectory/4088/7.
+ # So we may still have some interesting times ahead. Simple answer would be to
+ # use "https://docs.nymtech.net", but a subfolder's probably better for SEO.
+ # Don't attempt to use https://nymtech.net/docs here, it'll appear to work
+ # until you restart the Hugo server, at which point you'll get a blank page.
+ #
+ # So after all that: my hack for deploying: put "/docs" in the deploy branch.
+ #
+baseurl = "/"
+title = "Nym Platform Documentation"
+
+# Code higlighting settings
+pygmentsCodefences = true
+pygmentsCodeFencesGuesSsyntax = false
+pygmentsOptions = ""
+pygmentsStyle = "monokai"
+# The monokai stylesheet is included in the base template.
+pygmentsUseClasses = true
+
+defaultContentLanguage = "en"
+
+[params]
+search = true
+
+# Configure the language example tabs.
+[[params.language_tabs]]
+key = "go"
+name = "Go"
+[[params.language_tabs]]
+key = "shell"
+name = "Shell"
+# [[params.language_tabs]]
+# key = "ruby"
+# name = "Ruby"
+# [[params.language_tabs]]
+# key = "python"
+# name = "Python"
+# [[params.language_tabs]]
+# key = "javascript"
+# name = "JavaScript"
+# [[params.language_tabs]]
+# key = "c_sharp"
+# name = "C#"
+# [[params.language_tabs]]
+# key = "java"
+# name = "Java"
+
+#Languages
+[languages]
+
+[languages.en]
+languageName = "English"
+weight = 2
+title = "Nym Platform Docs"
+
+# Left sidebar footer items. Use HTMl or Markdown.
+toc_footers = [
+"Documentation Powered by [DocuAPI](https://github.com/bep/docuapi)",
+"Hugo Theme by [bep](https://github.com/bep)"
+]
+[languages.en.blackfriday]
+angledQuotes = false
+hrefTargetBlank = true
