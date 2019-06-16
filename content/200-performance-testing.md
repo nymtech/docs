@@ -9,7 +9,7 @@ title: Performance Testing
 
 The benchmarks were performed on 64bit Ubuntu 18.04.1 LTS VM with 2 cores of 3.6GHz Ryzen 1600 assigned. Each individual benchmark was run single-threaded for 1 minute with `-benchtime=60s` flag.
 
-REQUIRE RERUNNING
+These benchmarks are very old and require rerunning.
 
 
 | Operation                        | Times run | Time per op     | Memory per op | Allocs per op     |

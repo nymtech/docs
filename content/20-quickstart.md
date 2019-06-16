@@ -7,9 +7,9 @@ title: Quickstart
 
 ## Install and run in Docker
 
-* `rm -rf build` if you've previously installed Nym.
 * Install Docker.
 * Install Make.
+* `rm -rf build` if you've previously installed Nym.
 * `git clone` the code.
 * `cd nym`
 * `make localnet-build` builds the config directories and docker images

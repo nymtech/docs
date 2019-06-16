@@ -9,17 +9,9 @@ In the preceding Quickstart, there was a speedy succession of commands to build 
 
 But what did all of this do? What are the moving parts of a Nym-based system?
 
-## Cleaning up
-
-First, we remove any old copies of the `build` directory, in case there are any old configs hanging around:
-
-`rm -rf build`
-
 ## Building
 
-Next, we run `make localnet-build`.
-
-When you run the `make localnet-build` command, the Makefile builds out a configuration directory for a Nym testnet that runs on your local machine. Listing the directory structure gives you this layout of files and directories:
+`make localnet-build` builds out a configuration directory for a Nym testnet that runs on your local machine. Listing the directory structure gives you this layout of files and directories:
 
 > List the `build` directory using the `tree` command. If you don't have that installed, just poke around using `ls`.
 
@@ -109,16 +101,16 @@ build/
             └── threshold-verificationKey-id=5-attrs=5-n=5-t=3.pem
 ```
 
-As you can see, the config directory contains configuration files, private, and public keys for multiple components.
+As you can see, the config directory contains configuration files,  as well as private and public keys for multiple components.
 
 The components are as follows:
 
 * `ethereum-watchers` watch the Ethereum blockchain for interesting transactions (such as a user piping Nym ERC20 tokens into Nym).
 * `issuers` are Coconut credential issuing authorities.
 * `nodes` are Tendermint blockchain nodes.
-* `providers` are (dummy) external service providers
+* `providers` are (dummy) external service providers.
 
-## Running Nym nodes in Docker
+## Running Nym in Docker
 
 `docker-compose up -d`
 
@@ -145,21 +137,15 @@ IMAGE               COMMAND                  PORTS                              
 2d9126a7090b        "/app/nymnode"           0.0.0.0:26661->26656/tcp, 0.0.0.0:26662->26657/tcp   node2
 ```
 
-
-
 ## Your first Nym credential request
 
 So now all the infrastructure is running. How can you make a request for a credential?
 
-If you have Go installed, run the following:
-
-`go run sampleclientmain/main_sample.go -f localnetdata/localclient/config.toml`
-
-Otherwise, just download and run the Nym sample client. Go to <TODO Jędrzej please put the URL here>, download the sample `nymclient`, and put it somewhere in your `PATH`. Then run:
+Download and run the Nym sample client. Go to <TODO Jędrzej please put the URL here>, download the sample `nymclient`, and put it somewhere in your `PATH`. Then run:
 
 `./nymclient -f localnetdata/localclient/config.toml`
 
-When the client starts running, the following actions occur.
+When the client starts running, the following actions occur:
 
 ### Initialization
 

@@ -11,17 +11,19 @@ At present, our architecture has two main components: **Coconut** and **Loopix**
 
 ## Coconut
 
-Coconut provides blinded credentials based on the testimony of a set of decentralized, blockchain-based issuing authorities. It implements the threshold credentials protocol detailed in the [Coconut](https://arxiv.org/abs/1802.07344) academic paper. It allows users to receive cryptographic claims from a set of authorities, then cut the link between the issued credentials while still allowing third-party systems to verify the claims.
+Coconut provides blinded credentials based on the testimony of a set of decentralized, blockchain-based Issuing Authorities. It implements the threshold credentials protocol detailed in the [Coconut](https://arxiv.org/abs/1802.07344) academic paper. It allows users to receive cryptographic claims from a set of authorities, then cut the link between the issued credentials while still allowing third-party systems to verify the claims.
 
 As an example of its uses, consider VPN systems.
 
 Today, VPN providers typically hold payment data allowing them to de-anonymize their users - not because they want to, but because it isn't possible to answer the question "has this person paid to use our service?" without seeing a credit card payment.
 
-Coconut can solve this problem: a set of decentralised authorities verify payment and give the user a cryptographic credential. The credential contains an assertion that the user has paid, without any other identifying data. The user's Coconut client then re-randomizes the credential, so that it's a completely different credential than what the issuing authority provided (thus providing anonymity).
+Coconut can solve this problem.
 
-When the user attempts to use the VPN service, the VPN provider can check this the anonymous credential with the issuing authority to prove that payment happened. However, neither the Issuing Authority nor the VPN service know nothing else about the user.
+A set of decentralised Issuing Authorities verify payment and give the user a cryptographic credential. The credential contains an assertion that the user has paid, without any other identifying data. The user's Coconut client then re-randomizes the credential, so that although it contains the same cryptographic claim ("this person has paid"), it's a completely different credential than what the Issuing Authorities provided. Privacy is preserved, even against the credential Issuing Authorities.
 
-The VPN example is a simple way of explaining Coconut via a single use case. However, it's worth noting that Coconut is a general-purpose system. Many other applications are possible (electronic voting systems, interaction with business or government systems giving up minimal data, or storing data in publicly-accessible blockchains without revealing whose data it is).
+When the user attempts to use the VPN service, the VPN provider can check the Coconut credential with the Issuing Authorities to prove that payment happened. However, neither the Issuing Authorities nor the VPN service know nothing else about the user.
+
+The VPN example is a simple way of explaining Coconut via a single use case. However, it's worth noting that Coconut is a general-purpose system. Many other applications are possible (electronic voting systems, interaction with business or government systems, or storing data in publicly-accessible blockchains without revealing whose data it is).
 
 Coconut functionality is built in to the Nym core platform. Nym uses a [Tendermint](https://tendermint.com/) blockchain to keep track of credential issuance and prevent double-spending of credentials. It also contains server-side APIs to support querying of credentials. There is client-side code to re-randomize credentials.
 
