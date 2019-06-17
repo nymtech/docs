@@ -5,8 +5,8 @@ keywords:
 comments: false
 
 # Hero section
-title: Documentation
-description: The Nym Privacy platform
+title: The Nym Privacy platform
+description: Documentation
 
 # Grid navigation
 micro_nav: true
