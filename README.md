@@ -1,7 +1,3 @@
-# Nym documentation
+This is the documentation site for the Nym platform. It's built using [Jekyll](https://jekyllrb.com/).
 
-This is the Nym platform's documentation. It's built using `hugo` (install instructions for your platform are at https://gohugo.io/).
-
-## Building the site
-
-Execute `hugo` from the top-level folder and the site will build. `hugo serve` gives you a hot-reloading webserver running the docs on http://localhost:1313.
+To build it locally, install Jekyll (instructions are on their site). Then run `jekyll serve --livereload` and view the documentation on [http://localhost:4000](http://localhost:4000).
