@@ -8,15 +8,6 @@ comments: false
 title: The Nym Privacy platform
 description: Documentation
 
-# Grid navigation
-micro_nav: true
-page_nav:
-    prev:
-        content: Previous page
-        url: '#'
-    next:
-        content: Next page
-        url: '#'
 ---
 
 
