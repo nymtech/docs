@@ -10,6 +10,8 @@ description: Documentation
 
 ---
 
+Go to [TODO Jędrzej please put the URL here], download the sample `nymclient`, and put it somewhere in your `PATH`.
+
 
 # Introduction
 
@@ -207,7 +209,7 @@ IMAGE               COMMAND                  PORTS                              
 
 So now all the infrastructure is running. How can you make a request for a credential?
 
-Download and run the Nym sample client. Go to <TODO Jędrzej please put the URL here>, download the sample `nymclient`, and put it somewhere in your `PATH`. Then run:
+Download and run the Nym sample client. Go to [TODO Jędrzej please put the URL here], download the sample `nymclient`, and put it somewhere in your `PATH`. Then run:
 
 `./nymclient -f localnetdata/localclient/config.toml`
 
