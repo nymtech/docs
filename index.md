@@ -10,7 +10,25 @@ description: Documentation
 
 ---
 
+# Quickstart
+
+## Install and run in Docker
+
+* Install Docker.
+* Install Make.
+* `rm -rf build` if you've previously installed Nym.
+* `git clone` the code.
+* `cd nym`
+* `make localnet-build` builds the config directories and docker images
+* `docker-compose up -d`
+
+All components should now be running (please file a bug report if not).
+
+## Your first Nym request
+
 Go to [TODO Jędrzej please put the URL here], download the sample `nymclient`, and put it somewhere in your `PATH`.
+
+Now run `./nymclient -f localnetdata/localclient/config.toml`.
 
 
 # Introduction
@@ -50,26 +68,6 @@ Loopix mitigates against packet-dropping attacks by malicious nodes, and ensures
 Applications that need to defend against network-level monitoring can use Loopix - private messaging, VPNs, and other applications to enable strong privacy.
 
 A project wanting only private credentials, but no network defences, should be able use Coconut by itself. Conversely, an application that only needs to defend against network attackers can use Loopix by itself, without Coconut. But developers that need end-to-end protection at both the network and transaction level can use both together.
-
-# Quickstart
-
-## Install and run in Docker
-
-* Install Docker.
-* Install Make.
-* `rm -rf build` if you've previously installed Nym.
-* `git clone` the code.
-* `cd nym`
-* `make localnet-build` builds the config directories and docker images
-* `docker-compose up -d`
-
-All components should now be running (please file a bug report if not).
-
-## Your first Nym request
-
- Go to <TODO Jędrzej please put the URL here>, download the sample `nymclient`, and put it somewhere in your `PATH`.
-
-Now run `./nymclient -f localnetdata/localclient/config.toml`.
 
 # Building and Running Nym
 
