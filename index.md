@@ -26,10 +26,10 @@ All components should now be running (please file a bug report if not).
 
 ## Your first Nym request
 
-Go to [TODO Jędrzej please put the URL here], download the sample `nymclient`, and put it somewhere in your `PATH`.
+Go to [release page](https://github.com/nymtech/nym/releases/download/v0.9.1/nymclient-linux-x86_64), download the sample `nymclient`, and put it somewhere in your `PATH`.
 
-Now run `./nymclient -f localnetdata/localclient/config.toml`.
-
+Now run `nymclient -f $GOPATH/src/github.com/nymtech/nymlocalnetdata/localclient/config.toml`.
+<!-- If it's going to be in PATH, we can't assume it will be in the current working directory -->
 
 # Introduction
 
@@ -84,12 +84,18 @@ But what did all of this do? What are the moving parts of a Nym-based system?
 ```bash
 $ tree build/
 
-build/
+build
 ├── ethereum-watchers
 │   ├── watcher1
 │   │   ├── config.toml
 │   │   └── watcher.key
-│   └── watcher2
+│   ├── watcher2
+│   │   ├── config.toml
+│   │   └── watcher.key
+│   ├── watcher3
+│   │   ├── config.toml
+│   │   └── watcher.key
+│   └── watcher4
 │       ├── config.toml
 │       └── watcher.key
 ├── issuers
@@ -144,27 +150,46 @@ build/
 │       │   └── priv_validator_key.json
 │       └── data
 │           └── priv_validator_state.json
-└── providers
-    ├── provider1
-    │   ├── accountKey
-    │   │   └── provider.key
+├── providers
+│   ├── provider1
+│   │   ├── accountKey
+│   │   │   └── provider.key
+│   │   ├── config.toml
+│   │   └── issuerKeys
+│   │       ├── threshold-verificationKey-id=1-attrs=5-n=5-t=3.pem
+│   │       ├── threshold-verificationKey-id=2-attrs=5-n=5-t=3.pem
+│   │       ├── threshold-verificationKey-id=3-attrs=5-n=5-t=3.pem
+│   │       ├── threshold-verificationKey-id=4-attrs=5-n=5-t=3.pem
+│   │       └── threshold-verificationKey-id=5-attrs=5-n=5-t=3.pem
+│   └── provider2
+│       ├── accountKey
+│       │   └── provider.key
+│       ├── config.toml
+│       └── issuerKeys
+│           ├── threshold-verificationKey-id=1-attrs=5-n=5-t=3.pem
+│           ├── threshold-verificationKey-id=2-attrs=5-n=5-t=3.pem
+│           ├── threshold-verificationKey-id=3-attrs=5-n=5-t=3.pem
+│           ├── threshold-verificationKey-id=4-attrs=5-n=5-t=3.pem
+│           └── threshold-verificationKey-id=5-attrs=5-n=5-t=3.pem
+└── verifiers
+    ├── verifier1
     │   ├── config.toml
-    │   └── issuerKeys
-    │       ├── threshold-verificationKey-id=1-attrs=5-n=5-t=3.pem
-    │       ├── threshold-verificationKey-id=2-attrs=5-n=5-t=3.pem
-    │       ├── threshold-verificationKey-id=3-attrs=5-n=5-t=3.pem
-    │       ├── threshold-verificationKey-id=4-attrs=5-n=5-t=3.pem
-    │       └── threshold-verificationKey-id=5-attrs=5-n=5-t=3.pem
-    └── provider2
-        ├── accountKey
-        │   └── provider.key
+    │   ├── issuerKeys
+    │   │   ├── threshold-verificationKey-id=1-attrs=5-n=5-t=3.pem
+    │   │   ├── threshold-verificationKey-id=2-attrs=5-n=5-t=3.pem
+    │   │   ├── threshold-verificationKey-id=3-attrs=5-n=5-t=3.pem
+    │   │   ├── threshold-verificationKey-id=4-attrs=5-n=5-t=3.pem
+    │   │   └── threshold-verificationKey-id=5-attrs=5-n=5-t=3.pem
+    │   └── verifier.key
+    └── verifier2
         ├── config.toml
-        └── issuerKeys
-            ├── threshold-verificationKey-id=1-attrs=5-n=5-t=3.pem
-            ├── threshold-verificationKey-id=2-attrs=5-n=5-t=3.pem
-            ├── threshold-verificationKey-id=3-attrs=5-n=5-t=3.pem
-            ├── threshold-verificationKey-id=4-attrs=5-n=5-t=3.pem
-            └── threshold-verificationKey-id=5-attrs=5-n=5-t=3.pem
+        ├── issuerKeys
+        │   ├── threshold-verificationKey-id=1-attrs=5-n=5-t=3.pem
+        │   ├── threshold-verificationKey-id=2-attrs=5-n=5-t=3.pem
+        │   ├── threshold-verificationKey-id=3-attrs=5-n=5-t=3.pem
+        │   ├── threshold-verificationKey-id=4-attrs=5-n=5-t=3.pem
+        │   └── threshold-verificationKey-id=5-attrs=5-n=5-t=3.pem
+        └── verifier.key
 ```
 
 As you can see, the config directory contains configuration files,  as well as private and public keys for multiple components.
@@ -174,6 +199,7 @@ The components are as follows:
 * `ethereum-watchers` watch the Ethereum blockchain for interesting transactions (such as a user piping Nym ERC20 tokens into Nym).
 * `issuers` are Coconut credential issuing authorities.
 * `nodes` are Tendermint blockchain nodes.
+* `verifiers` are Nym credential verifiers validating any credentials service providers want to deposit.
 * `providers` are (dummy) external service providers.
 
 ## Running Nym in Docker
@@ -183,6 +209,7 @@ The components are as follows:
 1. starts Ethereum watchers, which point at the Ropsten testnet
 1. starts issuing authorities
 1. starts Tendermint nodes
+1. starts credential verifiers
 1. starts dummy service providers
 
 You can get an idea of what infrastructure you're now running by using `docker ps`.
@@ -207,9 +234,9 @@ IMAGE               COMMAND                  PORTS                              
 
 So now all the infrastructure is running. How can you make a request for a credential?
 
-Download and run the Nym sample client. Go to [TODO Jędrzej please put the URL here], download the sample `nymclient`, and put it somewhere in your `PATH`. Then run:
+Download and run the Nym sample client. Go to [release page](https://github.com/nymtech/nym/releases/download/v0.9.1/nymclient-linux-x86_64), download the sample `nymclient`, and put it somewhere in your `PATH`. Then run:
 
-`./nymclient -f localnetdata/localclient/config.toml`
+`nymclient -f $GOPATH/src/github.com/nymtech/nymlocalnetdata/localclient/config.toml`.
 
 When the client starts running, the following actions occur:
 
@@ -247,7 +274,8 @@ Validation of the credential being presented by the user is done by the Service 
 1. the SP receives the credential.
 1. the SP does local validation of the credential using the verification key of the relevant Issuing Authorities.
 1. the SP sends the credential to the Tendermint nodes to redeem it.
-1. the Tendermint nodes redeem the credential, crediting the SP's account with 1 Nym. This is written to the chain to defend against double spending attacks.
+1. the Credential Verifiers, meanwhile, monitor this chain and validate credential in redeem requests
+1. when a threshold number of Verifiers have notified Tendermint that given credential was valid, the Tendermint nodes redeem the credential, crediting the SP's account with 1 Nym. This is written to the chain to defend against double spending attacks.
 1. at this point, the SP has been paid 1 Nym. The user's client is now free to use the service provided by the SP.
 
 ## Dummy Service Provider response
@@ -267,6 +295,7 @@ To get a list of containers, run `docker ps`. Then attach to whichever container
 * `docker attach node0`
 * `docker attach provider1`
 * `docker attach watcher1`
+* `docker attach verifier1`
 
 # Performance testing
 
@@ -274,7 +303,7 @@ To get a list of containers, run `docker ps`. Then attach to whichever container
 
 The benchmarks were performed on 64bit Ubuntu 18.04.1 LTS VM with 2 cores of 3.6GHz Ryzen 1600 assigned. Each individual benchmark was run single-threaded for 1 minute with `-benchtime=60s` flag.
 
-These benchmarks are very old and require rerunning.
+These benchmarks are very old (and partially biased) and require rerunning. They do not represent the current state of the system.
 
 
 | Operation                        | Times run | Time per op     | Memory per op | Allocs per op     |
