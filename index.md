@@ -14,16 +14,22 @@ description: Documentation
 
 Nym is a blockchain-based privacy platform. It combines network level privacy against sophisticated end-to-end attackers, and an anonymizing layer for transactions using decentralised blinded credentials. Our goal is to allow developers to enable their applications with advanced privacy features unavailable in other systems.
 
-At present, our architecture has three main components: **Validators**, **Mixnodes**, and a **Directory**. All of these are running. The overall picture looks like this:
+At present, our architecture has three main components: **Validators**, **Mixnodes**, and a **Directory**. Everything shown in the diagram is currently running on the internet, and you're welcome to try our systems out.
 
-![dashboard](assets/nym-testnet.png)
+![overview](assets/nym-testnet.png)
 
 ## Validators
 
-Nym Validators provide privacy-friendly credentials based on the testimony of a set of decentralized, blockchain-based issuing authorities.  You can read an overview of
+[Nym Validators](https://github.com/nymtech/nym-validator) provide privacy-friendly credentials based on the testimony of a set of decentralized, blockchain-based issuing authorities.
 
+Validators use a signature scheme called [Coconut](https://arxiv.org/abs/1802.07344). This allows users of the system to generate cryptographic claims through decentralised authorities, then use them with service providers. The academic paper is a bit dense; we've got a more conversational explanation of Coconut on the Nym blog that is probably worth a look.
 
-Status:
+Uses Tendermint to prevent double-spending of credentials.
+
+![validators](assets/validators.png)
+
+Status: up and running.
+
 
 ## Mixnodes
 
@@ -38,6 +44,11 @@ Loopix mitigates against packet-dropping attacks by malicious nodes, and ensures
 Applications that need to defend against network-level monitoring can use Loopix - private messaging, VPNs, and other applications to enable strong privacy.
 
 A project wanting only private credentials, but no network defences, should be able use Coconut by itself. Conversely, an application that only needs to defend against network attackers can use Loopix by itself, without Coconut. But developers that need end-to-end protection at both the network and transaction level can use both together.
+
+# Directory
+
+The directory server handles presence and metrics. Temporarily centralized. 
+
 
 # Building and Running Nym
 
