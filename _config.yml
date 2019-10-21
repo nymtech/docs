@@ -39,4 +39,3 @@ exclude: [ 'README.md', 'CHANGELOG.md' ]
 includes_dir: ./doks-theme/_includes
 layouts_dir: ./doks-theme/_layouts
 permalink: /:title/
-url: https://nymtech.net/docs/
