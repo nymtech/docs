@@ -1,6 +1,6 @@
 # Theme settings
 doks:
-    baseurl: '/'
+    baseurl: '/docs'
     color_theme: # Available themes: blue (default), green, purple, red and yellow
     header:
         logo:
@@ -35,7 +35,8 @@ sass:
     style: :compressed
 
 # Jekyll settings
-layouts_dir: ./doks-theme/_layouts
-includes_dir: ./doks-theme/_includes
 exclude: [ 'README.md', 'CHANGELOG.md' ]
+includes_dir: ./doks-theme/_includes
+layouts_dir: ./doks-theme/_layouts
 permalink: /:title/
+url: https://nymtech.net/docs/
