@@ -31,7 +31,7 @@ The Nym mixnet implements a modified version of the network anonymity protocol d
 
 Assume a God-like adversary who can watch every packet on the network, record everything, and analyze everything in real-time. Is it possible to have private communications in such an environment? Intuitively, the answer is no: the attacker can watch every request and response, and progressively identify users with a high probability of success using probabilistic techniques.
 
-The Nym Mixnet solves this problem by *mixing* messages inside network nodes which are opaque to the attacker, and . Each message is then "mixed" with all other messages inside the node. That is, the node strips a layer of packet encryption, and adds a small random delays to packet transmission, so that messages are emitted out of order.
+The Nym Mixnet solves this problem by *mixing* messages inside network nodes which are opaque to the attacker. Each message is then "mixed" with all other messages inside the node. That is, the node strips a layer of packet encryption, and adds a small random delays to packet transmission, so that messages are emitted out of order.
 
 Next, the message is sent to another mix node and mixed again, then to a third mixnode for further mixing. Finally, the message is delivered to its destination.
 
@@ -40,3 +40,7 @@ Even an attacker who can record the whole internet will not be able to trace the
 The Nym Mixnet mitigates against packet-dropping attacks by malicious nodes, and ensures quality-of-service, via *loop* traffic, where clients send messages to themselves to ensure that messages are being delivered properly and that enough messages are going through the system to provide privacy for everyone.
 
 Applications that need to defend against network-level monitoring can use the Nym Mixnet - private messaging, VPNs, and other applications to enable strong privacy.
+
+## Our current Mixnet architecture
+
+![mixnet](../assets/mixnet.png)
