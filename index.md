@@ -28,9 +28,9 @@ At present, our running Nym testnet architecture has two main components: **Vali
 Nym currently consists of two core technologies:
 
 1. a privacy enhancing signature scheme called Coconut, used in the Nym Validator nodes.
-1. a mixnet, which encrypts and *mixes* network traffic so that it cannot be determined who is communicating with whom. Our mixnet is based on the *Sphinx* cryptographic packet format and the *Loopix* mixnet design.
+1. a mixnet, which encrypts and *mixes* network traffic through *mixnodes* so that it cannot be determined who is communicating with whom. Our mixnet is based on the *Sphinx* cryptographic packet format and the *Loopix* mixnet design.
 
-## Coconut vs Mixnets
+## Validator nodes vs Mixnodes
 
 A project wanting only private credential signing, but no network-level defences, can use Coconut credentials in the Nym Validators.
 
