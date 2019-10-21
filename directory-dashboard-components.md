@@ -5,8 +5,8 @@ keywords:
 comments: false
 
 # Hero section
-title: Mixnodes
-description: Network-level privacy
+title: Directory, Dashboard & Other Components
+description: Supporting components to make the system reliable and incentivized
 
 # Micro navigation
 micro_nav: true
