@@ -15,18 +15,17 @@ micro_nav: true
 page_nav:
     prev:
       content: Validators
-      url: '../mixnodes'
+      url: '../validators'
     next:
       content: TODO
       url: '#'
 ---
 
-
 ## Directory
 
 Note that in both the Nym Validators and Nym Mixnet discussions above, quite a bit is assumed. How does the client know which nodes exist, and what their IP addresses are? How does it find out their public keys so it can encrypt messages to them, and verify that responses came from them? How can we measure the overall throughput?
 
-The Nym Directory handles all of these concerns:
+The [Nym Directory](https://github.com/nymtech/nym-directory) handles all of these concerns:
 
 * presence - each Nym node sends a heartbeat message to the Directory every few seconds so we know what's running
 * public key infrastructure (PKI) - each node sends its public key as an identifier with the presence messages
