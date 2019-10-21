@@ -18,7 +18,7 @@ page_nav:
       url: '../validators'
     next:
       content: Directory, Dashboard & Other Components
-      url: 'directory-dashboard-components'
+      url: '../directory-dashboard-components'
 ---
 
 
