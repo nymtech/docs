@@ -34,6 +34,8 @@ Nym currently consists of two core technologies:
 
 The two technologies ensure privacy at different levels of the stack.
 
+## Coconut Credentials
+
 In the context of blockchain systems, **Coconut** provides **transaction privacy**. Typically this happens by transferring a coin to an address, then creating a privacy-enhanced Coconut credential which provably represents the input amount. The credential can then be "spent" anonymously, as if it were the original value. Double-spending protections apply to the credential, so it can only be spent once. Nym Validators can then unlock the value so it can be redeemed by the party holding the anonymized credential.
 
 Although there's still work to be done to integrate it against various blockchains, in principle Coconut can anonymize blockchain transactions in any system which provides multi-sig.
@@ -41,6 +43,10 @@ Although there's still work to be done to integrate it against various blockchai
 Coconut is very flexible, and can ensure privacy for more than coin transfers; it can ensure privacy for more complex smart contracts as well.
 
 Finally, it should be mentioned that Coconut can be applied to non-blockchain systems as well - it's a general purpose technology.
+
+Please see the [Nym Validator](validators) documentation for further detail.
+
+## Mixnet
 
 The **Nym Mixnet**, in contrast, ensures privacy at the **network level**. When you initiate an on-chain transaction, the transaction data you're sending can be tracked as the IP layer information travels across the internet. Even if the content of the transaction is encrypted, observers can still see the IP layer information and infer its content based on what then becomes visible in e.g. a public blockchain. So even though your transaction on-chain may be private, you have already lost the game if your information was captured in transit and subjected to timing attacks.
 
@@ -50,7 +56,9 @@ The mixnet can be used to secure both blockchain and non-blockchain systems. Thi
 
 The Nym Mixnet is conceptually similar to other systems such as Tor, but provides improved protections against timing attacks because it re-orders encrypted, indistinguishable Sphinx packets as they travel through the nodes.
 
-## Coconut Credentials vs Mixnodes
+Please see the [Nym Mixnodes](mixnodes) documentation for further detail.
+
+## Coconut Credentials vs Mixnet
 
 An application wanting only private credential signing, but no network-level defences, can use Coconut credentials via the Nym Validators.
 
