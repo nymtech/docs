@@ -1,0 +1,32 @@
+baseURL = "https://nymtech.net/docs/"
+languageCode = "en-US"
+defaultContentLanguage = "en"
+
+title = "Nym Docs"
+theme = "hugo-theme-learn"
+metaDataFormat = "yaml"
+defaultContentLanguageInSubdir= true
+
+[params]
+  # editURL = "https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/"
+  description = "Nym Documentation for mixnodes, loopix, coconut credentials, validators, and privacy-related systems."
+  author = "Nym Team"
+  showVisitedLinks = false
+  disableBreadcrumb = false
+  disableNextPrev = false
+  # Change default color scheme with a variant one. Can be "red", "blue", "green".
+  themeVariant = "red"
+
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[[menu.shortcuts]]
+name = "<i class='fab fa-fw fa-github'></i> Nym Github"
+identifier = "ds"
+url = "https://github.com/nymtech/"
+weight = 10
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-fw fa-bullhorn'></i> Website"
+url = "https://nymtech.net"
+weight = 30

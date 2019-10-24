@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Overview on Nym Docs</title>
+    <link>https://nymtech.net/docs/overview/</link>
+    <description>Recent content in Overview on Nym Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    
+	<atom:link href="https://nymtech.net/docs/overview/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Current Status</title>
+      <link>https://nymtech.net/docs/overview/status/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nymtech.net/docs/overview/status/</guid>
+      <description>We are running a Nym testnet with two main components: Nym Validator nodes, and Nym Mixnodes.
+There&amp;rsquo;s also a Nym Directory for PKI and network topology information, and a HTML Dashboard showing current network status.
+Here&amp;rsquo;s an overview of the entire network. Don&amp;rsquo;t be frightened, we&amp;rsquo;ll explain each piece!
+Everything shown in the diagram is currently running on the internet, and you&amp;rsquo;re welcome to try our systems out.
+Please note: the mixnet and credentials system have not yet been connected together (so there is not yet the possibility to protect IP-layer traffic when generating credentials).</description>
+    </item>
+    
+    <item>
+      <title>Links</title>
+      <link>https://nymtech.net/docs/overview/links/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nymtech.net/docs/overview/links/</guid>
+      <description>Here are some links that may prove handy as you start exploring our project:
+ The Nym website has general info on project status and links to learning materials and talks we&amp;rsquo;ve given Nym Mixnet code Nym Validator code Nym Directory code The Nym dashboard shows testnet nodes and activity You can get a live stream of our testnet mixnode activity by subscribing to the websocket at wss://directory.nymtech.net/ws. View it in-browser here.</description>
+    </item>
+    
+  </channel>
+</rss>

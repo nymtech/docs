@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.59.0" />
+    <meta name="description" content="Nym Documentation for mixnodes, loopix, coconut credentials, validators, and privacy-related systems.">
+<meta name="author" content="Nym Team">
+
+    <link rel="icon" href="/docs/images/favicon.png" type="image/png">
+
+    <title>Validators :: Nym Docs</title>
+
+    
+    <link href="/docs/css/nucleus.css?1571858038" rel="stylesheet">
+    <link href="/docs/css/fontawesome-all.min.css?1571858038" rel="stylesheet">
+    <link href="/docs/css/hybrid.css?1571858038" rel="stylesheet">
+    <link href="/docs/css/featherlight.min.css?1571858038" rel="stylesheet">
+    <link href="/docs/css/perfect-scrollbar.min.css?1571858038" rel="stylesheet">
+    <link href="/docs/css/auto-complete.css?1571858038" rel="stylesheet">
+    <link href="/docs/css/atom-one-dark-reasonable.css?1571858038" rel="stylesheet">
+    <link href="/docs/css/theme.css?1571858038" rel="stylesheet">
+    <link href="/docs/css/hugo-theme.css?1571858038" rel="stylesheet">
+    
+      <link href="/docs/css/theme-red.css?1571858038" rel="stylesheet">
+    
+
+    <script src="/docs/js/jquery-3.3.1.min.js?1571858038"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/docs/validators/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <img src="/docs/images/nym-logo.svg" alt="Nym Logo">
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/docs/js/lunr.min.js?1571858038"></script>
+<script type="text/javascript" src="/docs/js/auto-complete.js?1571858038"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/nymtech.net\/docs\/";
+    
+</script>
+<script type="text/javascript" src="/docs/js/search.js?1571858038"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/overview/" title="Overview" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/overview/">
+          <b>1. </b>Overview
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/overview/status/" title="Current Status" class="dd-item ">
+        <a href="/docs/overview/status/">
+        Current Status
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/overview/links/" title="Links" class="dd-item ">
+        <a href="/docs/overview/links/">
+        Links
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/mixnet/" title="Mixnet" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/mixnet/">
+          <b>2. </b>Mixnet
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/mixnet/installation/" title="Installation" class="dd-item ">
+        <a href="/docs/mixnet/installation/">
+        Installation
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/mixnet/clients/" title="Mixnet client" class="dd-item ">
+        <a href="/docs/mixnet/clients/">
+        Mixnet client
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/mixnet/mixnodes/" title="Mixnodes" class="dd-item ">
+        <a href="/docs/mixnet/mixnodes/">
+        Mixnodes
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/mixnet/storage-nodes/" title="Storage Nodes" class="dd-item ">
+        <a href="/docs/mixnet/storage-nodes/">
+        Storage Nodes
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/mixnet/chat-demo/" title="Chat demo" class="dd-item ">
+        <a href="/docs/mixnet/chat-demo/">
+        Chat demo
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/validators/" title="Validators" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="/docs/validators/">
+          <b>3. </b>Validators
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/validators/coconut/" title="Coconut credentials" class="dd-item ">
+        <a href="/docs/validators/coconut/">
+        Coconut credentials
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/validators/validator-flow/" title="Validator flow" class="dd-item ">
+        <a href="/docs/validators/validator-flow/">
+        Validator flow
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/validators/client-demo/" title="Client Demo" class="dd-item ">
+        <a href="/docs/validators/client-demo/">
+        Client Demo
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/validators/installing-testnet/" title="Installing a Nym Validator Testnet" class="dd-item ">
+        <a href="/docs/validators/installing-testnet/">
+        Installing a Nym Validator Testnet
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/directory-and-dashboard/" title="Other Components" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/directory-and-dashboard/">
+          <b>4. </b>Other Components
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/nymtech/"><i class='fab fa-fw fa-github'></i> Nym Github</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://nymtech.net"><i class='fas fa-fw fa-bullhorn'></i> Website</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/docs/'>Nym</a> > Validators
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Validators
+            </h1>
+          
+
+        
+
+
+
+
+	<p><a href="https://github.com/nymtech/nym-validator">Nym Validators</a> provide privacy-enhanced credentials based on the testimony of a set of decentralized, blockchain-based issuing authorities.</p>
+
+<p>Nym Validators use a <a href="https://en.wikipedia.org/wiki/Digital_signature">signature scheme</a> called <a href="https://arxiv.org/abs/1802.07344">Coconut</a>. This allows users of the system to generate credentials through decentralised authorities, then use them with service providers.</p>
+
+<p>First, let&rsquo;s take a look at what the Coconut credentials scheme provides, and how it differs from other schemes.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/docs/mixnet/chat-demo/" title="Chat demo"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/docs/validators/coconut/" title="Coconut credentials" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/docs/js/clipboard.min.js?1571858038"></script>
+    <script src="/docs/js/perfect-scrollbar.min.js?1571858038"></script>
+    <script src="/docs/js/perfect-scrollbar.jquery.min.js?1571858038"></script>
+    <script src="/docs/js/jquery.sticky.js?1571858038"></script>
+    <script src="/docs/js/featherlight.min.js?1571858038"></script>
+    <script src="/docs/js/highlight.pack.js?1571858038"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/docs/js/modernizr.custom-3.6.0.js?1571858038"></script>
+    <script src="/docs/js/learn.js?1571858038"></script>
+    <script src="/docs/js/hugo-learn.js?1571858038"></script>
+
+    <link href="/docs/mermaid/mermaid.css?1571858038" rel="stylesheet" />
+    <script src="/docs/mermaid/mermaid.js?1571858038"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

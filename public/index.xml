@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nym on Nym Docs</title>
+    <link>https://nymtech.net/docs/</link>
+    <description>Recent content in Nym on Nym Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    
+	<atom:link href="https://nymtech.net/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Current Status</title>
+      <link>https://nymtech.net/docs/overview/status/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nymtech.net/docs/overview/status/</guid>
+      <description>We are running a Nym testnet with two main components: Nym Validator nodes, and Nym Mixnodes.
+There&amp;rsquo;s also a Nym Directory for PKI and network topology information, and a HTML Dashboard showing current network status.
+Here&amp;rsquo;s an overview of the entire network. Don&amp;rsquo;t be frightened, we&amp;rsquo;ll explain each piece!
+Everything shown in the diagram is currently running on the internet, and you&amp;rsquo;re welcome to try our systems out.
+Please note: the mixnet and credentials system have not yet been connected together (so there is not yet the possibility to protect IP-layer traffic when generating credentials).</description>
+    </item>
+    
+    <item>
+      <title>Installation</title>
+      <link>https://nymtech.net/docs/mixnet/installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nymtech.net/docs/mixnet/installation/</guid>
+      <description>The mixnet code is relatively simple to build and run on Mac OS X and Linux. We haven&amp;rsquo;t tried it on Windows (yet).
+Requirements  Go 1.12 or later make git  To download and build:
+git clone https://github.com/nymtech/nym-mixnet.git cd nym-mixnet git checkout v0.1.5 make  In case you&amp;rsquo;ve been traumatized by Go&amp;rsquo;s (lack of) dependency management in the past, you don&amp;rsquo;t need to worry about $GOPATH, $GOROOT etc. Check the code out and build it wherever you want to.</description>
+    </item>
+    
+    <item>
+      <title>Links</title>
+      <link>https://nymtech.net/docs/overview/links/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nymtech.net/docs/overview/links/</guid>
+      <description>Here are some links that may prove handy as you start exploring our project:
+ The Nym website has general info on project status and links to learning materials and talks we&amp;rsquo;ve given Nym Mixnet code Nym Validator code Nym Directory code The Nym dashboard shows testnet nodes and activity You can get a live stream of our testnet mixnode activity by subscribing to the websocket at wss://directory.nymtech.net/ws. View it in-browser here.</description>
+    </item>
+    
+    <item>
+      <title>Mixnet client</title>
+      <link>https://nymtech.net/docs/mixnet/clients/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nymtech.net/docs/mixnet/clients/</guid>
+      <description>Clients The Nym Client was built in the Installation section. If you haven&amp;rsquo;t yet built the Nym Mixnet and want to run the code on this page, go there first.
+ From inside the nym-mixnet directory, the loopix-client binary got built to the build directory, so you can run it with ./build/loopix-client:
+nym-mixnet$ ./build/loopix-client Usage: loopix-client COMMAND [OPTIONS] _ _ | | ___ ___ _ __ (_)_ __ | | / _ \ / _ \| &#39;_ \| \ \/ / | |___ (_) | (_) | |_) | |&amp;gt; &amp;lt; |_____\___/ \___/| .</description>
+    </item>
+    
+    <item>
+      <title>Coconut credentials</title>
+      <link>https://nymtech.net/docs/validators/coconut/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nymtech.net/docs/validators/coconut/</guid>
+      <description>Coconut credentials Like centralised credentials, Nym&amp;rsquo;s Coconut credentials can be signed with a secret key and later verified by anybody with the corresponding public key. But Nym credentials are much more powerful than &amp;ldquo;normal&amp;rdquo; signature schemes like standard RSA or DSA.
+Specifically, Coconut is a blinded, re-randomizable, selective disclosure threshold credential signature scheme. That&amp;rsquo;s quite a mouthful, so let&amp;rsquo;s break it all down into digestible chunks.
+Let&amp;rsquo;s say you have a message in hand.</description>
+    </item>
+    
+    <item>
+      <title>Mixnodes</title>
+      <link>https://nymtech.net/docs/mixnet/mixnodes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nymtech.net/docs/mixnet/mixnodes/</guid>
+      <description>Mixnodes The Nym Mixnodes were built in the Installation section. If you haven&amp;rsquo;t yet built the Nym Mixnet and want to run the code, go there first.
+ You can run the Mix Node from the nym-mixnet directory like this:
+./build/loopix-mixnode Usage: loopix-mixnode COMMAND [OPTIONS] _ _ | | ___ ___ _ __ (_)_ __ | | / _ \ / _ \| &#39;_ \| \ \/ / | |___ (_) | (_) | |_) | |&amp;gt; &amp;lt; |_____\___/ \___/| .</description>
+    </item>
+    
+    <item>
+      <title>Storage Nodes</title>
+      <link>https://nymtech.net/docs/mixnet/storage-nodes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nymtech.net/docs/mixnet/storage-nodes/</guid>
+      <description>Storage nodes The Nym Storage Nodes were built in the Installation section. If you haven&amp;rsquo;t yet built the Nym Mixnet and want to run the code, go there first.
+ You can run the Storage node from the nym-mixnet directory like this:
+./build/loopix-provider Usage: loopix-provider COMMAND [OPTIONS] _ _ | | ___ ___ _ __ (_)_ __ | | / _ \ / _ \| &#39;_ \| \ \/ / | |___ (_) | (_) | |_) | |&amp;gt; &amp;lt; |_____\___/ \___/| .</description>
+    </item>
+    
+    <item>
+      <title>Validator flow</title>
+      <link>https://nymtech.net/docs/validators/validator-flow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nymtech.net/docs/validators/validator-flow/</guid>
+      <description>How do Nym Validators work? If you are a coder and interested in trying it, you can download, build, and run Nym Validator code today. We are also running a small and somewhat creaky testnet publicly. Nym Validators form a network of decentralized nodes:
+Here&amp;rsquo;s the general flow.
+A client (in purple at the bottom) has a message m in hand. The message contains a cryptographic claim. The client blinds the message (to protect the privacy of message content), so now it&amp;rsquo;s got Blinded(m).</description>
+    </item>
+    
+    <item>
+      <title>Chat demo</title>
+      <link>https://nymtech.net/docs/mixnet/chat-demo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nymtech.net/docs/mixnet/chat-demo/</guid>
+      <description>You can try out our running mixnet today using a demo application - a mixnet chat demonstrator.
+The chat client runs as both a console-based client, and as an Electron client showing how you&amp;rsquo;d build something in JavaScript.
+If you want to try it, grab the code from the chat demo Github repo - build and usage instructions are there. Here&amp;rsquo;s a quick GIF of the console client in action:</description>
+    </item>
+    
+    <item>
+      <title>Client Demo</title>
+      <link>https://nymtech.net/docs/validators/client-demo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nymtech.net/docs/validators/client-demo/</guid>
+      <description>Nym Validator Testnet In the current Nym Validators testnet, we focus primarily on making blockchain transactions private. To demonstrate the technology, we&amp;rsquo;ve set up a Nym ERC20 coin running on the Ethereum Ropsten testnet.
+The Nym client sends a Nym ERC20 coin to a specific Ethereum address. This locks up the ERC20 coin until it&amp;rsquo;s released by action of the Nym Validators.
+The client then goes through the credential assembly dance.</description>
+    </item>
+    
+    <item>
+      <title>Installing a Nym Validator Testnet</title>
+      <link>https://nymtech.net/docs/validators/installing-testnet/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nymtech.net/docs/validators/installing-testnet/</guid>
+      <description>Validator internal communication Tendermint is used within Nym validators to prevent double-spending of generated credentials, and zero-knowledge proof to validate cryptocurrency use cases is built into the system at present. More complex smart contract cases will require the coding of specific zero-knowledge proofs to match the application domain of the contract.
+You don&amp;rsquo;t need to explicitly install Tendermint, it&amp;rsquo;s taken care of by Docker
+Building and running a Nym Validator node Install and run in Docker  Install Docker.</description>
+    </item>
+    
+  </channel>
+</rss>

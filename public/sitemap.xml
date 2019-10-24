@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://nymtech.net/docs/overview/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/overview/status/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/mixnet/installation/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/overview/links/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/mixnet/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/mixnet/clients/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/validators/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/validators/coconut/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/mixnet/mixnodes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/directory-and-dashboard/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/mixnet/storage-nodes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/validators/validator-flow/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/mixnet/chat-demo/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/validators/client-demo/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/validators/installing-testnet/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://nymtech.net/docs/tags/</loc>
+  </url>
+  
+</urlset>
