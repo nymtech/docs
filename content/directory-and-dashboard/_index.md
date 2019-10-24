@@ -28,7 +28,7 @@ Once our mixnet Quality of Service system, and Proof of Stake system, they'll ta
 
 ### Other components
 
-Other components, not yet built, are currently being designed.
+Other components, not yet built, are currently being designed. The Nym Whitepaper (forthcoming) details the overall system design and how these parts will fit in. But here's a preview.
 
 #### Proof of Stake
 
