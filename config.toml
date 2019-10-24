@@ -22,12 +22,18 @@ publishDir = "../nym-www/build/docs/"
 home = [ "HTML", "RSS", "JSON"]
 
 [[menu.shortcuts]]
-name = "<i class='fab fa-fw fa-github'></i> Nym Github"
-identifier = "ds"
-url = "https://github.com/nymtech/"
+name = "<i class='fas fa-fw fa-bullhorn'></i> Website"
+url = "https://nymtech.net"
 weight = 10
 
 [[menu.shortcuts]]
-name = "<i class='fas fa-fw fa-bullhorn'></i> Website"
-url = "https://nymtech.net"
+name = "<i class='fab fa-fw fa-github'></i> Github"
+identifier = "ds"
+url = "https://github.com/nymtech/"
+weight = 20
+
+[[menu.shortcuts]]
+name = "<i class='fab fa-fw fa-twitter'></i> Twitter"
+identifier = "tw"
+url = "https://twitter.com/nymproject/"
 weight = 30
