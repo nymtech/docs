@@ -97,6 +97,7 @@ No matter whether you use `./loopix-client run`, compile the client into your co
 A large proportion of the Nym Mixnet's functionality is implemented client-side, including:
 
 1. determining network topology
+1. registering with mixnet [storage nodes](../storage-nodes)
 1. sending Sphinx packets with real messages
 1. sending Sphinx packet *cover traffic* when no real messages are being sent
 

@@ -12,7 +12,7 @@ The Nym Storage Nodes were built in the [Installation](../installation) section.
 You can run the Storage node from the `nym-mixnet` directory like this:
 
 ```shell
-./build/loopix-provider
+nym-mixnet$ ./build/loopix-provider
 Usage: loopix-provider COMMAND [OPTIONS]
 
 
@@ -32,7 +32,9 @@ Commands:
 Run "loopix-provider help <command>" for more info on a specific command.
 ```
 
-Loopix providers, or storage nodes, provide a destination for mixnet packets. The provider may choose to:
+Loopix providers, or storage nodes, provide a destination for mixnet packets. When they start up, a Mixnet [client](../clients) registers itself with a storage node, generating an access token allowing the client to pull messages from the storage node. The default storage node implementation included in the current Nym Mixnet holds packets for later retrieval.
+
+The provider may choose to:
 
 * forward packets to the destination itself - this would make sense in the case of e.g. the Bitcoin blockchain
 * store packets for later retrieval by potentially offline clients - this would make sense for e.g. a chat application

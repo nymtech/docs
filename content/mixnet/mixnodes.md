@@ -14,7 +14,7 @@ The Nym Mixnodes were built in the [Installation](../installation) section. If y
 You can run the Mix Node from the `nym-mixnet` directory like this:
 
 ```shell
-./build/loopix-mixnode
+nym-mixnet$ ./build/loopix-mixnode
 Usage: loopix-mixnode COMMAND [OPTIONS]
 
 
