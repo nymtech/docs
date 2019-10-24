@@ -4,7 +4,7 @@ Documentation for the Nym privacy platform. Built docs eventually make their way
 
 ## Contributing
 
-Contributions to our documentation are very welcome! Please shoot us a pull request if you can see a way that they can be improved.
+Contributions to our documentation are very welcome. Please shoot us a pull request if you can see a way that they can be improved.
 
 ## Building
 
