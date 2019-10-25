@@ -18,18 +18,6 @@ Right now, Service Providers are just dummy SPs which demonstrate that credentia
 
 Client applications interact with Nym Validator nodes through a piece of client software. In order to demonstrate the general flow detailed above, we've embedded the client in a QT-based GUI application to show how it works.
 
-To run it:
+We've packaged it for Linux, Mac OS X, and Windows. You can download it from the releases page:
 
-* Install `dep`
-
-```
-mkdir -p $GOPATH/src/github.com/nymtech
-cd $GOPATH/src/github.com/nymtech
-```
-
-Git clone the repo at https://github.com/nymtech/qt-validator-client-demo.
-
-```
-cd qt-validator-client-demo
-dep ensure
-```
+https://github.com/nymtech/qt-validator-client-demo/releases/tag/v0.0.1
