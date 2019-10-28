@@ -65,32 +65,13 @@ It doesn't look like much happened, it just sits there. But in fact, when you `r
 Congratulations, you have just contributed a tiny bit of privacy to the world! `<CTRL-C>` to stop the client.
 {{% /notice %}}
 
+{{% notice note %}}
+If you want to see slightly more details about what the client is doing, take a look at the log file at `/tmp/loopix_alice.log`. You can change the file by modifying the client's config at `/home/you/.loopix/clients/alice/config/config.toml`. If you change the logging file to an empty value, everything will be printed directly to the stdout.
+{{% /notice %}}
+
 Try stopping and starting the client a few times. If you're interested, you should see your traffic reflected in the network traffic *sent* and *received* metrics at the [Nym Dashboard](https://dashboard.nymtech.net/). Have a look on the right hand side:
 
 ![dashboard](/docs/images/dashboard.gif)
-
-### Integrating the mixnet client in your applications
-
-Depending on what language you're using, you can fire up the client in one of two ways.
-
-#### In Go
-
-If you're a Gopher, you can compile the client code into your own application in the normal Go fashion. Calling `client.Start()` and `client.SendMessage(message []byte, recipient config.ClientConfig)` will allow you to send your traffic over the Nym Mixnet. The `./build/loopix-client run --id alice` command, in fact, just calls `client.Start()`.
-
-#### In other languages
-
-If you're not a Gopher (go coder), don't despair. You can run the client in socket mode instead, and use either websockets or TCP sockets. For a websocket, try this:
-
-`./build/loopix-client socket --id alice --socket websocket --port 1863`
-
-This will start a websocket connection at `ws://localhost:1863/mix`. You can push either text or raw bytes down the websocket, and it'll be pushed to the mixnet.
-
-For a TCP socket:
-
-`./build/loopix-client socket --id alice --socket tcp --port 1863`
-
-
-No matter whether you use `./loopix-client run`, compile the client into your code, or start a `./loopix-client socket`, the client will reach out and grab the mixnet topology, and immediately start to send fake cover traffic. When you have a real message to send, that'll be sent instead of the cover traffic.
 
 ### Understanding the client
 
@@ -98,6 +79,8 @@ A large proportion of the Nym Mixnet's functionality is implemented client-side,
 
 1. determining network topology
 1. registering with mixnet [storage nodes](../storage-nodes)
+1. fetching stored messages from the [storage nodes](../storage-nodes)
+1. sending constant stream of Sphinx packet *cover traffic* messages
 1. sending Sphinx packets with real messages
 1. sending Sphinx packet *cover traffic* when no real messages are being sent
 
@@ -109,54 +92,93 @@ When you first `run` your client, the client needs to figure what mixnodes exist
 
 The client asks the Nym directory for the current mixnet topology. The client handles all this automatically, but in order to understand what's happening, you can try it yourself:
 
-```
-curl -X GET "https://directory.nymtech.net/api/presence/topology" -H  "accept: application/json" | jq   
+```bash
+curl -X GET "https://directory.nymtech.net/api/presence/topology" -H  "accept: application/json" | jq
 ```
 
-This returns a JSON-formatted list of `MixNodes`, among other things:
+This returns a JSON-formatted list of `MixNodes` and `MixProviderNodes`, among other things:
 
 ```json
 "MixNodes": [
   {
-    "host": "3.9.12.238:1789",
-    "pubKey": "ALf35HwBzXZXxaS6V55W7cLsx4a26AaRefinwwJHrg4=",
-    "layer": 3,
-    "lastSeen": 1571847181617417500
-  },
-  {
-    "host": "35.178.213.77:1789",
-    "pubKey": "KlfEn07FzcN93nMzzlsgq3wN5O1ID6O3Pd4DbezHEWo=",
-    "layer": 2,
-    "lastSeen": 1571847180498272500
-  },
-  {
     "host": "52.56.99.196:1789",
     "pubKey": "_ObRUsYnHDJOPDHXyfq5bnIoSbdn3BsSRcrLl-FCY1c=",
     "layer": 2,
-    "lastSeen": 1571847180496028700
+    "lastSeen": 1572258570490299400
   },
   {
     "host": "18.130.86.190:1789",
     "pubKey": "dMtoH6vWDBfwjrU0EzPd-fhZDOGJazELsTp2qLyt72U=",
     "layer": 1,
-    "lastSeen": 1571847181197982700
+    "lastSeen": 1572258571193777000
   },
   {
     "host": "3.10.22.152:1789",
     "pubKey": "03FFZ5RgfeBPmVVERenJOCLb-yXlOUtstc6izYc-wFs=",
     "layer": 1,
-    "lastSeen": 1571847180994739500
+    "lastSeen": 1572258570994450200
   },
   {
     "host": "35.176.155.107:1789",
     "pubKey": "oaEqLzA5nUxMAqfg6yW5pneWC342uDMfVsSHxyNQ-DE=",
     "layer": 3,
-    "lastSeen": 1571847181710269200
+    "lastSeen": 1572258571709773800
+  },
+  {
+    "host": "3.9.12.238:1789",
+    "pubKey": "ALf35HwBzXZXxaS6V55W7cLsx4a26AaRefinwwJHrg4=",
+    "layer": 3,
+    "lastSeen": 1572258571616835600
+  },
+  {
+    "host": "35.178.213.77:1789",
+    "pubKey": "KlfEn07FzcN93nMzzlsgq3wN5O1ID6O3Pd4DbezHEWo=",
+    "layer": 2,
+    "lastSeen": 1572258570492776400
   }
 ],
+"MixProviderNodes": [
+  {
+    "host": "35.178.212.193:1789",
+    "pubKey": "R_rGKmwelVAVRpicMwMIJwsHvdYHMNfcItPwNipu5GQ=",
+    "registeredClients": [
+      {
+        "pubKey": "u7UTjC3UNXdz0HsjMKoxozzbvXyi3KrEvl8BxNNPcAM="
+      },
+     ...
+    ],
+    "lastSeen": 1572258572070089000
+  },
+  {
+    "host": "3.8.176.11:1789",
+    "pubKey": "XiVE6xA10xFkAwfIQuBDc_JRXWerL0Pcqi7DipEUeTE=",
+    "registeredClients": [
+      {
+        "pubKey": "HGTg5XPWe4eiluFKTnC958PuGUSipjLcIeFdLi6zsww="
+      },
+      ...
+    ],
+    "lastSeen": 1572258571843881700
+  }
+],
+...
 ```
 
 The client does this when it starts. Each node reports what layer it's in, its public key, and its IP address. The client now has all the information needed to pick a path through the mixnet for each Sphinx packet, and do packet encryption.
+
+#### Registering at a Storage Node
+
+When the client is first started, it sends a registration request to one of the available Storage Nodes, also known in the context of the topology as `MixProviderNode`. This returns a unique token that the client attaches to every subsequent request to the provider.
+
+It is required as mixnet clients cannot receive messages directly from other clients as this would have required them to reveal their actual ip address which is not a desirable requirement. Instead the providers act as a sort of proxy between the client and the mixnet. So whenever client receives a message, it is stored by the specified storage node until the recipient fetches for it.
+
+#### Fetching stored messages
+
+Upon completing the provider registration, the client starts a seperate message stream that periodically, in accordance to the rate of the specified distribution, tries to fetch all stored messages by the provider.
+
+{{% notice note %}}
+Note that once the message is pulled, currently the provider immedietaly deletes it from its own storage.
+{{% /notice %}}
 
 #### Sending messages
 
@@ -178,3 +200,257 @@ Clients create Sphinx packets. These packets are a bit complicated, but for now 
 1. the body is layer-encrypted - it may contain either another sphinx packet or an unencrypted message
 
 Now let's go build the Nym Mixnode and see what happens when a Sphinx packet hits a mixnode.
+
+### Integrating the mixnet client in your applications
+
+Depending on what language you're using, you can fire up the client in one of two ways.
+
+#### In Go
+
+If you're a Gopher, you can compile the client code into your own application in the normal Go fashion. This will give you access to all public methods and attributes of the mixnet client. Most notably:
+
+- `client.Start()`
+- `client.GetReceivedMessages()`
+- `client.SendMessage(message []byte, recipient config.ClientConfig)`
+
+**`client.Start()`**  performs all of the aforementioned required setup, i.e. obtains network topology, registers at some storage node, starts all the traffic streams. In fact just calling `client.Start()` and not doing anything more is equivalent to the `./build/loopix-client run --id alice` command.
+
+{{% notice tip %}}
+You can decide at which particular provider should the client register by modifying the `Provider` attribute in the client struct before calling the `.Start()` method.
+{{% /notice %}}
+
+When the client fetches valid messages from its provider, they are stored in local buffer until **`client.GetReceivedMessages()`** is called. This method returns all those messages and resets the buffer.
+
+**`client.SendMessage(message []byte, recipient config.ClientConfig)`** as the name suggests, provides the core functionality of the mixnet by allowing sending arbitrary messages to specified recipients through the Nym Mixnet. It uses the current network topology to generate a path through the mixnet and automatically packs the content into an appropriate Sphinx packet.
+
+The recipient argument is defined as a ClientConfig protobuf message thus allowing for better cross-language compatibility. In the case of the Go implementation, it is compiled down to the language. The protobu message is defined as follows:
+
+{{< highlight Protobuf >}}
+message ClientConfig {
+    string Id = 1;
+    string Host = 2;
+    string Port = 3;
+    bytes PubKey = 4;
+    MixConfig Provider = 5;
+}
+{{< /highlight >}}
+
+where
+
+{{< highlight Protobuf >}}
+message MixConfig {
+    string Id = 1;
+    string Host = 2;
+    string Port = 3;
+    bytes PubKey = 4;
+    uint64 Layer = 5;
+}
+{{< /highlight >}}
+
+{{% notice info %}}
+For the client, at this point of time, only the `PubKey` and `Provider` fields are relevant. `Host` and `Port` are no longer used in any meaningful way and will be removed later on. The `Id` equivalent to the encoding of the `PubKey` using the alternate URL base64 encoding as defined in [RFC 4648](https://tools.ietf.org/html/rfc4648). The similar is true for the `MixConfig` for the Provider - the `Id` is the base64 encodin of the public key. However, the `Host` and `Port` fields are actually vital here in order to generate routing information. As for the `Layer`, it is irrelevant in the contect of a Provider. It is only required for Mix nodes.
+
+{{% /notice %}}
+
+#### In other languages
+
+If you're not a Gopher (go coder), don't despair. You can run the client in socket mode instead, and use either websockets or TCP sockets to have nearly identical functionalities.
+
+##### Using TCP Socket
+
+In an effort to achieve relatively high-level cross-language compatibility, all messages exchanged between socket client and whatever entity is communicating with it, are defined as protobuf messages:
+
+{{< highlight Protobuf >}}
+message Request {
+    oneof value {
+        RequestSendMessage send = 2;
+        RequestFetchMessages fetch = 3;
+        RequestGetClients clients = 4;
+        RequestOwnDetails details = 5;
+        RequestFlush flush = 6;
+    }
+}
+
+// please refer to the current sourcecode for the current content of each request / response
+
+message Response {
+    oneof value {
+        ResponseException exception = 1;
+        ResponseSendMessage send = 2;
+        ResponseFetchMessages fetch = 3;
+        ResponseGetClients clients = 4;
+        ResponseOwnDetails details = 5;
+        ResponseFlush flush = 6;
+    }
+}
+{{< /highlight >}}
+
+Currently the socket messages allow for the following:
+
+1. Send arbitrary bytes message to selected recipient
+1. Fetch all received messages from the client's buffer
+1. Get the list of all possible clients on the network
+1. Get `ClientConfig` message describing own Mixnet configuration
+1. Force the socket client to flush it's writer buffer
+
+Do note, however, that when the message is being written into the socket, additional inforation encoding the length of the message is included. This needs to be handled when reading and writing to the socket.
+
+{{% notice note %}}
+Proto-encoded message is prepended with 10-byte varint containing length of the encoding. Please refer to [the sample implementation](https://github.com/nymtech/nym-mixnet/blob/67b5870e4d2665e9555f3c53abca4c4d32601513/client/rpc/utils/utils.go#L29)
+{{% /notice %}}
+
+For example, you could start a TCP socket client with `./build/loopix-client socket --id alice --socket tcp --port 9001` and then to fetch received messages using TCP socket, one could do as follows:
+
+{{< highlight Go >}}
+
+func WriteProtoMessage(msg proto.Message, w io.Writer) error {
+  b, err := proto.Marshal(msg)
+  if err != nil {
+    return err
+  }
+
+  return encodeByteSlice(w, b)
+}
+
+func encodeByteSlice(w io.Writer, bz []byte) (err error) {
+  err = encodeVarint(w, int64(len(bz)))
+  if err != nil {
+    return
+  }
+  _, err = w.Write(bz)
+  return
+}
+
+func encodeVarint(w io.Writer, i int64) (err error) {
+  var buf [10]byte
+  n := binary.PutVarint(buf[:], i)
+  _, err = w.Write(buf[0:n])
+  return
+}
+
+
+
+[...]
+
+
+
+fetchRequest := &types.Request{
+  Value: &types.Request_Fetch{
+    Fetch: &types.RequestFetchMessages{},
+  },
+}
+
+flushRequest := &types.Request{
+  Value: &types.Request_Flush{
+    Flush: &types.RequestFlush{},
+  },
+}
+
+conn, err := net.Dial("tcp", "127.0.0.1:9001")
+if err != nil {
+  panic(err)
+}
+
+err = utils.WriteProtoMessage(fetchRequest, conn)
+if err != nil {
+  panic(err)
+}
+
+err = utils.WriteProtoMessage(flushRequest, conn)
+if err != nil {
+  panic(err)
+}
+
+// reading response
+
+res := &types.Response{}
+err = utils.ReadProtoMessage(res, conn)
+if err != nil {
+  panic(err)
+}
+
+fmt.Printf("%v", res)
+{{< /highlight >}}
+
+##### Using Websocket
+
+Using the websocket is actually very similar to the way TCP socket is used. In fact it is actually simpler due to HTTP handling few aspects of it for us. For example the encoding of the lenghts of messages exchanged or the buffer flushing.
+
+The identical set of request/responses is available for the Websocket as it was the case with the TCP socket, with the exception of `RequestFlush`, which does not exist. So for example having started the client with: `./build/loopix-client socket --id alice --socket websocket --port 9001`, you could do the following to write a fetch request to a Websocket in Go:
+
+{{< highlight Go >}}
+import (
+  "net/url"
+  "github.com/golang/protobuf/proto"
+  "github.com/gorilla/websocket"
+)
+
+fetchRequest := &types.Request{
+  Value: &types.Request_Fetch{
+    Fetch: &types.RequestFetchMessages{},
+  },
+}
+
+u := url.URL{
+  Scheme: "ws",
+  Host:   "127.0.0.1:9000",
+  Path:   "/mix",
+}
+c, _, err := websocket.DefaultDialer.Dial(u.String(), nil)
+if err != nil {
+  panic(err)
+}
+
+defer c.Close()
+
+fetchRequestBytes, err := proto.Marshal(fetchRequest)
+if err != nil {
+  panic(err)
+}
+
+err = c.WriteMessage(websocket.BinaryMessage, fetchRequestBytes)
+if err != nil {
+  panic(err)
+}
+
+time.Sleep(time.Second)
+
+_, resB, err := c.ReadMessage()
+if err != nil {
+  panic(err)
+}
+
+res := &types.Response{}
+err = proto.Unmarshal(resB, res)
+if err != nil {
+  panic(err)
+}
+
+fmt.Printf("%v", res)
+
+{{< /highlight >}}
+
+Alternatively, rather than sending binary data through the Websocket, you could format it as a corresponding JSON. This lets you use the Mixnet with your favourite JavaScript framework (including everyone's favourite jQuery
+) way more easily.
+
+The same example of fetching messages in TypeScript would look as follows:
+
+{{< highlight Typescript >}}
+const fetchMsg = JSON.stringify({
+  fetch: {},
+});
+
+const conn = new WebSocket(`ws://localhost:9001/mix`);
+conn.onmessage = (ev: MessageEvent): void => {
+  const fetchData = JSON.parse(ev.data);
+  const fetchedMesages = fetchData.fetch.messages;
+  console.log(fetchedMessages);
+}
+conn.send(fetchMsg);
+{{< /highlight >}}
+
+You can see a sample Electron application communicating with the Websocket client [here](https://github.com/nymtech/demo-mixnet-chat-client/tree/feature/electron-app).
+
+{{% notice note %}}
+Note that the websocket will **only** accept requests from the loopback address.
+{{% /notice %}}
