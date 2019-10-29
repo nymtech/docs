@@ -203,11 +203,11 @@ Clients create Sphinx packets. These packets are a bit complicated, but for now 
 
 Now let's build the Nym Mixnode and see what happens when a Sphinx packet hits a mixnode.
 
-### Integrating the mixnet client in your applications
+## Integrating the mixnet client in your applications
 
 Depending on what language you're using, you can fire up the client in one of two ways.
 
-#### In Go
+### In Go
 
 If you're a Gopher, you can compile the client code into your own application in the normal Go fashion. This will give you access to all public methods and attributes of the mixnet client. Most notably:
 
@@ -254,11 +254,11 @@ For the client, at this point of time, only the `PubKey` and `Provider` fields a
 
 {{% /notice %}}
 
-#### In other languages
+### In other languages
 
 If you're not a Gopher (go coder), don't despair. You can run the client in socket mode instead, and use either websockets or TCP sockets to get equivalent functionality.
 
-##### Using TCP Socket
+#### Using TCP Socket
 
 In an effort to achieve relatively high-level cross-language compatibility, all messages exchanged between socket client and whatever entity is communicating with it, are defined as protobuf messages:
 
@@ -301,7 +301,7 @@ Note that when the message is being written into the socket, additional informat
 Proto-encoded messages are prepended with a 10-byte varint containing the length of the encoding. Please refer to [the sample implementation](https://github.com/nymtech/nym-mixnet/blob/67b5870e4d2665e9555f3c53abca4c4d32601513/client/rpc/utils/utils.go#L29)
 {{% /notice %}}
 
-For example, you could start a TCP socket client with `./build/loopix-client socket --id alice --socket tcp --port 9001`. To fetch received messages using the client's TCP socket, one could do as follows:
+For example, you could start a TCP socket client with `./build/loopix-client socket --id alice --socket tcp --port 9001`. To fetch received messages using the client's TCP socket, one could do as follows. The example is in Go but the same basic approach should work in every language that speaks TCP:
 
 {{< highlight Go >}}
 
@@ -375,11 +375,33 @@ fmt.Printf("%v", res)
 
 {{< /highlight >}}
 
-##### Using Websocket
+#### Using the Websocket
 
-Using the websocket is very similar to the way TCP socket is used. In fact it is simpler due to HTTP handling a few aspects of it for us - for example the encoding of the lengths of messages exchanged or the buffer flushing.
+Using the websocket is very similar to the way TCP socket is used. In fact it is actually simpler due to HTTP handling few aspects of it for us. For example the encoding of the lengths of messages exchanged or the buffer flushing.
 
-The identical set of request/responses is available for the Websocket as was the case with the TCP socket, with the exception of `RequestFlush`, which does not exist. So for example having started the client with: `./build/loopix-client socket --id alice --socket websocket --port 9001`, you could do the following to write a fetch request to a Websocket in Go:
+{{% notice note %}}
+Note that the websocket will **only** accept requests from the loopback address.
+{{% /notice %}}
+
+The identical set of request/responses is available for the Websocket as it was the case with the TCP socket, with the exception of `RequestFlush`, which does not exist. So for example having started the client with: `./build/loopix-client socket --id alice --socket websocket --port 9001`, you could do the following to write a fetch request to a Websocket in Typescript:
+
+{{< highlight Typescript >}}
+const fetchMsg = JSON.stringify({
+  fetch: {},
+});
+
+const conn = new WebSocket(`ws://localhost:9001/mix`);
+conn.onmessage = (ev: MessageEvent): void => {
+  const fetchData = JSON.parse(ev.data);
+  const fetchedMesages = fetchData.fetch.messages;
+  console.log(fetchedMessages);
+}
+conn.send(fetchMsg);
+{{< /highlight >}}
+
+You can see a sample Electron application communicating with the Websocket client [here](../chat-demo).
+
+It's also possible to write binary data to the websocket. Here's an example in Go, but the same technique will work in any language that has a `byte` type and supports protobufs:
 
 {{< highlight Go >}}
 import (
@@ -432,27 +454,3 @@ if err != nil {
 fmt.Printf("%v", res)
 
 {{< /highlight >}}
-
-Alternatively, rather than sending binary data through the Websocket, you could format it as a corresponding JSON. This lets you use the Mixnet with your favourite JavaScript framework, or anything else that speaks websockets/JSON.
-
-The above example, fetching messages in TypeScript would look as follows:
-
-{{< highlight Typescript >}}
-const fetchMsg = JSON.stringify({
-  fetch: {},
-});
-
-const conn = new WebSocket(`ws://localhost:9001/mix`);
-conn.onmessage = (ev: MessageEvent): void => {
-  const fetchData = JSON.parse(ev.data);
-  const fetchedMesages = fetchData.fetch.messages;
-  console.log(fetchedMessages);
-}
-conn.send(fetchMsg);
-{{< /highlight >}}
-
-You can see a sample Electron application communicating with the Websocket client [here](https://github.com/nymtech/demo-mixnet-chat-client/tree/feature/electron-app).
-
-{{% notice note %}}
-Note that the websocket will **only** accept requests from the loopback address.
-{{% /notice %}}
