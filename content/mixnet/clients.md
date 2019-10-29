@@ -78,8 +78,8 @@ Try stopping and starting the client a few times. If you're interested, you shou
 A large proportion of the Nym Mixnet's functionality is implemented client-side, including:
 
 1. determining network topology
-1. registering with mixnet [storage nodes](../storage-nodes)
-1. fetching stored messages from the [storage nodes](../storage-nodes)
+1. registering with mixnet [providers](../providers)
+1. fetching stored messages from the [providers](../providers)
 1. sending constant stream of Sphinx packet *cover traffic* messages
 1. sending Sphinx packets with real messages
 1. sending Sphinx packet *cover traffic* when no real messages are being sent
@@ -166,18 +166,18 @@ This returns a JSON-formatted list of `MixNodes` and `MixProviderNodes`, among o
 
 The client does this when it starts. Each node reports what layer it's in, its public key, and its IP address. The client now has all the information needed to pick a path through the mixnet for each Sphinx packet, and do packet encryption.
 
-#### Registering at a Storage Node
+#### Registering at a provider
 
-When the client is first started, it sends a registration request to one of the available Storage Nodes, also known in the context of the topology as `MixProviderNode`. This returns a unique token that the client attaches to every subsequent request to the provider.
+When the client is first started, it sends a registration request to one of the available providers, known in the context of the topology as `MixProviderNode`. This returns a unique token that the client attaches to every subsequent request to the provider.
 
-It is required as mixnet clients cannot receive messages directly from other clients as this would have required them to reveal their actual ip address which is not a desirable requirement. Instead the providers act as a sort of proxy between the client and the mixnet. So whenever client receives a message, it is stored by the specified storage node until the recipient fetches for it.
+It is required as mixnet clients cannot receive messages directly from other clients as this would have required them to reveal their actual ip address which is not a desirable requirement. Instead the providers act as a sort of proxy between the client and the mixnet. So whenever client receives a message, it is stored by the specified provider until the recipient fetches for it.
 
 #### Fetching stored messages
 
-Upon completing the provider registration, the client starts a seperate message stream that periodically, in accordance to the rate of the specified distribution, tries to fetch all stored messages by the provider.
+Upon completing the provider registration, the client starts a separate message stream that periodically, in accordance to the rate of the specified distribution, tries to fetch all stored messages by the provider.
 
 {{% notice note %}}
-Note that once the message is pulled, currently the provider immedietaly deletes it from its own storage.
+Note that once the message is pulled, currently the provider immediately deletes it from its own storage.
 {{% /notice %}}
 
 #### Sending messages
@@ -213,7 +213,7 @@ If you're a Gopher, you can compile the client code into your own application in
 - `client.GetReceivedMessages()`
 - `client.SendMessage(message []byte, recipient config.ClientConfig)`
 
-**`client.Start()`**  performs all of the aforementioned required setup, i.e. obtains network topology, registers at some storage node, starts all the traffic streams. In fact just calling `client.Start()` and not doing anything more is equivalent to the `./build/loopix-client run --id alice` command.
+**`client.Start()`**  performs all of the aforementioned required setup, i.e. obtains network topology, registers at some provider, starts all the traffic streams. In fact just calling `client.Start()` and not doing anything more is equivalent to the `./build/loopix-client run --id alice` command.
 
 {{% notice tip %}}
 You can decide at which particular provider should the client register by modifying the `Provider` attribute in the client struct before calling the `.Start()` method.
