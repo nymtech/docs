@@ -1,5 +1,5 @@
 ---
-title: "Chat demo"
+title: "Chat demos"
 weight: 60
 ---
 
