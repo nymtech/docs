@@ -47,7 +47,7 @@ It, however, takes few mandatory parameters. Those are:
 The sample configuration files in `nym-validator/client/sample_configs/` are actually identical to the ones bundled with the [Qt Client Demo](../client-demo).
 {{% /notice %}}
 
-## Integrating the mixnet client in your applications
+## Integrating the validator client in your applications
 
 Depending on what language you're using, you can fire up the client in one of two ways.
 
@@ -244,7 +244,7 @@ getCredRequest := &types.Request{
 u := url.URL{
   Scheme: "ws",
   Host:   "127.0.0.1:9000",
-  Path:   "/mix",
+  Path:   "/coco",
 }
 c, _, err := websocket.DefaultDialer.Dial(u.String(), nil)
 if err != nil {
