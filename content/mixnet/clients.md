@@ -408,6 +408,7 @@ import (
   "net/url"
   "github.com/golang/protobuf/proto"
   "github.com/gorilla/websocket"
+  "github.com/nymtech/nym-mixnet/client/rpc/types"
 )
 
 fetchRequest := &types.Request{
