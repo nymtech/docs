@@ -16,7 +16,7 @@ To download and build:
 ```shell
 git clone https://github.com/nymtech/nym-mixnet.git
 cd nym-mixnet
-git checkout v0.2.0
+git checkout v0.2.1
 make
 ```
 
