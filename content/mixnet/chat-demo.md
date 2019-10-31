@@ -11,7 +11,7 @@ Both of them implement chat functionality. But they do it in different ways.
 
 The first chat client is a Go-based console app. Build and run it, and you get a chat app in a terminal. It bakes in the nym-mixnet [client](../clients) using the Go compiler and method calls.
 
-If you want to try it, grab the code from the [Go chat demo Github repo](https://github.com/nymtech/demo-mixnet-chat-client) - build and usage instructions are there. Here's a quick GIF of the console client in action:
+If you want to try it, grab the code from the [Go chat demo Github repo](https://github.com/nymtech/demo-mixnet-chat-client/releases/tag/v0.0.2) - build and usage instructions are there. Here's a quick GIF of the console client in action:
 
 ![chat client](/docs/images/conversation.gif)
 
