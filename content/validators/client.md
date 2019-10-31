@@ -18,11 +18,11 @@ Usage: nym-socket-client COMMAND [OPTIONS]
 
   ____                            _        _   _                 
  / ___|___   ___ ___  _ __  _   _| |_     | \ | |_   _ _ __ ___  
-| |   / _ \ / __/ _ \| '_ \| | | | __|____|  \| | | | | '_ \ _ \ 
+| |   / _ \ / __/ _ \| '_ \| | | | __|____|  \| | | | | '_ \ _ \
 | |___ (_) | (__ (_) | | | | |_| | |______| |\  | |_| | | | | | |
  \____\___/ \___\___/|_| |_|\__,_|\__|    |_| \_|\__, |_| |_| |_|
              (nym-socket-client)                 |___/           
-										 
+
 
 
 Commands:
@@ -40,7 +40,7 @@ As you can see, there is currently only a single command you can issue to the cl
 It, however, takes few mandatory parameters. Those are:
 
 1. `--f` must point to a valid configuration file, such as one of the configs included in `nym-validator/client/sample_configs/` directory. Note that the configuration itself specifies path to the Ethereum Ropsten network private key. Make sure it is correct.
-1. `--socket` specifies whether the client should listen on a tcp socket or a websocket
+1. `--socket` specifies whether the client should listen on a tcp socket or a websocket. Allowable values are `tcp` or `websocket`.
 1. `--port` port on which the client is going to be listening
 
 {{% notice info %}}
@@ -283,4 +283,3 @@ fmt.Printf("%v", res)
 {{% notice tip %}}
 More examples for using the socket (both TCP and Websocket) in Go are shown in `nym-validator/client/rpc/client/main.go`
 {{% /notice %}}
-
