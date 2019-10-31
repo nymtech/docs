@@ -23,7 +23,7 @@ Then:
 go get github.com/nymtech/nym-validator
 cd $GOPATH/src/github.com/nymtech/nym-validator
 git fetch --all --tags
-git checkout tags/v0.12.16
+git checkout tags/v0.13.1
 make localnet-build # builds the config directories and docker images
 docker-compose up -d
 ```
