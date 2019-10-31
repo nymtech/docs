@@ -36,9 +36,15 @@ Run "loopix-client help <command>" for more info on a specific command.
 
 As you can see, there are three commands you can issue to the client.
 
-1. init - initialize a new client instance
-1. run - run a loopix client in the foreground
-1. socket - run and listen on a socket for real messages as well
+1. init - initialize a new client instance. Takes an optional `--id clientname` parameter. Otherwise it generates a random `id`.
+1. run - run a loopix client in the foreground. Takes `--id clientname` as a parameter
+1. socket - run, and also listen on a socket for input messages
+
+For the `socket` command, there are some required arguments:
+
+1. `--id` is the id of a generated clientname (see below)
+1. `--socket` specifies whether the client should listen on a tcp socket or a websocket. Allowable values are `tcp` or `websocket`.
+1. `--port` port on which the client is going to be listening
 
 Let's try it out. First, you need to initialize a new client.
 
@@ -49,7 +55,7 @@ Saved generated public key to /home/you/.loopix/clients/alice/config/public_key.
 Saved generated config to /home/you/.loopix/clients/alice/config/config.toml
 ```
 
-Have a look at the generated files if you'd like - they contain client configurations, public/private keypairs, etc.
+Have a look at the generated files if you'd like - they contain clientname, public/private keypairs, etc.
 
 You can run the client with user `alice` by doing this:
 
