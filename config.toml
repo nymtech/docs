@@ -37,3 +37,9 @@ name = "<i class='fab fa-fw fa-twitter'></i> Twitter"
 identifier = "tw"
 url = "https://twitter.com/nymproject/"
 weight = 30
+
+[[menu.shortcuts]]
+name = "<i class='fab fa-fw fa-telegram'></i> Telegram"
+identifier = "tg"
+url = "https://t.me/nymchan"
+weight = 40
