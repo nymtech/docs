@@ -56,7 +56,3 @@ nym-mixnet$ ./build/loopix-provider run
 ```
 
 `./build/loopix-provider help run` to see a list of available run options.
-
-#### Client registration
-
-TODO
