@@ -307,77 +307,174 @@ Note that when the message is being written into the socket, additional informat
 Proto-encoded messages are prepended with a 10-byte varint containing the length of the encoding. Please refer to [the sample implementation](https://github.com/nymtech/nym-mixnet/blob/67b5870e4d2665e9555f3c53abca4c4d32601513/client/rpc/utils/utils.go#L29)
 {{% /notice %}}
 
-For example, you could start a TCP socket client with `./build/loopix-client socket --id alice --socket tcp --port 9001`. To fetch received messages using the client's TCP socket, one could do as follows. The example is in Go but the same basic approach should work in every language that speaks TCP:
+For example, you could start a TCP socket client with `./build/loopix-client socket --id alice --socket tcp --port 9001`.
+
+To send to oneself, and then fetch received messages using the client's TCP socket, one could do as follows. The example is in Go but the same basic approach should work in every language that speaks TCP:
 
 {{< highlight Go >}}
 
-func WriteProtoMessage(msg proto.Message, w io.Writer) error {
-  b, err := proto.Marshal(msg)
-  if err != nil {
-    return err
-  }
+package main
 
-  return encodeByteSlice(w, b)
+import (
+	"encoding/binary"
+	"fmt"
+	"io"
+	"net"
+	"time"
+
+	"github.com/golang/protobuf/proto"
+
+	"github.com/nymtech/nym-mixnet/client/rpc/types"
+	"github.com/nymtech/nym-mixnet/client/rpc/utils"
+	"github.com/nymtech/nym-mixnet/config"
+)
+
+func main() {
+	fmt.Println("Send and retrieve through mixnet demo")
+
+	conn, err := net.Dial("tcp", "127.0.0.1:9001")
+	if err != nil {
+		panic(err)
+	}
+
+	myDetails := getOwnDetails(conn)
+
+	fmt.Printf("myDetails: %+v\n\n", myDetails)
+
+	sendMessage("foomp", myDetails, conn)
+
+	fmt.Printf("We sent: %+v\n\n", "foomp")
+
+	time.Sleep(time.Second * 1) // give it some time to send to the mixnet
+
+	messages := fetchMessages(conn)
+
+	fmt.Printf("We got back these bytes: %+v\n\n", messages)
+	fmt.Printf("We got back this string: %+v\n\n", string(messages[0]))
+
+}
+
+func getOwnDetails(conn net.Conn) *config.ClientConfig {
+	me := &types.Request{
+		Value: &types.Request_Details{Details: &types.RequestOwnDetails{}},
+	}
+
+	flushRequest := &types.Request{
+		Value: &types.Request_Flush{
+			Flush: &types.RequestFlush{},
+		},
+	}
+
+	err := utils.WriteProtoMessage(me, conn)
+	if err != nil {
+		panic(err)
+	}
+
+	err = utils.WriteProtoMessage(flushRequest, conn)
+	if err != nil {
+		panic(err)
+	}
+
+	res := &types.Response{}
+	err = utils.ReadProtoMessage(res, conn)
+	if err != nil {
+		panic(err)
+	}
+
+	return res.Value.(*types.Response_Details).Details.Details
+
+}
+
+func sendMessage(msg string, recipient *config.ClientConfig, conn net.Conn) {
+
+	msgBytes := []byte(msg)
+
+	flushRequest := &types.Request{
+		Value: &types.Request_Flush{
+			Flush: &types.RequestFlush{},
+		},
+	}
+
+	sendRequest := &types.Request{
+		Value: &types.Request_Send{Send: &types.RequestSendMessage{
+			Message:   msgBytes,
+			Recipient: recipient,
+		}},
+	}
+
+	err := utils.WriteProtoMessage(sendRequest, conn)
+	if err != nil {
+		panic(err)
+	}
+
+	err = utils.WriteProtoMessage(flushRequest, conn)
+	if err != nil {
+		panic(err)
+	}
+
+	res := &types.Response{}
+	err = utils.ReadProtoMessage(res, conn)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func fetchMessages(conn net.Conn) [][]byte {
+	flushRequest := &types.Request{
+		Value: &types.Request_Flush{
+			Flush: &types.RequestFlush{},
+		},
+	}
+
+	fetchRequest := &types.Request{
+		Value: &types.Request_Fetch{
+			Fetch: &types.RequestFetchMessages{},
+		},
+	}
+
+	err := writeProtoMessage(fetchRequest, conn)
+	if err != nil {
+		panic(err)
+	}
+
+	err = utils.WriteProtoMessage(flushRequest, conn)
+	if err != nil {
+		panic(err)
+	}
+
+	res2 := &types.Response{}
+	err = utils.ReadProtoMessage(res2, conn)
+	if err != nil {
+		panic(err)
+	}
+	return res2.Value.(*types.Response_Fetch).Fetch.Messages
+
+}
+
+func writeProtoMessage(msg proto.Message, w io.Writer) error {
+	b, err := proto.Marshal(msg)
+	if err != nil {
+		return err
+	}
+
+	return encodeByteSlice(w, b)
 }
 
 func encodeByteSlice(w io.Writer, bz []byte) (err error) {
-  err = encodeVarint(w, int64(len(bz)))
-  if err != nil {
-    return
-  }
-  _, err = w.Write(bz)
-  return
+	err = encodeVarint(w, int64(len(bz)))
+	if err != nil {
+		return
+	}
+	_, err = w.Write(bz)
+	return
 }
 
 func encodeVarint(w io.Writer, i int64) (err error) {
-  var buf [10]byte
-  n := binary.PutVarint(buf[:], i)
-  _, err = w.Write(buf[0:n])
-  return
+	var buf [10]byte
+	n := binary.PutVarint(buf[:], i)
+	_, err = w.Write(buf[0:n])
+	return
 }
-
-
-
-[...]
-
-
-
-fetchRequest := &types.Request{
-  Value: &types.Request_Fetch{
-    Fetch: &types.RequestFetchMessages{},
-  },
-}
-
-flushRequest := &types.Request{
-  Value: &types.Request_Flush{
-    Flush: &types.RequestFlush{},
-  },
-}
-
-conn, err := net.Dial("tcp", "127.0.0.1:9001")
-if err != nil {
-  panic(err)
-}
-
-err = utils.WriteProtoMessage(fetchRequest, conn)
-if err != nil {
-  panic(err)
-}
-
-err = utils.WriteProtoMessage(flushRequest, conn)
-if err != nil {
-  panic(err)
-}
-
-// reading response
-
-res := &types.Response{}
-err = utils.ReadProtoMessage(res, conn)
-if err != nil {
-  panic(err)
-}
-
-fmt.Printf("%v", res)
 
 {{< /highlight >}}
 
