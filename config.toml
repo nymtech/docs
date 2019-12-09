@@ -10,7 +10,7 @@ publishDir = "../nym-www/build/docs/"
 
 [params]
   # editURL = "https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/"
-  description = "Nym Documentation for mixnodes, loopix, coconut credentials, validators, and privacy-related systems."
+  description = "Nym Documentation for mixnodes, coconut credentials, validators, and privacy-related systems."
   author = "Nym Team"
   showVisitedLinks = false
   disableBreadcrumb = false
