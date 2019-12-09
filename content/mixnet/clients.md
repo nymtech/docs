@@ -319,11 +319,10 @@ package main
 import (
 	"encoding/binary"
 	"fmt"
+	"github.com/golang/protobuf/proto"
 	"io"
 	"net"
 	"time"
-
-	"github.com/golang/protobuf/proto"
 
 	"github.com/nymtech/nym-mixnet/client/rpc/types"
 	"github.com/nymtech/nym-mixnet/client/rpc/utils"
@@ -462,7 +461,7 @@ func writeProtoMessage(msg proto.Message, w io.Writer) error {
 }
 
 func encodeByteSlice(w io.Writer, bz []byte) (err error) {
-	err = encodeVarint(w, int64(len(bz)))
+	err = encodeBigEndianLen(w, uint64(len(bz)))
 	if err != nil {
 		return
 	}
@@ -470,10 +469,10 @@ func encodeByteSlice(w io.Writer, bz []byte) (err error) {
 	return
 }
 
-func encodeVarint(w io.Writer, i int64) (err error) {
-	var buf [10]byte
-	n := binary.PutVarint(buf[:], i)
-	_, err = w.Write(buf[0:n])
+func encodeBigEndianLen(w io.Writer, i uint64) (err error) {
+	var buf = make([]byte, 8)
+	binary.BigEndian.PutUint64(buf, i)
+	_, err = w.Write(buf)
 	return
 }
 
