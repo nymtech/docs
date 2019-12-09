@@ -9,11 +9,11 @@ weight: 30
 The Nym Client was built in the [Installation](../installation) section. If you haven't yet built the Nym Mixnet and want to run the code on this page, go there first.
 {{% /notice %}}
 
-From inside the `nym-mixnet` directory, the `loopix-client` binary got built to the `build` directory, so you can run it by invoking `./build/loopix-client`:
+From inside the `nym-mixnet` directory, the `nym-mixnet-client` binary got built to the `build` directory, so you can run it by invoking `./build/nym-mixnet-client`:
 
 ```shell
-nym-mixnet$ ./build/loopix-client
-Usage: loopix-client COMMAND [OPTIONS]
+nym-mixnet$ ./build/nym-mixnet-client
+Usage: nym-mixnet-client COMMAND [OPTIONS]
 
 
   _                      _
@@ -31,7 +31,7 @@ Commands:
     run         Run a persistent Loopix client process
     socket      Run a background Loopix client listening on a specified socket
 
-Run "loopix-client help <command>" for more info on a specific command.
+Run "nym-mixnet-client help <command>" for more info on a specific command.
 ```
 
 As you can see, there are three commands you can issue to the client.
@@ -49,7 +49,7 @@ For the `socket` command, there are some required arguments:
 Let's try it out. First, you need to initialize a new client.
 
 ```
-nym-mixnet$ ./build/loopix-client init --id alice
+nym-mixnet$ ./build/nym-mixnet-client init --id alice
 Saved generated private key to /home/you/.loopix/clients/alice/config/private_key.pem
 Saved generated public key to /home/you/.loopix/clients/alice/config/public_key.pem
 Saved generated config to /home/you/.loopix/clients/alice/config/config.toml
@@ -60,7 +60,7 @@ Have a look at the generated files if you'd like - they contain clientname, publ
 You can run the client with user `alice` by doing this:
 
 ```shell
-./build/loopix-client run --id alice
+./build/nym-mixnet-client run --id alice
 Our Public Key is: z-OQECd8VgC1BeVi6HsHMUbn3REnqZq1uXcyy9j7Hxc=
 
 ```
@@ -221,7 +221,7 @@ If you're a Gopher, you can compile the client code into your own application in
 - `client.GetReceivedMessages()`
 - `client.SendMessage(message []byte, recipient config.ClientConfig)`
 
-**`client.Start()`**  performs all of the aforementioned required setup, i.e. obtains network topology, registers at a provider, and starts all the traffic streams. In fact just calling `client.Start()` and not doing anything more is equivalent to the `./build/loopix-client run --id alice` command.
+**`client.Start()`**  performs all of the aforementioned required setup, i.e. obtains network topology, registers at a provider, and starts all the traffic streams. In fact just calling `client.Start()` and not doing anything more is equivalent to the `./build/nym-mixnet-client run --id alice` command.
 
 {{% notice tip %}}
 You can decide at which particular provider should the client register by modifying the `Provider` attribute in the client struct before calling the `.Start()` method.
@@ -307,7 +307,7 @@ Note that when the message is being written into the socket, additional informat
 Proto-encoded messages are prepended with a 10-byte varint containing the length of the encoding. Please refer to [the sample implementation](https://github.com/nymtech/nym-mixnet/blob/67b5870e4d2665e9555f3c53abca4c4d32601513/client/rpc/utils/utils.go#L29)
 {{% /notice %}}
 
-For example, you could start a TCP socket client with `./build/loopix-client socket --id alice --socket tcp --port 9001`.
+For example, you could start a TCP socket client with `./build/nym-mixnet-client socket --id alice --socket tcp --port 9001`.
 
 To send to oneself, and then fetch received messages using the client's TCP socket, one could do as follows. The example is in Go but the same basic approach should work in every language that speaks TCP:
 
@@ -486,7 +486,7 @@ Using the websocket is very similar to the way TCP socket is used. In fact it is
 Note that the websocket will **only** accept requests from the loopback address.
 {{% /notice %}}
 
-The identical set of request/responses is available for the Websocket as it was the case with the TCP socket, with the exception of `RequestFlush`, which does not exist. So for example having started the client with: `./build/loopix-client socket --id alice --socket websocket --port 9001`, you could do the following to write a fetch request to a Websocket in Typescript:
+The identical set of request/responses is available for the Websocket as it was the case with the TCP socket, with the exception of `RequestFlush`, which does not exist. So for example having started the client with: `./build/nym-mixnet-client socket --id alice --socket websocket --port 9001`, you could do the following to write a fetch request to a Websocket in Typescript:
 
 {{< highlight Typescript >}}
 const fetchMsg = JSON.stringify({

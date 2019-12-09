@@ -32,7 +32,7 @@ nym-mixnet$ make
 make build_client
 make[1]: Entering directory '/home/dave/Desktop/foo/nym-mixnet'
 mkdir -p build
-go build -o build/loopix-client ./cmd/loopix-client
+go build -o build/nym-mixnet-client ./cmd/nym-mixnet-client
 make[1]: Leaving directory '/home/dave/Desktop/foo/nym-mixnet'
 make build_mixnode
 make[1]: Entering directory '/home/dave/Desktop/foo/nym-mixnet'
@@ -47,7 +47,7 @@ make[1]: Leaving directory '/home/dave/Desktop/foo/nym-mixnet'
 make build_bench_client
 make[1]: Entering directory '/home/dave/Desktop/foo/nym-mixnet'
 mkdir -p build
-go build -o build/bench-loopix-client ./cmd/bench-loopix-client
+go build -o build/bench-nym-mixnet-client ./cmd/bench-nym-mixnet-client
 make[1]: Leaving directory '/home/dave/Desktop/foo/nym-mixnet'
 make build_bench_provider
 make[1]: Entering directory '/home/dave/Desktop/foo/nym-mixnet'
@@ -61,12 +61,12 @@ The above commands will check the code out from Github, and then compile six pie
 ```shell
 nym-mixnet$ ls build/
 
-bench-loopix-client  bench-loopix-provider  loopix-client  loopix-mixnode  loopix-provider
+bench-nym-mixnet-client  bench-loopix-provider  nym-mixnet-client  loopix-mixnode  loopix-provider
 ```
 
 Forget about the `bench-loopix-*` ones for the moment, those are for performance testing. The interesting ones for us right now are:
 
-1. the Nym mixnet client, `loopix-client`
+1. the Nym mixnet client, `nym-mixnet-client`
 1. the Nym mixnode, `loopix-mixnode`
 1. the Nym storage node, `loopix-provider`
 

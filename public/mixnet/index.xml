@@ -28,8 +28,8 @@ git clone https://github.com/nymtech/nym-mixnet.git cd nym-mixnet git checkout v
       
       <guid>https://nymtech.net/docs/mixnet/clients/</guid>
       <description>Clients The Nym Client was built in the Installation section. If you haven&amp;rsquo;t yet built the Nym Mixnet and want to run the code on this page, go there first.
- From inside the nym-mixnet directory, the loopix-client binary got built to the build directory, so you can run it with ./build/loopix-client:
-nym-mixnet$ ./build/loopix-client Usage: loopix-client COMMAND [OPTIONS] _ _ | | ___ ___ _ __ (_)_ __ | | / _ \ / _ \| &#39;_ \| \ \/ / | |___ (_) | (_) | |_) | |&amp;gt; &amp;lt; |_____\___/ \___/| .</description>
+ From inside the nym-mixnet directory, the nym-mixnet-client binary got built to the build directory, so you can run it with ./build/nym-mixnet-client:
+nym-mixnet$ ./build/nym-mixnet-client Usage: nym-mixnet-client COMMAND [OPTIONS] _ _ | | ___ ___ _ __ (_)_ __ | | / _ \ / _ \| &#39;_ \| \ \/ / | |___ (_) | (_) | |_) | |&amp;gt; &amp;lt; |_____\___/ \___/| .</description>
     </item>
     
     <item>

@@ -527,10 +527,10 @@
 </div>
 
 
-<p>From inside the <code>nym-mixnet</code> directory, the <code>loopix-client</code> binary got built to the <code>build</code> directory, so you can run it with <code>./build/loopix-client</code>:</p>
+<p>From inside the <code>nym-mixnet</code> directory, the <code>nym-mixnet-client</code> binary got built to the <code>build</code> directory, so you can run it with <code>./build/nym-mixnet-client</code>:</p>
 
-<pre><code class="language-shell">nym-mixnet$ ./build/loopix-client
-Usage: loopix-client COMMAND [OPTIONS]
+<pre><code class="language-shell">nym-mixnet$ ./build/nym-mixnet-client
+Usage: nym-mixnet-client COMMAND [OPTIONS]
 
 
   _                      _
@@ -548,7 +548,7 @@ Commands:
     run         Run a persistent Loopix client process
     socket      Run a background Loopix client listening on a specified socket
 
-Run &quot;loopix-client help &lt;command&gt;&quot; for more info on a specific command.
+Run &quot;nym-mixnet-client help &lt;command&gt;&quot; for more info on a specific command.
 </code></pre>
 
 <p>As you can see, there are three commands you can issue to the client.</p>
@@ -561,7 +561,7 @@ Run &quot;loopix-client help &lt;command&gt;&quot; for more info on a specific c
 
 <p>Let&rsquo;s try it out. First, you need to initialize a new client.</p>
 
-<pre><code>nym-mixnet$ ./build/loopix-client init --id alice
+<pre><code>nym-mixnet$ ./build/nym-mixnet-client init --id alice
 Saved generated private key to /home/you/.loopix/clients/alice/config/private_key.pem
 Saved generated public key to /home/you/.loopix/clients/alice/config/public_key.pem
 Saved generated config to /home/you/.loopix/clients/alice/config/config.toml
@@ -571,7 +571,7 @@ Saved generated config to /home/you/.loopix/clients/alice/config/config.toml
 
 <p>You can run the client with user <code>alice</code> by doing this:</p>
 
-<pre><code class="language-shell">./build/loopix-client run --id alice
+<pre><code class="language-shell">./build/nym-mixnet-client run --id alice
 Our Public Key is: z-OQECd8VgC1BeVi6HsHMUbn3REnqZq1uXcyy9j7Hxc=
 
 </code></pre>
@@ -593,21 +593,21 @@ Our Public Key is: z-OQECd8VgC1BeVi6HsHMUbn3REnqZq1uXcyy9j7Hxc=
 
 <h4 id="in-go">In Go</h4>
 
-<p>If you&rsquo;re a Gopher, you can compile the client code into your own application in the normal Go fashion. Calling <code>client.Start()</code> and <code>client.SendMessage(message []byte, recipient config.ClientConfig)</code> will allow you to send your traffic over the Nym Mixnet. The <code>./build/loopix-client run --id alice</code> command, in fact, just calls <code>client.Start()</code>.</p>
+<p>If you&rsquo;re a Gopher, you can compile the client code into your own application in the normal Go fashion. Calling <code>client.Start()</code> and <code>client.SendMessage(message []byte, recipient config.ClientConfig)</code> will allow you to send your traffic over the Nym Mixnet. The <code>./build/nym-mixnet-client run --id alice</code> command, in fact, just calls <code>client.Start()</code>.</p>
 
 <h4 id="in-other-languages">In other languages</h4>
 
 <p>If you&rsquo;re not a Gopher (go coder), don&rsquo;t despair. You can run the client in socket mode instead, and use either websockets or TCP sockets. For a websocket, try this:</p>
 
-<p><code>./build/loopix-client socket --id alice --socket websocket --port 1863</code></p>
+<p><code>./build/nym-mixnet-client socket --id alice --socket websocket --port 1863</code></p>
 
 <p>This will start a websocket connection at <code>ws://localhost:1863/mix</code>. You can push either text or raw bytes down the websocket, and it&rsquo;ll be pushed to the mixnet.</p>
 
 <p>For a TCP socket:</p>
 
-<p><code>./build/loopix-client socket --id alice --socket tcp --port 1863</code></p>
+<p><code>./build/nym-mixnet-client socket --id alice --socket tcp --port 1863</code></p>
 
-<p>No matter whether you use <code>./loopix-client run</code>, compile the client into your code, or start a <code>./loopix-client socket</code>, the client will reach out and grab the mixnet topology, and immediately start to send fake cover traffic. When you have a real message to send, that&rsquo;ll be sent instead of the cover traffic.</p>
+<p>No matter whether you use <code>./nym-mixnet-client run</code>, compile the client into your code, or start a <code>./nym-mixnet-client socket</code>, the client will reach out and grab the mixnet topology, and immediately start to send fake cover traffic. When you have a real message to send, that&rsquo;ll be sent instead of the cover traffic.</p>
 
 <h3 id="understanding-the-client">Understanding the client</h3>
 
