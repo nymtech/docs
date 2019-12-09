@@ -12,24 +12,25 @@ The Nym Mixnodes were built in the [Installation](../installation) section. If y
 You can run the Mix Node from the `nym-mixnet` directory like this:
 
 ```shell
-nym-mixnet$ ./build/loopix-mixnode
-Usage: loopix-mixnode COMMAND [OPTIONS]
+nym-mixnet$ ./build/nym-mixnode
+Usage: nym-mixnode COMMAND [OPTIONS]
 
 
-  _                      _
- | |    ___   ___  _ __ (_)_  __
- | |   / _ \ / _ \| '_ \| \ \/ /
- | |___ (_) | (_) | |_) | |>  <
- |_____\___/ \___/| .__/|_/_/\_\
-		  |_|            (mixnode)
 
+  _ __  _   _ _ __ ___  
+ | '_ \| | | | '_ \ _ \
+ | | | | |_| | | | | | |
+ |_| |_|\__, |_| |_| |_|
+        |___/  
+
+(mixnode)
 
 
 Commands:
 
-    run         Run a Loopix mixnode
+    run         Run a Nym mixnode
 
-Run "loopix-mixnode help <command>" for more info on a specific command.
+Run "nym-mixnode help <command>" for more info on a specific command.
 ```
 
 Mixnodes accept Sphinx packets, shuffle packets together, and forward them onwards.
@@ -43,12 +44,12 @@ Routing and delay information is chosen by the client, rather than by mixnodes.
 The `run` command runs a mixnode.
 
 ```
-nym-mixnet$ ./build/loopix-mixnode run
+nym-mixnet$ ./build/nym-mixnode run
 [2019-10-25 14:17:55.456] metrics Mix1/newMetrics ▶ INFO - Our public key is: QtwRvtkw41AeHmfbG_NOw-9PoTAp3M8v346NN8yxk0Q=
 [2019-10-25 14:17:55.623] Mix1/func1 ▶ INFO - Listening on 192.168.0.6:1789
 ```
 
-`./build/loopix-mixnode help run` shows available options.
+`./build/nym-mixnode help run` shows available options.
 
 #### Running a local mixnet
 

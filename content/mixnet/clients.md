@@ -16,20 +16,21 @@ nym-mixnet$ ./build/nym-mixnet-client
 Usage: nym-mixnet-client COMMAND [OPTIONS]
 
 
-  _                      _
- | |    ___   ___  _ __ (_)_  __
- | |   / _ \ / _ \| '_ \| \ \/ /
- | |___ (_) | (_) | |_) | |>  <
- |_____\___/ \___/| .__/|_/_/\_\
-		  |_|            (client)
 
+  _ __  _   _ _ __ ___  
+ | '_ \| | | | '_ \ _ \
+ | | | | |_| | | | | | |
+ |_| |_|\__, |_| |_| |_|
+        |___/  
+
+         (mixnet-client)
 
 
 Commands:
 
-    init        Initialise a Loopix client
-    run         Run a persistent Loopix client process
-    socket      Run a background Loopix client listening on a specified socket
+    init        Initialise a Nym Mixnet client
+    run         Run a persistent Nym Mixnet client process
+    socket      Run a background Nym Mixnet client listening on a specified socket
 
 Run "nym-mixnet-client help <command>" for more info on a specific command.
 ```
@@ -37,7 +38,7 @@ Run "nym-mixnet-client help <command>" for more info on a specific command.
 As you can see, there are three commands you can issue to the client.
 
 1. init - initialize a new client instance. Takes an optional `--id clientname` parameter. Otherwise it generates a random `id`.
-1. run - run a loopix client in the foreground. Takes `--id clientname` as a parameter
+1. run - run a mixnet client in the foreground. Takes `--id clientname` as a parameter
 1. socket - run, and also listen on a socket for input messages
 
 For the `socket` command, there are some required arguments:
@@ -50,9 +51,9 @@ Let's try it out. First, you need to initialize a new client.
 
 ```
 nym-mixnet$ ./build/nym-mixnet-client init --id alice
-Saved generated private key to /home/you/.loopix/clients/alice/config/private_key.pem
-Saved generated public key to /home/you/.loopix/clients/alice/config/public_key.pem
-Saved generated config to /home/you/.loopix/clients/alice/config/config.toml
+Saved generated private key to /home/you/.nym/clients/alice/config/private_key.pem
+Saved generated public key to /home/you/.nym/clients/alice/config/public_key.pem
+Saved generated config to /home/you/.nym/clients/alice/config/config.toml
 ```
 
 Have a look at the generated files if you'd like - they contain clientname, public/private keypairs, etc.
@@ -72,7 +73,7 @@ Congratulations, you have just contributed a tiny bit of privacy to the world! `
 {{% /notice %}}
 
 {{% notice note %}}
-If you want to see slightly more detail about what the client is doing, take a look at the log file at `/tmp/loopix_alice.log`. You can change the file by modifying the client's config at `/home/you/.loopix/clients/alice/config/config.toml`. If you change the logging file to an empty value, everything will be printed directly to STDOUT.
+If you want to see slightly more detail about what the client is doing, take a look at the log file at `/tmp/nym_alice.log`. You can change the file by modifying the client's config at `/home/you/.nym/clients/alice/config/config.toml`. If you change the logging file to an empty value, everything will be printed directly to STDOUT.
 {{% /notice %}}
 
 Try stopping and starting the client a few times. If you're interested, you should see your traffic reflected in the network traffic *sent* and *received* metrics at the [Nym Dashboard](https://dashboard.nymtech.net/). Have a look on the right hand side:
@@ -192,7 +193,7 @@ Note that once the message is pulled, currently the provider immediately deletes
 
 Since it now understands the topology of the mixnet, the client can start sending traffic immediately. But what should it send?
 
-If there's a real message to send (because you called `client.SendMessage()` or poked something down the client's socket connection), then the client will send a real message. Otherwise, the client will send cover traffic, at a rate determined in the client config file in `~/.loopix/clients/<client-id>/config.toml`
+If there's a real message to send (because you called `client.SendMessage()` or poked something down the client's socket connection), then the client will send a real message. Otherwise, the client will send cover traffic, at a rate determined in the client config file in `~/.nym/clients/<client-id>/config.toml`
 
 Real messages and cover traffic are both encrypted using the Sphinx packet format.
 

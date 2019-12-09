@@ -17,27 +17,28 @@ The default provider implementation included in the Nym Mixnet code is a node th
 
 You can run the provider node from the top-level directory like this:
 
-`./build/loopix-provider`
+`./build/nym-mixnet-provider`
 
 ```shell
-nym-mixnet$ ./build/loopix-provider
-Usage: loopix-provider COMMAND [OPTIONS]
+$ ./build/nym-mixnet-provider
+Usage: nym-provider COMMAND [OPTIONS]
 
 
-  _                      _
- | |    ___   ___  _ __ (_)_  __
- | |   / _ \ / _ \| '_ \| \ \/ /
- | |___ (_) | (_) | |_) | |>  <
- |_____\___/ \___/| .__/|_/_/\_\
-		  |_|            (provider)
 
+  _ __  _   _ _ __ ___  
+ | '_ \| | | | '_ \ _ \
+ | | | | |_| | | | | | |
+ |_| |_|\__, |_| |_| |_|
+        |___/  
+
+(mixnet-provider)
 
 
 Commands:
 
-    run         Run a Loopix provider for offline storage
+    run         Run a Nym mixnet provider for offline storage
 
-Run "loopix-provider help <command>" for more info on a specific command.
+Run "nym-provider help <command>" for more info on a specific command.
 ```
 
 It's worth understanding this is just a default implementation. There may be cases where you may want to make your own provider implementation with different logic.
@@ -48,11 +49,11 @@ Or if you are implementing cryptocurrency anonymization, you would build a provi
 
 #### Running a provider
 
-`./build/loopix-provider run` starts up a provider node with default options.
+`./build/nym-mixnet-provider run` starts up a provider node with default options.
 
 ```
-nym-mixnet$ ./build/loopix-provider run
+nym-mixnet$ ./build/nym-mixnet-provider run
 [2019-10-25 14:42:37.010] Provider/func1 ▶ INFO - Listening on 192.168.0.6:1789
 ```
 
-`./build/loopix-provider help run` to see a list of available run options.
+`./build/nym-mixnet-provider help run` to see a list of available run options.
