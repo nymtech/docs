@@ -1,30 +1,12 @@
 ---
 title: "Other Components"
-weight: 40
-pre: "<b>4. </b>"
+weight: 50
+pre: "<b>5. </b>"
 ---
 
 ### Nym Dashboard
 
 You can see a simple representation of the overall Nym network at [https://dashboard.nymtech.net/](https://dashboard.nymtech.net/). This also shows you a live reading of traffic metrics being sent over the mixnet. The **sent** and **received** numbers on each mixnode shows how many packets it has received and sent in the past 1 second.
-
-### Nym Directory
-
-Note that in the preceding discussions of Nym Validators and Nym Mixnodes, quite a bit is assumed. How does a mixnet client know which nodes exist, and what their IP addresses are? How does it find out their public keys so it can encrypt messages to them, and verify that responses came from them? How can the dashboard measure overall mixnet throughput?
-
-The [Nym Directory](https://github.com/nymtech/nym-directory) handles all of these concerns:
-
-* presence - each Nym node sends a heartbeat message to the Directory every few seconds so clients know what's running
-* public key infrastructure (PKI) - each node sends its public key as an identifier with the presence messages
-* metrics - if desired, Nym Mixnodes can optionally send information about packets sent/received to the Nym Directory, so we can monitor performance in the testnet. If you would like to implement any Nym Mixnet visualizations, there's a websocket available for metrics at `wss://directory.nymtech.net/ws`. If you would like to see its output in a browser, go to https://directory.nymtech.net/.
-
-The Nym Directory exposes a simple REST API. Swagger docs are at [https://directory.nymtech.net/swagger/index.html](https://directory.nymtech.net/swagger/index.html)
-
-The Nym Directory is currently centralised. This is not desirable as it's a single point of failure (or attack) for the system as a whole.
-
-While we're still in early testnet mode, the Nym Directory works well enough to bootstrap the testnet into existence.
-
-Once our mixnet Quality of Service system, and Proof of Stake system, they'll take over the functionality of the Directory.
 
 ### Other components
 

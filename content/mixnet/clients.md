@@ -1,79 +1,96 @@
 ---
 title: "Mixnet client"
-weight: 30
+weight: 50
 ---
 
 ### Clients
 
 {{% notice info %}}
-The Nym Client was built in the [Installation](../installation) section. If you haven't yet built the Nym Mixnet and want to run the code on this page, go there first.
+The Nym Client was built in the [Installation](../installation) section. If you haven't yet built Nym and want to run the code on this page, go there first.
 {{% /notice %}}
 
-From inside the `nym-mixnet` directory, the `nym-mixnet-client` binary got built to the `build` directory, so you can run it by invoking `./build/nym-mixnet-client`:
+From inside the `nym` directory, the `nym-client` binary got built to the `./target/debug/` directory, so you can run it by invoking `./target/debug/nym-client`:
 
 ```shell
-nym-mixnet$ ./build/nym-mixnet-client
-Usage: nym-mixnet-client COMMAND [OPTIONS]
+nym$ ./target/debug/nym-client
 
 
+      _ __  _   _ _ __ ___
+     | '_ \| | | | '_ \ _ \
+     | | | | |_| | | | | | |
+     |_| |_|\__, |_| |_| |_|
+            |___/
 
-  _ __  _   _ _ __ ___  
- | '_ \| | | | '_ \ _ \
- | | | | |_| | | | | | |
- |_| |_|\__, |_| |_| |_|
-        |___/  
+             (client - version 0.2.0)
 
-         (mixnet-client)
-
-
-Commands:
-
-    init        Initialise a Nym Mixnet client
-    run         Run a persistent Nym Mixnet client process
-    socket      Run a background Nym Mixnet client listening on a specified socket
-
-Run "nym-mixnet-client help <command>" for more info on a specific command.
+    usage: --help to see available options.
 ```
 
-As you can see, there are three commands you can issue to the client.
+There are three commands you can issue to the client.
 
-1. init - initialize a new client instance. Takes an optional `--id clientname` parameter. Otherwise it generates a random `id`.
-1. run - run a mixnet client in the foreground. Takes `--id clientname` as a parameter
-1. socket - run, and also listen on a socket for input messages
-
-For the `socket` command, there are some required arguments:
-
-1. `--id` is the id of a generated clientname (see below)
-1. `--socket` specifies whether the client should listen on a tcp socket or a websocket. Allowable values are `tcp` or `websocket`.
-1. `--port` port on which the client is going to be listening
+1. `init` - initialize a new client instance. Requires `--id clientname` parameter.
+1. `websocket` - run a mixnet client process, and listen on a websocket for input messages. Requires `--id clientname` as a parameter
+1. `tcpsocket` - run a mixnet client process, and listen on a TCP socket for input messages. Takes `--id clientname` as a parameter
 
 Let's try it out. First, you need to initialize a new client.
 
+`./target/debug/nym-client init --id alice`
+
 ```
-nym-mixnet$ ./build/nym-mixnet-client init --id alice
-Saved generated private key to /home/you/.nym/clients/alice/config/private_key.pem
-Saved generated public key to /home/you/.nym/clients/alice/config/public_key.pem
-Saved generated config to /home/you/.nym/clients/alice/config/config.toml
+nym$ ./target/debug/nym-client init --id alice
+
+
+      _ __  _   _ _ __ ___
+     | '_ \| | | | '_ \ _ \
+     | | | | |_| | | | | | |
+     |_| |_|\__, |_| |_| |_|
+            |___/
+
+             (client - version 0.2.0)
+
+
+Initialising client...
+Writing keypairs to "~/.config/nym/clients/alice"...
+Client configuration completed.
 ```
 
 Have a look at the generated files if you'd like - they contain clientname, public/private keypairs, etc.
 
-You can run the client with user `alice` by doing this:
+You can run the client with a websocket listener for user `alice` by doing this:
+
+`./target/debug/nym-client websocket --id alice`
+
+Output should look something like this:
 
 ```shell
-./build/nym-mixnet-client run --id alice
-Our Public Key is: z-OQECd8VgC1BeVi6HsHMUbn3REnqZq1uXcyy9j7Hxc=
+$ ./target/debug/nym-client websocket --id alice
 
+
+      _ __  _   _ _ __ ___
+     | '_ \| | | | '_ \ _ \
+     | | | | |_| | | | | | |
+     |_| |_|\__, |_| |_| |_|
+            |___/
+
+             (client - version 0.2.0)
+
+
+Starting websocket on port: 9001
+Listening for messages...
+Starting nym client
+Using directory server: "http://directory.nymtech.net"
+keep alive: Ok(None)
+Obtained new token! - [212, 227, 231, 136, 168, 83, 145, 197, 136, 58, 122, 231, 164, 210, 191, 175, 245, 105, 64, 25, 26, 134, 159, 242, 136, 180, 246, 217, 57, 89, 179, 65]
+[OUT QUEUE] here I will be sending real traffic (or loop cover if nothing is available)
+[LOOP COVER TRAFFIC STREAM] - next cover message!
+[OUT QUEUE] - no real message - going to send extra loop cover
+[MIX TRAFFIC CONTROL] - got a mix_message for V4(127.0.0.1:9980)
 ```
 
-It doesn't look like much happened, it just sits there. But in fact, when you `run()` the client, it immediately starts generating (fake) cover traffic and sending it to the Nym Mixnet.
+When you run the client, it immediately starts generating (fake) cover traffic and sending it to the Nym Mixnet.
 
 {{% notice info %}}
 Congratulations, you have just contributed a tiny bit of privacy to the world! `<CTRL-C>` to stop the client.
-{{% /notice %}}
-
-{{% notice note %}}
-If you want to see slightly more detail about what the client is doing, take a look at the log file at `/tmp/nym_alice.log`. You can change the file by modifying the client's config at `/home/you/.nym/clients/alice/config/config.toml`. If you change the logging file to an empty value, everything will be printed directly to STDOUT.
 {{% /notice %}}
 
 Try stopping and starting the client a few times. If you're interested, you should see your traffic reflected in the network traffic *sent* and *received* metrics at the [Nym Dashboard](https://dashboard.nymtech.net/). Have a look on the right hand side:
@@ -82,11 +99,11 @@ Try stopping and starting the client a few times. If you're interested, you shou
 
 ### Understanding the client
 
-A large proportion of the Nym Mixnet's functionality is implemented client-side, including:
+A large proportion of the Nym mixnet's functionality is implemented client-side, including:
 
 1. determining network topology
-1. registering with mixnet [providers](../providers)
-1. fetching stored messages from the [providers](../providers)
+1. registering with mixnet's default [store-and-forward providers](../providers)
+1. fetching stored messages from the [store-and-forward providers](../providers)
 1. sending a constant stream of Sphinx packet *cover traffic* messages
 1. sending Sphinx packets with real messages
 1. sending Sphinx packet *cover traffic* when no real messages are being sent
@@ -95,9 +112,9 @@ A large proportion of the Nym Mixnet's functionality is implemented client-side,
 
 The first thing to understand is that it's the local client which picks the path that each packet will take through the mixnet topology.
 
-When you first `run` your client, the client needs to figure what mixnodes exist, which layers they're in, and their public keys.
+When you first run your client, the client needs to figure what mixnodes exist, which layers they're in, and their public keys.
 
-The client asks the Nym directory for the current mixnet topology. The client handles all this automatically, but in order to understand what's happening, you can try it yourself:
+The client asks the Nym [directory](../../directory) for the current mixnet topology. The client handles all this automatically, but in order to understand what's happening, you can try it yourself:
 
 ```bash
 curl -X GET "https://directory.nymtech.net/api/presence/topology" -H  "accept: application/json" | jq
@@ -193,9 +210,9 @@ Note that once the message is pulled, currently the provider immediately deletes
 
 Since it now understands the topology of the mixnet, the client can start sending traffic immediately. But what should it send?
 
-If there's a real message to send (because you called `client.SendMessage()` or poked something down the client's socket connection), then the client will send a real message. Otherwise, the client will send cover traffic, at a rate determined in the client config file in `~/.nym/clients/<client-id>/config.toml`
+If there's a real message to send (because you poked something down the client's inbound socket connection), then the client will send a real message. Otherwise, the client will send cover traffic.
 
-Real messages and cover traffic are both encrypted using the Sphinx packet format.
+Real messages and cover traffic are both encrypted using the Sphinx packet format, so that they're indistinguishable from each other.
 
 #### Sphinx packet creation
 
@@ -214,58 +231,9 @@ Now let's build the Nym Mixnode and see what happens when a Sphinx packet hits a
 
 Depending on what language you're using, you can fire up the client in one of two ways.
 
-### In Go
-
-If you're a Gopher, you can compile the client code into your own application in the normal Go fashion. This will give you access to all public methods and attributes of the mixnet client. Most notably:
-
-- `client.Start()`
-- `client.GetReceivedMessages()`
-- `client.SendMessage(message []byte, recipient config.ClientConfig)`
-
-**`client.Start()`**  performs all of the aforementioned required setup, i.e. obtains network topology, registers at a provider, and starts all the traffic streams. In fact just calling `client.Start()` and not doing anything more is equivalent to the `./build/nym-mixnet-client run --id alice` command.
-
-{{% notice tip %}}
-You can decide at which particular provider should the client register by modifying the `Provider` attribute in the client struct before calling the `.Start()` method.
-{{% /notice %}}
-
-When the client fetches valid messages from its provider, they are stored in a local buffer until **`client.GetReceivedMessages()`** is called. This method returns all those messages and resets the buffer.
-
-**`client.SendMessage(message []byte, recipient config.ClientConfig)`** as the name suggests, provides the core functionality of the mixnet by allowing sending arbitrary messages to specified recipients through the Nym Mixnet. It uses the current network topology to generate a path through the mixnet and automatically packs the content into an appropriate Sphinx packet.
-
-The recipient argument is defined as a ClientConfig protobuf message thus allowing for better cross-language compatibility. In the case of the Go implementation, it is compiled down to the language. The protobuf message is defined as follows:
-
-{{< highlight Protobuf >}}
-message ClientConfig {
-    string Id = 1;
-    string Host = 2;
-    string Port = 3;
-    bytes PubKey = 4;
-    MixConfig Provider = 5;
-}
-{{< /highlight >}}
-
-where
-
-{{< highlight Protobuf >}}
-message MixConfig {
-    string Id = 1;
-    string Host = 2;
-    string Port = 3;
-    bytes PubKey = 4;
-    uint64 Layer = 5;
-}
-{{< /highlight >}}
-
-{{% notice info %}}
-For the client, at this point of time, only the `PubKey` and `Provider` fields are relevant. `Host` and `Port` are no longer used in any meaningful way and will be removed later on. The `Id` equivalent to the encoding of the `PubKey` using the alternate URL base64 encoding as defined in [RFC 4648](https://tools.ietf.org/html/rfc4648). The similar is true for the `MixConfig` for the Provider - the `Id` is the base64 encodin of the public key. However, the `Host` and `Port` fields are actually vital here in order to generate routing information. As for the `Layer`, it is irrelevant in the context of a Provider. It is only required for Mix nodes.
-
-{{% /notice %}}
-
-### In other languages
-
-If you're not a Gopher (go coder), don't despair. You can run the client in socket mode instead, and use either websockets or TCP sockets to get equivalent functionality.
-
 #### Using TCP Socket
+<!-- commented until it works
+
 
 In an effort to achieve relatively high-level cross-language compatibility, all messages exchanged between socket client and whatever entity is communicating with it, are defined as protobuf messages:
 
@@ -478,7 +446,16 @@ func encodeBigEndianLen(w io.Writer, i uint64) (err error) {
 
 {{< /highlight >}}
 
+
+ -->
+
+[TODO]
+
 #### Using the Websocket
+
+[TODO]
+
+<!--
 
 Using the websocket is very similar to the way TCP socket is used. In fact it is actually simpler due to HTTP handling few aspects of it for us. For example the encoding of the lengths of messages exchanged or the buffer flushing.
 
@@ -558,3 +535,5 @@ if err != nil {
 fmt.Printf("%v", res)
 
 {{< /highlight >}}
+
+-->

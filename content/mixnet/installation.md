@@ -7,67 +7,35 @@ The mixnet code is relatively simple to build and run on Mac OS X and Linux. We 
 
 ### Requirements
 
-* Go 1.12 or later
-* `make`
-* `git`
+* [Rust](https://www.rust-lang.org/) 1.39 or later, with Cargo. Stable works.
+
 
 To download and build:
 
 ```shell
-git clone https://github.com/nymtech/nym-mixnet.git
-cd nym-mixnet
-git checkout v0.2.1
-make
+git clone https://github.com/nymtech/sphinx.git
+git clone https://github.com/nymtech/nym.git
+cd nym
+cargo test # runs unit and integration tests
+cargo build --release # if you want binaries to try out
 ```
 
-{{% notice tip %}}
-In case you've been traumatized by Go's (lack of) dependency management in the past, you don't need to worry about `$GOPATH`, `$GOROOT` etc. Check the code out and build it wherever you want to.
-{{% /notice %}}
-
-
-Output should look like this:
-
-```
-nym-mixnet$ make
-make build_client
-make[1]: Entering directory 'build-dir/nym/nym-mixnet'
-mkdir -p build
-go build -o build/nym-mixnet-client ./cmd/nym-mixnet-client
-make[1]: Leaving directory 'build-dir/nym/nym-mixnet'
-make build_mixnode
-make[1]: Entering directory 'build-dir/nym/nym-mixnet'
-mkdir -p build
-go build -o build/nym-mixnode ./cmd/nym-mixnode
-make[1]: Leaving directory 'build-dir/nym/nym-mixnet'
-make build_provider
-make[1]: Entering directory 'build-dir/nym/nym-mixnet'
-mkdir -p build
-go build -o build/nym-mixnet-provider ./cmd/nym-mixnet-provider
-make[1]: Leaving directory 'build-dir/nym/nym-mixnet'
-make build_bench_client
-make[1]: Entering directory 'build-dir/nym/nym-mixnet'
-mkdir -p build
-go build -o build/bench-nym-mixnet-client ./cmd/bench-nym-mixnet-client
-make[1]: Leaving directory 'build-dir/nym/nym-mixnet'
-make build_bench_provider
-make[1]: Entering directory 'build-dir/nym/nym-mixnet'
-mkdir -p build
-go build -o build/bench-nym-mixnet-provider ./cmd/bench-nym-mixnet-provider
-make[1]: Leaving directory 'build-dir/nym/nym-mixnet'
-```
-
-The above commands will check the code out from Github, and then compile six pieces of software into the `build/` directory:
+The above commands will check the code out from Github, and then compile three pieces of software into the `target/release` directory:
 
 ```shell
-nym-mixnet$ ls build/
-bench-nym-mixnet-client    nym-mixnet-client	nym-mixnode
-bench-nym-mixnet-provider  nym-mixnet-provider
+ls target/release/
+
+build	     libnym_client.d		    nym-client	   nym-sfw-provider
+deps	     libnym_client.rlib		    nym-client.d   nym-sfw-provider.d
+examples     libsfw_provider_requests.d     nym-mixnode
+incremental  libsfw_provider_requests.rlib  nym-mixnode.d
+
 ```
 
-Forget about the `bench-nym-*` ones for the moment, those are for performance testing. The interesting ones for us right now are:
+Quite a bit of stuff gets built, but you can ignore most of it. The mixnet parts are:
 
-1. the Nym mixnet client, `nym-mixnet-client`
 1. the Nym mixnode, `nym-mixnode`
-1. the Nym storage node, `nym-mixnet-provider`
+1. the Nym store-and-forward provider node, `nym-sfw-provider`
+1. the Nym client, `nym-client`
 
 In the next sections we'll try each of these out.
