@@ -8,7 +8,7 @@ The mixnet code is relatively simple to build and run on Mac OS X and Linux. We 
 ### Requirements
 
 * [Rust](https://www.rust-lang.org/) 1.39 or later, with Cargo. Stable works.
-
+* on Debian/Ubuntu: `sudo apt install pkg-config build-essential libssl-dev`
 
 To download and build:
 
