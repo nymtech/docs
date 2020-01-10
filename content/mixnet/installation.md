@@ -13,7 +13,6 @@ The mixnet code is relatively simple to build and run on Mac OS X and Linux. We 
 To download and build:
 
 ```shell
-git clone https://github.com/nymtech/sphinx.git
 git clone https://github.com/nymtech/nym.git
 cd nym
 cargo test # runs unit and integration tests
