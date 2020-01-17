@@ -21,7 +21,7 @@ nym$ ./target/debug/nym-client
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.2.0)
+             (client - version 0.3.2)
 
     usage: --help to see available options.
 ```
@@ -46,7 +46,7 @@ nym$ ./target/debug/nym-client init --id alice
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.2.0)
+             (client - version 0.3.2)
 
 
 Initialising client...
@@ -72,22 +72,16 @@ $ ./target/debug/nym-client websocket --id alice
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.2.0)
+             (client - version 0.3.2)
 
 
 Starting websocket on port: 9001
 Listening for messages...
 Starting nym client
 Using directory server: "http://directory.nymtech.net"
-keep alive: Ok(None)
-Obtained new token! - [212, 227, 231, 136, 168, 83, 145, 197, 136, 58, 122, 231, 164, 210, 191, 175, 245, 105, 64, 25, 26, 134, 159, 242, 136, 180, 246, 217, 57, 89, 179, 65]
-[OUT QUEUE] here I will be sending real traffic (or loop cover if nothing is available)
-[LOOP COVER TRAFFIC STREAM] - next cover message!
-[OUT QUEUE] - no real message - going to send extra loop cover
-[MIX TRAFFIC CONTROL] - got a mix_message for V4(127.0.0.1:9980)
 ```
 
-When you run the client, it immediately starts generating (fake) cover traffic and sending it to the Nym Mixnet.
+When you run the client, it immediately starts generating (fake) cover traffic and sending it to the Nym testnet.
 
 {{% notice info %}}
 Congratulations, you have just contributed a tiny bit of privacy to the world! `<CTRL-C>` to stop the client.
@@ -200,10 +194,10 @@ This is required as mixnet clients cannot receive messages directly from other c
 
 #### Fetching stored messages
 
-Upon completing the provider registration, the client starts a separate message stream that periodically fetches all the client's stored messages on the provider. The rate at which this happens is set in the client config files.
+Upon completing the provider registration, the client starts a separate message stream that periodically fetches all the client's stored messages on the provider.
 
 {{% notice note %}}
-Note that once the message is pulled, currently the provider immediately deletes it from its own storage.
+Note that once the message is pulled, the provider immediately deletes it.
 {{% /notice %}}
 
 #### Sending messages

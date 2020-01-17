@@ -13,8 +13,8 @@ You can start up a full mix network, including mixnodes, and [provider](../provi
 
 First, download, build and run the [Nym directory server](../../directory).
 
-{{% notice info %}}
-This is crucial! If you want to run a local devnet, you need to be able to find your nodes!
+{{% notice warning %}}
+The local network **must** be able to access a directory server running on localhost! Make sure you install and run the directory server.
 {{% /notice %}}
 
 Once you have a directory server running on port 8080, you can run the local network startup script:

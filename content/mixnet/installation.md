@@ -14,6 +14,7 @@ To download and build:
 
 ```shell
 git clone https://github.com/nymtech/nym.git
+git checkout tags/v0.3.2
 cd nym
 cargo test # runs unit and integration tests
 cargo build --release # if you want binaries to try out

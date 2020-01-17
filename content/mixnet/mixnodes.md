@@ -21,7 +21,7 @@ nym$ target/release/nym-mixnode
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.2.0)
+             (mixnode - version 0.3.2)
 
     usage: --help to see available options.
 ```
@@ -40,7 +40,7 @@ The `run` command runs a mixnode. You need to supply two parameters:
 1. `--layer <num>` needs to be an integer (1, 2, or 3) to assign the mixnode to a layer in the network topology
 
 ```shell
-nym$ ./target/release/nym-mixnode run --host 127.0.0.1 --layer 1 # running bound to localhost
+nym$  ./target/release/nym-mixnode run --host 127.0.0.1 --layer 1
 
 
       _ __  _   _ _ __ ___
@@ -49,13 +49,59 @@ nym$ ./target/release/nym-mixnode run --host 127.0.0.1 --layer 1 # running bound
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.2.0)
+             (mixnode - version 0.3.2)
 
 
 Starting mixnode...
-Public key: b-lx4nYO9VzNbjDSNpaIKClB4hF1r608C4G6VPZ82VU=
+
+##### WARNING #####
+
+You are trying to bind to 127.0.0.1 - you might not be accessible to other nodes
+
+##### WARNING #####
+
+Public key: rbl74MfQ-xVqtBIOq2coPGWxNztlqNDqP0R0kLB9p2g=
 Directory server: https://directory.nymtech.net
 Listening for incoming packets on 127.0.0.1:1789
+Announcing the following socket address: 127.0.0.1:1789
 ```
 
 `./target/release/nym-mixnode help run` shows available options.
+
+If you want to run a mixnode locally, you can run a local [directory server](../directory) and bind to your loopback address (127.0.0.1) or use localhost.
+
+{{% notice info %}}
+You'll see a startup warning whenever you bind to your loopback address, because you won't be routable for clients out on the big internet.
+{{% /notice %}}
+
+However, if you are attempting to join the Nym testnet, your `--host` parameter should contain a publicly routable internet address.
+
+#### Virtual IPs, Google, AWS, and all that
+
+On some services (e.g. AWS, Google), the machine's available bind address is not the same as the public IP address. In this case, bind `--host` to the local machine address returned by `ifconfig`, but also specify `--announce-host` with the public IP. Please make sure that you pass the correct, routable `--announce-host`.
+
+For example, on a Google machine, you may see the following output from the `ifconfig` command:
+
+```
+ens4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1460
+        inet 10.126.5.7  netmask 255.255.255.255  broadcast 0.0.0.0
+        ...
+```
+
+The `ens4` interface has the IP `10.126.5.7`. But this isn't the public IP of the machine, it's the IP of the machine on Google's internal network. The public IP of this machine is something else, e.g. `36.68.243.18`.
+
+`nym-mixnode run --host 10.126.5.7 --layer 1`, starts the mixnode, but no packets will be routed because `10.126.5.7` is not on the public internet.
+
+Trying `nym-mixnode run --host 36.68.243.18 --layer 1`, you'll get back a startup error saying `AddrNotAvailable`. This is because the mixnode doesn't know how to bind to a host that's not in the output of `ifconfig`.
+
+The right thing to do in this situation is `nym-mixnode run --host 10.126.5.7 --announce-host 36.68.243.18 --layer 1`.
+
+This will bind the mixnode to the available host `10.126.5.7`, but announce the mixnode's public IP to the directory server as `36.68.243.18`. It's up to you as a node operator to ensure that your public and private IPs match up properly.
+
+#### What layer should I use?
+
+In general, we want to run a mixnet that's 3 layers deep for out testnet. Have a look at the [Nym testnet dashboard](https://dashboard.nymtech.net), and slot yourself into layer 1, 2, or 3. If you're running IPv6, please pick layer 2 or layer 3, as a lot of consumer clients still do not fully support IPv6 and may not be able to talk to your nodes.
+
+#### Check the dashboard
+
+Once you've started your mixnode, it will automatically show up in the [Nym testnet dashboard](https://dashboard.nymtech.net) unless you've specified a different directory server.
