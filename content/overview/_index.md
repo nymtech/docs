@@ -21,7 +21,7 @@ In the context of blockchain systems, **Coconut** provides **transaction privacy
 
 Although there's still work to be done to integrate it against various blockchains, in principle Coconut can anonymize blockchain transactions in any system which provides multi-sig. Bitcoin and Ethereum are obvious first targets here.
 
-Coconut is very flexible, and can ensure privacy for more than coin transfers; it can ensure privacy for more complex smart contracts as well. Finally, it should be mentioned that Coconut can be applied to non-blockchain systems as well - it's a general purpose technology.
+Coconut is very flexible, and can ensure privacy for more than coin transfers; it can ensure privacy for more complex smart contracts as well. Finally, it should be mentioned that Coconut can be applied to both blockchain and non-blockchain systems - it's a general purpose technology.
 
 ### IP-layer privacy
 
