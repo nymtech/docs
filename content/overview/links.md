@@ -6,8 +6,9 @@ weight: 20
 Here are some links that may prove handy as you start exploring our project:
 
 * The [Nym website](https://nymtech.net) has general info on project status and links to learning materials and talks we've given
-* [Nym Mixnode](https://github.com/nymtech/nym/mixnode) code
-* [Nym Validator](https://github.com/nymtech/nym-validator) code (soon to be [replaced](https://github.com/nymtech/nym/validator))
+* The [Nym docs](https://nymtech.net/docs) tell you how to build and run our software
+* [Nym Platform](https://github.com/nymtech/nym) code
+* [Nym Validator](https://github.com/nymtech/nym-validator) code (soon to be [replaced](https://github.com/nymtech/nym/tree/develop/validator))
 * [Nym Directory](https://github.com/nymtech/nym-directory) code
 * The [Nym Dashboard](https://dashboard.nymtech.net) shows testnet nodes and activity
 * You can get a live stream of our testnet mixnode activity by subscribing to the websocket at [wss://directory.nymtech.net/ws](wss://directory.nymtech.net/ws). View it in-browser [here](https://directory.nymtech.net).
