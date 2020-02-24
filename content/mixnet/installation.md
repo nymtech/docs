@@ -34,7 +34,7 @@ incremental  libsfw_provider_requests.rlib  nym-mixnode.d
 Quite a bit of stuff gets built, but you can ignore most of it. The mixnet parts are:
 
 1. the Nym mixnode, `nym-mixnode`
-1. the Nym store-and-forward provider node, `nym-sfw-provider`
-1. the Nym client, `nym-client`
+2. the Nym store-and-forward provider node, `nym-sfw-provider`
+3. the Nym client, `nym-client`
 
 In the next sections we'll try each of these out.
