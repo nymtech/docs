@@ -16,7 +16,7 @@ To download and build:
 git clone https://github.com/nymtech/nym.git
 cd nym
 git checkout tags/v0.4.1
-cargo build --release # if you want binaries to try out
+cargo build --release
 ```
 
 The above commands will check the code out from Github, and compile into the `target/release` directory.
