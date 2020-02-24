@@ -19,7 +19,7 @@ git checkout tags/v0.4.1
 cargo build --release # if you want binaries to try out
 ```
 
-The above commands will check the code out from Github, and then compile three pieces of software into the `target/release` directory:
+The above commands will check the code out from Github, and compile into the `target/release` directory.
 
 ```shell
 ls target/release/
