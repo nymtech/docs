@@ -10,7 +10,7 @@ Once you've downloaded or compiled your mixnode according to the [installation](
 ### Hardware Specs
 
 * Processor: 2 or 4 cores are fine. Get the fastest CPUs you can afford. 
-* RAM: Memory requirements are very low - typically a mixnode may use only a few hunder MB of RAM. 
+* RAM: Memory requirements are very low - typically a mixnode may use only a few hundred MB of RAM. 
 * Disks: The mixnodes require no disk space beyond a few bytes for the configuration files
 
 For the moment, we haven't put a great amount of thought into optimizing concurrency to increase throughput. So don't bother provisioning a beastly server with many cores. This will change when we get a chance to start doing performance optimizations in a more serious way. Later, once we've optimized, you will want the most cores you can get. 
