@@ -5,7 +5,7 @@ weight: 60
 
 Joining the Nym testnet with a mixnode is easy.
 
-Once you've downloaded or compiled your mixnode according to the [installation](../installation) instructions, set it up on an internet-addressable server machine. 
+Once you've downloaded or compiled your mixnode according to the [installation](../installation) instructions, set it up on an internet-addressable server machine. It will automatically join our testnet. 
 
 ### Hardware Specs
 
@@ -17,4 +17,8 @@ For the moment, we haven't put a great amount of thought into optimizing concurr
 
 ### Network Setup
 
+* IPv4 works
+* IPv6 also works
+* ensure that your node is available and announces the right address, especially if you're using a cloud service like AWS. See the [AWS note](../mixnodes) on the mixnodes configuration page.
+  
 Ideally you'll want to make sure that your machine speaks IPv6 in addition to IPv4, even if you don't plan to use an IPv6 address yourself. Other node operators who you may be interacting with may by using IPv6. 
