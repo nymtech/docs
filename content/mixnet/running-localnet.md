@@ -5,7 +5,7 @@ weight: 50
 
 ### Running a local mixnet for development
 
-Unless you have some friends running mixnodes on other machines, running a mixnode all by itself isn't very useful.
+Unless you have some friends running mixnodes on other machines, running a mixnode all by itself isn't very useful if you want to poke at the system and see how it works.
 
 It's also difficult if you're a developer and need a stable environment to work in. Although our node operators do take care to keep our testnet up and running, sometimes it's easier to run your own full setup on your own machine so you can see how the whole system works.
 
