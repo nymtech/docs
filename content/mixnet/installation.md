@@ -15,7 +15,7 @@ To download and build:
 ```shell
 git clone https://github.com/nymtech/nym.git
 cd nym
-git checkout tags/v0.4.1
+git checkout tags/v0.5.0
 cargo build --release
 ```
 
