@@ -29,6 +29,7 @@ Install Go 1.12 or later, and then do:
 ```shell
 git clone https://github.com/nymtech/nym-directory.git
 cd nym-directory
+git checkout tags/v0.5.0
 go run main.go
 ```
 

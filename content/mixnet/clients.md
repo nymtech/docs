@@ -9,10 +9,12 @@ weight: 50
 The Nym Client was built in the [Installation](../installation) section. If you haven't yet built Nym and want to run the code on this page, go there first.
 {{% /notice %}}
 
-From inside the `nym` directory, the `nym-client` binary got built to the `./target/debug/` directory, so you can run it by invoking `./target/debug/nym-client`:
+From inside the `nym` directory, the `nym-client` binary got built to the `./target/debug/` directory. You can run it like this:
+
+`./target/release/nym-client`
 
 ```shell
-nym$ ./target/debug/nym-client
+$ ./target/release/nym-client 
 
 
       _ __  _   _ _ __ ___
@@ -21,23 +23,23 @@ nym$ ./target/debug/nym-client
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.3.2)
+             (client - version 0.5.0)
 
-    usage: --help to see available options.
+    
+usage: --help to see available options.
 ```
 
 There are three commands you can issue to the client.
 
 1. `init` - initialize a new client instance. Requires `--id clientname` parameter.
-1. `websocket` - run a mixnet client process, and listen on a websocket for input messages. Requires `--id clientname` as a parameter
-1. `tcpsocket` - run a mixnet client process, and listen on a TCP socket for input messages. Takes `--id clientname` as a parameter
+2. `run` - run a mixnet client process. Requires `--id clientname` as a parameter
 
 Let's try it out. First, you need to initialize a new client.
 
-`./target/debug/nym-client init --id alice`
+`./target/release/nym-client init --id alice --socket-type websocket`
 
 ```
-nym$ ./target/debug/nym-client init --id alice
+$ ./target/release/nym-client init --id alice --socket-type websocket
 
 
       _ __  _   _ _ __ ___
@@ -46,24 +48,29 @@ nym$ ./target/debug/nym-client init --id alice
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.3.2)
+             (client - version 0.5.0)
 
-
+    
 Initialising client...
-Writing keypairs to "~/.config/nym/clients/alice"...
+ 2020-03-20T16:51:06.443 INFO  pemstore::pemstore > Written private key to "/home/dave/.nym/clients/alice/data/private_identity.pem"
+ 2020-03-20T16:51:06.443 INFO  pemstore::pemstore > Written public key to "/home/dave/.nym/clients/alice/data/public_identity.pem"
+Saved mixnet identity keypair
+Saved configuration file to "/home/dave/.nym/clients/alice/config/config.toml"
+Unless overridden in all `nym-client run` we will be talking to the following provider: 6XphjaH2dgQS2YLJAc1Cscj5dC2P2Aa94M6iuBYennuW...
+using optional AuthToken: "DwE67JGrTzUY1ewDGp18HScHnQpXvXUT81fcBj5XTFgJ"
 Client configuration completed.
 ```
 
-Have a look at the generated files if you'd like - they contain clientname, public/private keypairs, etc.
+Have a look at the generated files if you'd like - they contain the client name, public/private keypairs, etc.
 
-You can run the client with a websocket listener for user `alice` by doing this:
+You can run the client for user `alice` by doing this:
 
-`./target/debug/nym-client websocket --id alice`
+`./target/release/nym-client run --id alice`
 
 Output should look something like this:
 
 ```shell
-$ ./target/debug/nym-client websocket --id alice
+$ ./target/release/nym-client run --id alice
 
 
       _ __  _   _ _ __ ___
@@ -72,7 +79,7 @@ $ ./target/debug/nym-client websocket --id alice
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.3.2)
+             (client - version 0.5.0)
 
 
 Starting websocket on port: 9001
@@ -204,7 +211,7 @@ Note that once the message is pulled, the provider immediately deletes it.
 
 Since it now understands the topology of the mixnet, the client can start sending traffic immediately. But what should it send?
 
-If there's a real message to send (because you poked something down the client's inbound socket connection), then the client will send a real message. Otherwise, the client will send cover traffic.
+If there's a real message to send (because you poked something down the client's inbound socket connection), then the client will send a real message. Otherwise, the client sends cover traffic.
 
 Real messages and cover traffic are both encrypted using the Sphinx packet format, so that they're indistinguishable from each other.
 
@@ -223,7 +230,190 @@ Now let's build the Nym Mixnode and see what happens when a Sphinx packet hits a
 
 ## Integrating the mixnet client in your applications
 
-Depending on what language you're using, you can fire up the client in one of two ways.
+Depending on what language you're using, you can fire up the client in one of two ways: websocket or TCP socket.
+
+### Using the websocket
+
+#### Starting the websocket
+
+Currently, the recommended way of integrating Nym client in your application is by using a websocket. In order to enable this form of connection, you need to either initialize your client with the websocket by adding the following attribute: `--socket-type websocket`. You can also choose a custom port to listen on by passing `--port <port-value>` attribute. So your whole initialization might look like: `nym-client init --id Alice --socket-type websocket --port 1234`
+
+The alternative is to modify your existing client's configuration file, most likely located in `$HOME/.nym/clients/<your-id>/config/config.toml` by changing appropriate values in the `[socket]` section:
+
+{{< highlight toml >}}
+
+##### socket config options #####
+
+[socket]
+
+# allowed values are 'TCP', 'WebSocket' or 'None'
+socket_type = "None"
+
+# if applicable (for the case of 'TCP' or 'WebSocket'), the port on which the client
+# will be listening for incoming requests
+listening_port = 9001
+
+{{< /highlight >}}
+
+Finally, it can all be modified during client start-up by passing the same flags as you would have used during `init`, i.e. `--socket-type websocket` and `--port <port-value>`. So then you might start up your client using websocket (regardless of what is written to its configuration file!) as follows: `nym-client run --id Alice --socket-type websocket --port 1234`
+
+<!-- This notice should probably be put to section regarding client config (once written) -->
+{{% notice tip %}}
+All start-up attributes take presedence and override whatever is written to the configuration file.
+{{% /notice %}}
+
+You will know if you set everything correctly if you see the following message during `nym-client run`: (assuming you did not disable logging)
+
+`INFO  nym_client::sockets::ws                 > Starting websocket listener at 127.0.0.1:9001`
+
+##### Using the Websocket
+
+Once you managed to startup your Websocket listener, there's an important note to make before you connect your application to it.
+
+First of all, only `Text` messages are supported and all `Binary` data will be rejected.
+
+Also, you generally would only ever want to have a single application per Nym Client instance unless you have a very specific use cases. Because while it is entirely possible for multiple clients to be connected simultanously, there are significant consequences of that to keep in mind:
+
+- all applications would share the same underlying key and hence identity, what might or might not be what you want,
+- as a consequence of the above, all connections would share the same buffer of inbound messages [from a store-and-forward provider] resulting in application A receiving messages originally expected to be obtained by application B,
+- it might take longer for your messages to get sent as everything is sent according to Poisson distribution with constant parameterization regardless of number of messages waiting to get sent.
+
+{{% notice note %}}
+Also note that the websocket will **only** accept requests from the loopback address.
+{{% /notice %}}
+
+##### API
+
+Right now the Websocket requests have the following structure:
+{{< highlight json >}}
+{
+  "type": "messageType",
+  "messageSpecificFields": ...
+}
+{{< /highlight >}}
+
+And let you do the following:
+{{< highlight json >}}
+{
+  "type": "send",
+  "message": "message content",
+  "recipient": "base58 encoded recipient address"
+}
+{{< /highlight >}}
+to send a message of specified content to some other client on the network. Do note that the structure is subject to change as currently the message does not include address of the recipient's service provider, which is going to be required to correctly route it when the network contains more than a single store-and-forward provider. And more importantly, to ensure correct transmission, the message field content has to be within 975 bytes.
+
+{{% notice info %}}
+The message sent has to be less than 975 bytes as currently we have no implemented chunking yet.
+{{% /notice %}}
+
+{{< highlight json >}}
+{
+  "type": "fetch"
+}
+{{< /highlight >}}
+to fetch all messages that we might have received from other clients [that were already polled from the store-and-forward provider],
+
+{{< highlight json >}}
+{
+  "type": "getClients"
+}
+{{< /highlight >}}
+to get list of all public clients on the network,
+
+{{< highlight json >}}
+{
+  "type": "ownDetails"
+}
+
+{{< /highlight >}}
+to obtain details, i.e. public key/address of this specific Nym client
+
+The responses to those requests follow identical structure, i.e.:
+{{< highlight json >}}
+{
+  "type": "messageType"
+  "messageSpecificFields": ...
+}
+{{< /highlight >}}
+
+And they are respectively:
+
+{{< highlight json >}}
+{
+  "type": "send"
+}
+{{< /highlight >}}
+
+{{< highlight json >}}
+{
+  "type": "fetch",
+  "messages": ["received messages"]
+}
+{{< /highlight >}}
+
+{{< highlight json >}}
+{
+  "type": "getClients",
+  "clients": ["available clients"]
+}
+{{< /highlight >}}
+
+{{< highlight json >}}
+{
+  "type": "ownDetails",
+  "address": "base58 encoded address"
+}
+{{< /highlight >}}
+
+{{< highlight json >}}
+{
+  "type": "error",
+  "message": "error message"
+}
+{{< /highlight >}}
+
+So for example you could do the following to send a message to some other client via Websocket in Typescript:
+
+{{< highlight Typescript >}}
+
+const sendMsg = JSON.stringify({
+  type: "send",
+  message: "foo",
+  recipient_address: "C5ht4YgZ58CGZZ1BNQzh56Fr2S69BkJcbkpK3NpBrHzk",
+});
+
+const conn = new WebSocket(`ws://localhost:9001/mix`);
+conn.onmessage = (ev: MessageEvent): void => {
+  const receivedData = JSON.parse(ev.data);
+  if (receivedData.type == "send") {
+    console.log("received send confirmation");
+  }  
+}
+conn.send(sendMsg);
+
+{{< /highlight >}}
+
+and the following to receive messages:
+
+{{< highlight Typescript >}}
+
+const fetchMsg = JSON.stringify({
+  type: "fetch",
+});
+
+const conn = new WebSocket(`ws://localhost:9001/mix`);
+conn.onmessage = (ev: MessageEvent): void => {
+  const receivedData = JSON.parse(ev.data);
+  if (receivedData.type == "fetch") {
+    console.log("fetched the following messages: " + receivedData.messages);
+  }  
+}
+conn.send(fetchMsg);
+{{< /highlight >}}
+
+You can see a sample Electron application communicating with the Websocket client [here](../chat-demo).
+
+
 
 #### Using TCP Socket
 
@@ -448,192 +638,3 @@ func encodeBigEndianLen(w io.Writer, i uint64) (err error) {
 
  -->
 
-
-#### Using the Websocket
-
-{{% notice warning %}}
-Note that the following is true for version 0.5.0;
-Only initial setup changed since 0.4.X and the description regarding message formats still hold true. However, they are very likely to change in future releases and this documentation will need to be updated accordingly.
-{{% /notice %}}
-
-##### Starting the Websocket
-
-Currently, the recommended way of integrating Nym client in your application is by using a Websocket. In order to enable this form of connection, you need to either initialize your client with the websocket by adding the following attribute: `--socket-type websocket`. You can also choose a custom port to listen on by passing `--port <port-value>` attribute. So your whole initialization might look like: `nym-client init --id Alice --socket-type websocket --port 1234`
-
-The alternative is to modify your existing client's configuration file, most likely located in `$HOME/.nym/clients/<your-id>/config/config.toml` by changing appropriate values in the `[socket]` section:
-
-{{< highlight toml >}}
-
-##### socket config options #####
-
-[socket]
-
-# allowed values are 'TCP', 'WebSocket' or 'None'
-socket_type = "None"
-
-# if applicable (for the case of 'TCP' or 'WebSocket'), the port on which the client
-# will be listening for incoming requests
-listening_port = 9001
-
-{{< /highlight >}}
-
-Finally, it can all be modified during client start-up by passing the same flags as you would have used during `init`, i.e. `--socket-type websocket` and `--port <port-value>`. So then you might start up your client using websocket (regardless of what is written to its configuration file!) as follows: `nym-client run --id Alice --socket-type websocket --port 1234`
-
-<!-- This notice should probably be put to section regarding client config (once written) -->
-{{% notice tip %}}
-All start-up attributes take presedence and override whatever is written to the configuration file.
-{{% /notice %}}
-
-You will know if you set everything correctly if you see the following message during `nym-client run`: (assuming you did not disable logging)
-
-`INFO  nym_client::sockets::ws                 > Starting websocket listener at 127.0.0.1:9001`
-
-##### Using the Websocket
-
-Once you managed to startup your Websocket listener, there's an important note to make before you connect your application to it.
-
-First of all, only `Text` messages are supported and all `Binary` data will be rejected.
-
-Also, you generally would only ever want to have a single application per Nym Client instance unless you have a very specific use cases. Because while it is entirely possible for multiple clients to be connected simultanously, there are significant consequences of that to keep in mind:
-
-- all applications would share the same underlying key and hence identity, what might or might not be what you want,
-- as a consequence of the above, all connections would share the same buffer of inbound messages [from a store-and-forward provider] resulting in application A receiving messages originally expected to be obtained by application B,
-- it might take longer for your messages to get sent as everything is sent according to Poisson distribution with constant parameterization regardless of number of messages waiting to get sent.
-
-{{% notice note %}}
-Also note that the websocket will **only** accept requests from the loopback address.
-{{% /notice %}}
-
-##### API
-
-Right now the Websocket requests have the following structure:
-{{< highlight json >}}
-{
-  "type": "messageType",
-  "messageSpecificFields": ...
-}
-{{< /highlight >}}
-
-And let you do the following:
-{{< highlight json >}}
-{
-  "type": "send",
-  "message": "message content",
-  "recipient": "base58 encoded recipient address"
-}
-{{< /highlight >}}
-to send a message of specified content to some other client on the network. Do note that the structure is subject to change as currently the message does not include address of the recipient's service provider, which is going to be required to correctly route it when the network contains more than a single store-and-forward provider. And more importantly, to ensure correct transmission, the message field content has to be within 975 bytes.
-
-{{% notice info %}}
-The message sent has to be less than 975 bytes as currently we have no implemented chunking yet.
-{{% /notice %}}
-
-{{< highlight json >}}
-{
-  "type": "fetch"
-}
-{{< /highlight >}}
-to fetch all messages that we might have received from other clients [that were already polled from the store-and-forward provider],
-
-{{< highlight json >}}
-{
-  "type": "getClients"
-}
-{{< /highlight >}}
-to get list of all public clients on the network,
-
-{{< highlight json >}}
-{
-  "type": "ownDetails"
-}
-
-{{< /highlight >}}
-to obtain details, i.e. public key/address of this specific Nym client
-
-The responses to those requests follow identical structure, i.e.:
-{{< highlight json >}}
-{
-  "type": "messageType"
-  "messageSpecificFields": ...
-}
-{{< /highlight >}}
-
-And they are respectively:
-
-{{< highlight json >}}
-{
-  "type": "send"
-}
-{{< /highlight >}}
-
-{{< highlight json >}}
-{
-  "type": "fetch",
-  "messages": ["received messages"]
-}
-{{< /highlight >}}
-
-{{< highlight json >}}
-{
-  "type": "getClients",
-  "clients": ["available clients"]
-}
-{{< /highlight >}}
-
-{{< highlight json >}}
-{
-  "type": "ownDetails",
-  "address": "base58 encoded address"
-}
-{{< /highlight >}}
-
-{{< highlight json >}}
-{
-  "type": "error",
-  "message": "error message"
-}
-{{< /highlight >}}
-
-So for example you could do the following to send a message to some other client via Websocket in Typescript:
-
-{{< highlight Typescript >}}
-
-const sendMsg = JSON.stringify({
-  type: "send",
-  message: "foo",
-  recipient_address: "C5ht4YgZ58CGZZ1BNQzh56Fr2S69BkJcbkpK3NpBrHzk",
-});
-
-const conn = new WebSocket(`ws://localhost:9001/mix`);
-conn.onmessage = (ev: MessageEvent): void => {
-  const receivedData = JSON.parse(ev.data);
-  if (receivedData.type == "send") {
-    console.log("received send confirmation");
-  }  
-}
-conn.send(sendMsg);
-
-{{< /highlight >}}
-
-and the following to receive messages:
-
-{{< highlight Typescript >}}
-
-const fetchMsg = JSON.stringify({
-  type: "fetch",
-});
-
-const conn = new WebSocket(`ws://localhost:9001/mix`);
-conn.onmessage = (ev: MessageEvent): void => {
-  const receivedData = JSON.parse(ev.data);
-  if (receivedData.type == "fetch") {
-    console.log("fetched the following messages: " + receivedData.messages);
-  }  
-}
-conn.send(fetchMsg);
-{{< /highlight >}}
-
-You can see a sample Electron application communicating with the Websocket client [here](../chat-demo).
-
-
-TODO: make sure it still works for 0.5.0

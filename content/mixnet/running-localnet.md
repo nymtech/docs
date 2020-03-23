@@ -1,20 +1,20 @@
 ---
-title: "Running a devnet"
+title: "Running a local mixnet"
 weight: 50
 ---
 
 ### Running a local mixnet for development
 
-Unless you have some friends running mixnodes on other machines, running a mixnode all by itself isn't very useful.
+Unless you have some friends running mixnodes on other machines, running a mixnode all by itself isn't very easy if you want to poke at the system and see how it works.
 
-It's also difficult if you're a developer and need a stable environment to work in. Although our node operators do take care to keep our testnet up and running, sometimes it's easier to run your own full setup on your own machine so you can see how the whole system works.
+It's also difficult if you're a developer and need a stable environment to work in. Although our node operators do take care to keep our testnet up and running, sometimes it's easier to run your own full setup on your own machine.
 
-You can start up a full mix network, including mixnodes, and [provider](../providers) on your local machine fairly easily.
+You can start up a full mix network, including mixnodes, and [store and forward provider](../providers) on your local machine fairly easily.
 
 First, download, build and run the [Nym directory server](../../directory).
 
 {{% notice warning %}}
-The local network **must** be able to access a directory server running on localhost! Make sure you install and run the directory server.
+The local network **must** be able to access a directory server running on `localhost`! Make sure you install and run the directory server.
 {{% /notice %}}
 
 Once you have a directory server running on port 8080, you can run the local network startup script:
@@ -58,3 +58,15 @@ Packets always travel forwards through mixnet layers, and layers cannot be skipp
 * Mixnodes {1,2} send **only** to Mixnodes {3,4} (layer 2)
 * Mixnodes {3,4} send **only** to Mixnodes {5,6} (layer 3)
 * Mixnodes {5,6} send **only** to provider(s).
+
+From here, you can start experimenting with running the `nym-client`, sending packets through the mixnet.
+
+Init the client: 
+
+` ./target/release/nym-client init --id baby-yoda --directory http://localhost:8080`
+
+Then run it:
+
+`./target/release/nym-client run --id baby-yoda`
+
+For more info on developing with a running client, see the [client documentation](../mixnet/clients.md)
