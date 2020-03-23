@@ -9,10 +9,12 @@ weight: 50
 The Nym Client was built in the [Installation](../installation) section. If you haven't yet built Nym and want to run the code on this page, go there first.
 {{% /notice %}}
 
-From inside the `nym` directory, the `nym-client` binary got built to the `./target/debug/` directory, so you can run it by invoking `./target/debug/nym-client`:
+From inside the `nym` directory, the `nym-client` binary got built to the `./target/debug/` directory. You can run it like this:
+
+`./target/release/nym-client`
 
 ```shell
-nym$ ./target/debug/nym-client
+$ ./target/release/nym-client 
 
 
       _ __  _   _ _ __ ___
@@ -21,23 +23,23 @@ nym$ ./target/debug/nym-client
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.3.2)
+             (client - version 0.5.0)
 
-    usage: --help to see available options.
+    
+usage: --help to see available options.
 ```
 
 There are three commands you can issue to the client.
 
 1. `init` - initialize a new client instance. Requires `--id clientname` parameter.
-1. `websocket` - run a mixnet client process, and listen on a websocket for input messages. Requires `--id clientname` as a parameter
-1. `tcpsocket` - run a mixnet client process, and listen on a TCP socket for input messages. Takes `--id clientname` as a parameter
+2. `run` - run a mixnet client process. Requires `--id clientname` as a parameter
 
 Let's try it out. First, you need to initialize a new client.
 
-`./target/debug/nym-client init --id alice`
+`./target/release/nym-client init --id alice --socket-type websocket`
 
 ```
-nym$ ./target/debug/nym-client init --id alice
+$ ./target/release/nym-client init --id alice --socket-type websocket
 
 
       _ __  _   _ _ __ ___
@@ -46,24 +48,29 @@ nym$ ./target/debug/nym-client init --id alice
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.3.2)
+             (client - version 0.5.0)
 
-
+    
 Initialising client...
-Writing keypairs to "~/.config/nym/clients/alice"...
+ 2020-03-20T16:51:06.443 INFO  pemstore::pemstore > Written private key to "/home/dave/.nym/clients/alice/data/private_identity.pem"
+ 2020-03-20T16:51:06.443 INFO  pemstore::pemstore > Written public key to "/home/dave/.nym/clients/alice/data/public_identity.pem"
+Saved mixnet identity keypair
+Saved configuration file to "/home/dave/.nym/clients/alice/config/config.toml"
+Unless overridden in all `nym-client run` we will be talking to the following provider: 6XphjaH2dgQS2YLJAc1Cscj5dC2P2Aa94M6iuBYennuW...
+using optional AuthToken: "DwE67JGrTzUY1ewDGp18HScHnQpXvXUT81fcBj5XTFgJ"
 Client configuration completed.
 ```
 
-Have a look at the generated files if you'd like - they contain clientname, public/private keypairs, etc.
+Have a look at the generated files if you'd like - they contain the client name, public/private keypairs, etc.
 
-You can run the client with a websocket listener for user `alice` by doing this:
+You can run the client for user `alice` by doing this:
 
-`./target/debug/nym-client websocket --id alice`
+`./target/release/nym-client run --id alice`
 
 Output should look something like this:
 
 ```shell
-$ ./target/debug/nym-client websocket --id alice
+$ ./target/release/nym-client run --id alice
 
 
       _ __  _   _ _ __ ___
@@ -72,7 +79,7 @@ $ ./target/debug/nym-client websocket --id alice
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.3.2)
+             (client - version 0.5.0)
 
 
 Starting websocket on port: 9001
@@ -204,7 +211,7 @@ Note that once the message is pulled, the provider immediately deletes it.
 
 Since it now understands the topology of the mixnet, the client can start sending traffic immediately. But what should it send?
 
-If there's a real message to send (because you poked something down the client's inbound socket connection), then the client will send a real message. Otherwise, the client will send cover traffic.
+If there's a real message to send (because you poked something down the client's inbound socket connection), then the client will send a real message. Otherwise, the client sends cover traffic.
 
 Real messages and cover traffic are both encrypted using the Sphinx packet format, so that they're indistinguishable from each other.
 
@@ -223,19 +230,13 @@ Now let's build the Nym Mixnode and see what happens when a Sphinx packet hits a
 
 ## Integrating the mixnet client in your applications
 
-Depending on what language you're using, you can fire up the client in one of two ways.
+Depending on what language you're using, you can fire up the client in one of two ways: websocket or TCP socket.
 
-#### Using the Websocket
+### Using the websocket
 
-{{% notice warning %}}
-Note that the following is true for version 0.5.0.
+#### Starting the websocket
 
-Only initial setup changed since 0.4.X and the description regarding message formats still hold true. However, they are very likely to change in future releases and this documentation will need to be updated accordingly.
-{{% /notice %}}
-
-##### Starting the Websocket
-
-Currently, the recommended way of integrating Nym client in your application is by using a Websocket. In order to enable this form of connection, you need to either initialize your client with the websocket by adding the following attribute: `--socket-type websocket`. You can also choose a custom port to listen on by passing `--port <port-value>` attribute. So your whole initialization might look like: `nym-client init --id Alice --socket-type websocket --port 1234`
+Currently, the recommended way of integrating Nym client in your application is by using a websocket. In order to enable this form of connection, you need to either initialize your client with the websocket by adding the following attribute: `--socket-type websocket`. You can also choose a custom port to listen on by passing `--port <port-value>` attribute. So your whole initialization might look like: `nym-client init --id Alice --socket-type websocket --port 1234`
 
 The alternative is to modify your existing client's configuration file, most likely located in `$HOME/.nym/clients/<your-id>/config/config.toml` by changing appropriate values in the `[socket]` section:
 
