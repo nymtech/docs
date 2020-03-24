@@ -15,11 +15,13 @@ To download and build:
 ```shell
 git clone https://github.com/nymtech/nym.git
 cd nym
-git checkout tags/v0.5.0
+git checkout tags/v0.5.0 # <-- **VERY IMPORTANT**
 cargo build --release
 ```
 
-The above commands will check the code out from Github, and compile into the `target/release` directory.
+**Note:** the default branch you'll clone from Github, `develop`, is guaranteed to be broken and incompatible with the running testnet at all times. You **must** `git checkout tags/v0.5.0` in order to join the testnet.
+
+The above commands will compile into the `target/release` directory.
 
 ```shell
 ls target/release/
