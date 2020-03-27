@@ -33,6 +33,11 @@ url = "https://github.com/nymtech/"
 weight = 20
 
 [[menu.shortcuts]]
+name = "<i class='fas fa-fw fa-key'></i> Developer Chat"
+url = "https://nymtech.net/docs/overview/links/"
+weight = 25
+
+[[menu.shortcuts]]
 name = "<i class='fab fa-fw fa-twitter'></i> Twitter"
 identifier = "tw"
 url = "https://twitter.com/nymproject/"
