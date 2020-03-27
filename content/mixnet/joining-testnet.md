@@ -1,6 +1,7 @@
 ---
 title: "Joining our testnet"
 weight: 60
+description: "Joining the testnet, recommended hardware specifications, and networking setup for Nym."
 ---
 
 Joining the Nym testnet with a mixnode is easy.

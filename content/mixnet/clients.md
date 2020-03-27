@@ -1,6 +1,7 @@
 ---
 title: "Mixnet client"
 weight: 50
+description: "How to build and run the Nym mixnet-client."
 ---
 
 ### Clients

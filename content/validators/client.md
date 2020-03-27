@@ -1,6 +1,8 @@
 ---
 title: "Validator client"
 weight: 55
+description: "Similarly to the mixnet client, it is possible to build a standalone client for interacting with the Nym validators. Here's how."
+
 ---
 
 ### Client

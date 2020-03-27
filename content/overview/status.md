@@ -1,6 +1,7 @@
 ---
 title: Current Status
 weight: 10
+description: "Current project, community and development status of the Nym network."
 ---
 
 We are running a Nym testnet with two main components: **Nym Validator nodes**, and **Nym Mixnodes**.

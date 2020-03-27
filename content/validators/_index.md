@@ -2,6 +2,7 @@
 title: "Validators"
 weight: 30
 pre: "<b>3. </b>"
+description: "Nym Validators provide privacy-enhanced credentials based on the testimony of a set of decentralized, blockchain-based issuing authorities."
 ---
 
 [Nym Validators](https://github.com/nymtech/nym-validator) provide privacy-enhanced credentials based on the testimony of a set of decentralized, blockchain-based issuing authorities.

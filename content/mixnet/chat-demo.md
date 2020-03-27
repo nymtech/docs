@@ -1,6 +1,7 @@
 ---
 title: "Chat demos"
 weight: 60
+description: "You can try out our running mixnet today using a demo application."
 ---
 
 You can try out our running mixnet today using a demo application.

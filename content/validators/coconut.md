@@ -1,6 +1,7 @@
 ---
 title: "Coconut credentials"
 weight: 40
+description: "Like centralised credentials, Nym's Coconut credentials can be signed with a secret key and later verified by anybody with the corresponding public key. But Nym credentials are much more powerful than "normal" signature schemes like standard RSA or DSA."
 ---
 
 ### Coconut credentials

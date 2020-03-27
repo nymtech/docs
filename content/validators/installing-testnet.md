@@ -1,6 +1,7 @@
 ---
 title: "Installing a Nym Validator Testnet"
 weight: 70
+description: "Running a network of Nym validators on your local machine."
 ---
 
 ### Validator internal communication

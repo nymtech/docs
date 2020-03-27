@@ -1,6 +1,7 @@
 ---
 title: "Validator flow"
 weight: 50
+description: "General interaction flow between Nym validators and other network actors."
 ---
 
 ### How do Nym Validators work?

@@ -1,9 +1,11 @@
 ---
 title: "Installation"
 weight: 20
+description: "How to build the Nym platform. Nym is relatively simple to build and run on Mac OS X, Linux, and Windows.
+"
 ---
 
-The mixnet code is relatively simple to build and run on Mac OS X and Linux. We haven't tried it on Windows (yet).
+The mixnet code is relatively simple to build and run on Mac OS X and Linux. We also have initial Windows support but it should be considered (for now) even more experimental than the rest of our code.
 
 ### Requirements
 

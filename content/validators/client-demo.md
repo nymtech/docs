@@ -1,6 +1,7 @@
 ---
 title: "Client Demo"
 weight: 60
+description: "Client applications interact with Nym Validator nodes through a piece of client software. In order to demonstrate the general flow detailed above, we've embedded the client in a QT-based GUI application to show how it works."
 ---
 
 ## Nym Validator Testnet

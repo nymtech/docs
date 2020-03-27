@@ -1,6 +1,7 @@
 ---
 title: "Running a local mixnet"
 weight: 50
+description: "You can start up a full mix network, including mixnodes, and a store and forward provider on your local machine fairly easily. Here's how."
 ---
 
 ### Running a local mixnet for development

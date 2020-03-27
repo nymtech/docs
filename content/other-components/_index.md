@@ -2,6 +2,7 @@
 title: "Other Components"
 weight: 50
 pre: "<b>5. </b>"
+description: "You can see a simple representation of the overall Nym network at the Nym Dashboard. This also shows you a live reading of traffic metrics being sent over the mixnet. The **sent** and **received** numbers on each mixnode shows how many packets it has received and sent in the past 1 second."
 ---
 
 ### Nym Dashboard
