@@ -5,6 +5,7 @@ weight: 20
 
 Here are some links that may prove handy as you start exploring our project:
 
+* You can chat to us in [Keybase](https://keybase.io). Download their chat app, then click **Teams -> Join a team**. Type `nymtech.friends` into the team name and hit **continue**. For general chat, hang out in the **#general** channel. Our development takes places in the **#dev** channel. Node operators should be in the **#node-operators** channel.
 * The [Nym website](https://nymtech.net) has general info on project status and links to learning materials and talks we've given
 * The [Nym docs](https://nymtech.net/docs) tell you how to build and run our software
 * [Nym Platform](https://github.com/nymtech/nym) code
