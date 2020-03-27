@@ -1,7 +1,7 @@
 ---
 title: "Providers"
 weight: 40
-description: "Providers provide a destination for mixnet packets. Most of the internet doesn't use encrypted Sphinx packets, so the provider is a natural point at which to translate Sphinx packets back into "normal" IP traffic."
+description: "Providers provide a destination for mixnet packets. Most of the internet doesn't use encrypted Sphinx packets, so the provider is a natural point at which to translate Sphinx packets back into 'normal' IP traffic."
 ---
 
 ### Providers
