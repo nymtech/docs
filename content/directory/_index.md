@@ -2,6 +2,7 @@
 title: "Directory"
 weight: 40
 pre: "<b>4. </b>"
+description : "The Nym directory handles presence and public key information so that network participants can find each other."
 ---
 
 Note that in the preceding discussions of Nym Validators and Nym Mixnodes, quite a bit is assumed. How does a mixnet client know which nodes exist, and what their IP addresses are? How does it find out their public keys so it can encrypt messages to them, and verify that responses came from them? How can the dashboard measure overall mixnet throughput?
