@@ -18,8 +18,5 @@ For the moment, we haven't put a great amount of thought into optimizing concurr
 
 ### Network Setup
 
-* IPv4 works
-* IPv6 also works
 * ensure that your node is available and announces the right address, especially if you're using a cloud service like AWS. See the [AWS note](../mixnodes) on the mixnodes configuration page.
-  
-Ideally you'll want to make sure that your machine speaks IPv6 in addition to IPv4, even if you don't plan to use an IPv6 address yourself. Other node operators who you may be interacting with may by using IPv6. 
+* make sure that your machine speaks both IPv4 **and** IPv6, even if you don't plan to use IPv6 yourself. Other node operators who you may be interacting with may by using IPv6. 
