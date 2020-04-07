@@ -1,5 +1,5 @@
 ---
-title: "Installing a Nym Validator Testnet"
+title: "Installing a Nym Validator locally"
 weight: 70
 description: "Running a network of Nym validators on your local machine."
 ---
@@ -47,7 +47,7 @@ But what did all of this do? What are the moving parts of a Nym-based system?
 
 ## Building
 
-`make localnet-build` builds out a configuration directory for a Nym testnet that runs on your local machine. Listing the directory structure gives you this layout of files and directories. Use `tree build/` to list the directory tree.
+`make localnet-build` builds out a configuration directory for a Nym network that runs on your local machine. Listing the directory structure gives you this layout of files and directories. Use `tree build/` to list the directory tree.
 
 > List the `build` directory using the `tree` command. If you don't have `tree` installed, just poke around using `ls`.
 
