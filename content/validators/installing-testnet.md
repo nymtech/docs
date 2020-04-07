@@ -4,6 +4,12 @@ weight: 70
 description: "Running a network of Nym validators on your local machine."
 ---
 
+{{% notice warning %}}
+We are in the process of rebuilding our validators in Rust. While these instructions are still correct, it is a lot of work to set up a Nym validator in our old Go codebase. We are working to make the process a lot simpler. 
+
+If you're tempted to run a validator, you should strongly consider waiting for our next release, v0.7.0, and run our new validator code.
+{{% /notice %}}
+
 ### Validator internal communication
 
 Tendermint is used within Nym validators to prevent double-spending of generated credentials, and zero-knowledge proof to validate cryptocurrency use cases is built into the system at present. More complex smart contract cases will require the coding of specific zero-knowledge proofs to match the application domain of the contract.

@@ -5,6 +5,13 @@ description: "Similarly to the mixnet client, it is possible to build a standalo
 
 ---
 
+{{% notice warning %}}
+We are in the process of rebuilding our validators in Rust. While these instructions are still correct, it is a lot of work to set up a Nym validator in our old Go codebase. We are working to make the process a lot simpler. 
+
+If you're tempted to run a validator, you should strongly consider waiting for our next release, v0.7.0, and run our new validator code.
+{{% /notice %}}
+
+
 ### Client
 
 Similarly to the [Mixnet client](../../mixnet/clients), it is possible to build a standalone client for interacting with the Nym validators.
