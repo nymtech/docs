@@ -21,3 +21,5 @@ Let's say you have a message in hand. In addition to the normal `sign(message, s
 4) *[Threshold issuance](https://en.wikipedia.org/wiki/Threshold_cryptosystem)* - allows signature generation to be split up across multiple nodes and decentralised, so that either all signers need to sign (*n of n* where *n* is the number of signers) or only a threshold number of signers need to sign a message (*t of n* where *t* is the threshold value).
 
 Taken together, these properties provide excellent privacy for Nym users when it comes to generating and using signatures for cryptographic claims.
+
+A slightly expanded view of Coconut is available [in this blog post](https://medium.com/nymtech/nyms-coconut-credentials-an-overview-4aa4e922cd51).
