@@ -5,9 +5,7 @@ description: "Running a network of Nym validators on your local machine."
 ---
 
 {{% notice warning %}}
-We are in the process of rebuilding our validators in Rust. While these instructions are still correct, it is a lot of work to set up a Nym validator in our old Go codebase. We are working to make the process a lot simpler. 
-
-If you're tempted to run a validator, you should strongly consider waiting for our next release, v0.7.0, and run our new validator code.
+We are in the process of rebuilding our validators in Rust. While these instructions are still correct, it is a lot of work to set up a Nym validator in our old Go codebase. We are working to make the process a lot simpler.  If you're tempted to run a validator, you should **strongly consider waiting** for our next release, v0.7.0, and run our new validator code.
 {{% /notice %}}
 
 ### Validator internal communication
