@@ -20,7 +20,7 @@ The local network **must** be able to access a directory server running on `loca
 
 Once you have a directory server running on port 8080, you can run the local network startup script:
 
-`./scripts/run_local_network.sh`
+`./scripts/start_local_network.sh`
 
 By default, this will start up a 1x3 mixnet: a layered topology 1 mixnode wide and 3 layers deep, with a single provider. It's a mixnet!
 
@@ -42,7 +42,7 @@ client => Mixnode1 => Mixnode2 => Mixnode3 => Provider => loop back to the clien
 
 It's also possible to run a larger number of mixnodes in your local mixnet:
 
-`./scripts/run_local_network.sh 6`
+`./scripts/start_local_network.sh 6`
 
 This will run a 2x3 mixnet: a layered topology 2 mixnodes wide and 3 layers deep, again with a single provider receiving packets at the end.
 
