@@ -10,7 +10,7 @@ description: "How to build and run the Nym mixnet-client."
 The Nym Client was built in the [Installation](../installation) section. If you haven't yet built Nym and want to run the code on this page, go there first.
 {{% /notice %}}
 
-From inside the `nym` directory, the `nym-client` binary got built to the `./target/debug/` directory. You can run it like this:
+From inside the `nym` directory, the `nym-client` binary got built to the `./target/release/` directory. You can run it like this:
 
 `./target/release/nym-client`
 
@@ -86,7 +86,7 @@ $ ./target/release/nym-client run --id alice
 Starting websocket on port: 9001
 Listening for messages...
 Starting nym client
-Using directory server: "http://directory.nymtech.net"
+Using directory server: "https://directory.nymtech.net"
 ```
 
 When you run the client, it immediately starts generating (fake) cover traffic and sending it to the Nym testnet.
