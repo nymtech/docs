@@ -298,7 +298,7 @@ And let you do the following:
 {
   "type": "send",
   "message": "message content",
-  "recipient": "base58 encoded recipient address"
+  "recipient_address": "base58 encoded recipient address"
 }
 {{< /highlight >}}
 to send a message of specified content to some other client on the network. Do note that the structure is subject to change as currently the message does not include address of the recipient's service provider, which is going to be required to correctly route it when the network contains more than a single store-and-forward provider. And more importantly, to ensure correct transmission, the message field content has to be within 975 bytes.
@@ -556,7 +556,7 @@ func sendMessage(msg string, recipient *config.ClientConfig, conn net.Conn) {
 	sendRequest := &types.Request{
 		Value: &types.Request_Send{Send: &types.RequestSendMessage{
 			Message:   msgBytes,
-			Recipient: recipient,
+			Recipient: recipient_address,
 		}},
 	}
 
