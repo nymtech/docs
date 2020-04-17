@@ -6,7 +6,7 @@ title = "Nym Docs"
 theme = "hugo-theme-learn"
 metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= true
-publishDir = "../nym-www/build/docs/"
+# publishDir = "../nym-www/build/docs/"
 
 [params]
   # editURL = "https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/"
