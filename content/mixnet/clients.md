@@ -4,6 +4,13 @@ weight: 50
 description: "How to build and run the Nym mixnet-client."
 ---
 
+
+This whole clients section should be changed to a tutorial format, and separated into 3 guides:
+
+* getting started developing a desktop application
+* getting started developing a web / mobile application using WebAssembly
+* (later) getting started developing a mobile application using the cross-compiled mobile client from Roberto
+
 ### Clients
 
 {{% notice info %}}
@@ -282,6 +289,13 @@ Also, you generally would only ever want to have a single application per Nym Cl
 {{% notice note %}}
 Also note that the websocket will **only** accept requests from the loopback address.
 {{% /notice %}}
+
+TODO: Talking to Roberto revealed something really interesting: he was trying to figure out "how do I *receive* the address of the sender?" and was stumped. 
+
+It's actually a feature that the sender address isn't sent with all messages (as we have a privacy system). But applications can easily send the sender address, e.g.:
+
+{"sender":"m3bN8BoMXNnBth32tW75a89A6SLiMVq7UbphB6588nz", "message": "hi roberto"}
+
 
 ##### API
 

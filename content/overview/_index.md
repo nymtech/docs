@@ -1,7 +1,6 @@
 ---
 title: Overview
 weight: 2
-pre: "<b>1. </b>"
 description: "Nym is a blockchain-based privacy platform. It provides strong network-level privacy against sophisticated end-to-end attackers, and anonymous transactions using blinded, re-randomizable, decentralized credentials."
 ---
 
@@ -12,7 +11,8 @@ Our goal is to allow developers to enable their applications with advanced priva
 Nym has a few core technologies, integrated into different types of networked nodes.
 
 1. a privacy enhancing signature scheme called *Coconut*, used in the [Nym Validator](https://github.com/nymtech/nym-validator) nodes.
-1. a *mixnet*, which encrypts and *mixes* network traffic through [Nym Mixnodes](https://github.com/nymtech/nym-mixnode) so that it cannot be determined who is communicating with whom. Our mixnet is based on the *Sphinx* cryptographic packet format and a modified version of the *Loopix* mixnet design.
+2. the Sphinx packet
+3. a *mixnet*, which encrypts and *mixes* network traffic through [Nym Mixnodes](https://github.com/nymtech/nym-mixnode) <<FIX so that it cannot be determined who is communicating with whom. Our mixnet is based on the *Sphinx* cryptographic packet format and a modified version of the *Loopix* mixnet design.
 
 The two technologies ensure privacy at different levels of the stack.
 

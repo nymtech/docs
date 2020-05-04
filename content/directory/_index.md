@@ -1,7 +1,6 @@
 ---
 title: "Directory"
 weight: 40
-pre: "<b>4. </b>"
 description : "The Nym directory handles presence and public key information so that network participants can find each other."
 ---
 
