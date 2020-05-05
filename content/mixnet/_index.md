@@ -8,7 +8,7 @@ description: "The Nym Mixnet implements a modified version of the network anonym
 
 Nym has a mix network, or mixnet, which is composed of mix nodes.
 
-The [Nym mixnet](https://github.com/nymtech/nym-mixnet) implements a modified version of the network anonymity protocols detailed in the [Loopix](https://arxiv.org/abs/1703.00536) and [Sphinx](http://www0.cs.ucl.ac.uk/staff/G.Danezis/papers/sphinx-eprint.pdf) academic papers. It fulfils a similar function to the onion routing in [Tor](https://www.torproject.org/), in that it provides anonymity against attackers who may be monitoring your network traffic or metadata. However, it offers improved protection against adversaries who can monitor the network in its entirety.
+The Nym mixnet implements a modified version of the network anonymity protocols detailed in the [Loopix](https://arxiv.org/abs/1703.00536) and [Sphinx](http://www0.cs.ucl.ac.uk/staff/G.Danezis/papers/sphinx-eprint.pdf) academic papers. It fulfils a similar function to the onion routing in [Tor](https://www.torproject.org/), in that it provides anonymity against attackers who may be monitoring your network traffic or metadata. However, it offers improved protection against adversaries who can monitor the network in its entirety.
 
 Assume a God-like adversary who can watch every packet on the network, record everything, and analyze everything in real-time. Is it possible to have private communications in such an environment? Intuitively, the answer is no: the adversary can watch every packet as it travels through the network, and progressively identify users with a high degree of success using probabilistic techniques.
 
