@@ -8,16 +8,22 @@ description: "How to join the Nym network with a validator node"
 The Nym validator was built in the [Quickstart](https://nymtech.net/docs/quickstart). If you haven't yet built Nym and want to run the code, go there first.
 {{% /notice %}}
 
-Nym validators will do two jobs:
+Nym validators do two jobs:
 
-1. collaborate with each other to maintain a blockchain, using [Tendermint](https://tendermint.com)
+1. collaborate with each other to maintain a blockchain, using [Tendermint](https://tendermint.com). This contains information about what mixnodes exist, their current levels of stake, etc.
 2. hand out Coconut credentials to clients
 
-To start one on a public facing internet server, do the following:
+We are moving from our old validators (in Go) to our new Rust codebase. The new Rust validators have little functionality at present. But you can still run them in order to get familiar with node operations, and get ready to run Nym.
+
+To start a Nym validator once you've built the platform code, do the following.
+
+Download the latest [Tendermint release](https://github.com/tendermint/tendermint/releases) onto your server. Rename it `tendermint` for simplicity. 
+
+Copy the `nym-validator` binary from the `target/release` directory up to your server. 
 
 ```
-nym-validator init --id my-validator
-nym-validator run --id my-validator
+./nym-validator init --id my-validator
+./nym-validator run --id my-validator
 ```
 
 A successful start looks like this: 
@@ -29,7 +35,7 @@ A successful start looks like this:
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (validator - version 0.7.0-dev)
+             (validator - version 0.7.0)
 
     
 Starting validator my-validator...
@@ -41,11 +47,11 @@ Validator startup complete.
 Then start Tendermint, which handles the blockchain:
 
 ```
-tendermint init
-tendermint node
+./tendermint init
+./tendermint node
 ```
 
-When you run the `tendermint node` command, the blockchain will start up and attach to the Nym validator code. You will see additional messages when this happens:
+When you run `tendermint node`, a Tendermint node will start up and connect via TCP socket to the Nym validator. You will see additional messages when this happens:
 
 ```
  2020-05-05T17:30:42.143 INFO  abci::server > Got connection! TcpStream { addr: V4(127.0.0.1:26658), peer: V4(127.0.0.1:44870), fd: 100 }
@@ -54,4 +60,6 @@ When you run the `tendermint node` command, the blockchain will start up and att
 
 ```
 
-You will need to cooperate with other validator node operators to join the testnet. Unfortunately this requires some manual setup. Please visit us in the channel **nymtech.friends#general** on [KeyBase](https://keybase.io) to talk about getting set up as a validator.
+That's all there is to it for a simple one-node validator setup.
+
+You will need to cooperate with other validator node operators to join the testnet. This requires some manual setup. Please visit us in the channel **nymtech.friends#general** on [KeyBase](https://keybase.io) to talk about getting set up as a validator.
