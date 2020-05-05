@@ -16,9 +16,9 @@ The Nym Directory exposes a simple REST API. Swagger docs are at [https://direct
 
 The Nym Directory is currently centralised. This is not desirable as it's a single point of failure (or attack) for the system as a whole.
 
-While we're still in early testnet mode, the Nym Directory works well enough to bootstrap the testnet into existence.
+While we're still in early testnet mode, the Nym Directory works well enough to bootstrap the testnet into existence. Once our mixnet Quality of Service system, and Proof of Stake system, they'll take over the functionality of the Directory.
 
-Once our mixnet Quality of Service system, and Proof of Stake system, they'll take over the functionality of the Directory.
+A very simple version of staking and directory services is currently planned for our next release (v0.8.0). The Nym Directory will then be pared back so that it only shows network metrics. 
 
 #### Installation (for developers)
 
