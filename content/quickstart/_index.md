@@ -22,11 +22,11 @@ To download and build:
 git clone https://github.com/nymtech/nym.git
 cd nym
 git pull # in case you've checked it out before!
-git checkout tags/v0.6.0 # <-- **VERY IMPORTANT**
+git checkout tags/v0.7.0 # <-- **VERY IMPORTANT**
 cargo build --release
 ```
 
-**Note:** the default branch you'll clone from Github, `develop`, is guaranteed to be broken and incompatible with the running testnet at all times. You **must** `git checkout tags/v0.6.0` in order to join the testnet. 
+**Note:** the default branch you'll clone from Github, `develop`, is guaranteed to be broken and incompatible with the running testnet at all times. You **must** `git checkout tags/v0.7.0` in order to join the testnet. 
 
 The above commands will compile into the `target/release` directory.
 

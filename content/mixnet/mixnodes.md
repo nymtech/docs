@@ -26,7 +26,7 @@ nym$ target/release/nym-mixnode
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.5.0)
+             (mixnode - version 0.7.0)
 
     usage: --help to see available options.
 ```
@@ -71,7 +71,7 @@ nym$ target/release/nym-mixnode init --id baby-yoda --host 91.236.6.149 --layer 
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.5.0)
+             (mixnode - version 0.7.0)
 
     
 Initialising mixnode baby-yoda...
@@ -109,7 +109,7 @@ nym$  ./target/release/nym-mixnode run --id baby-yoda
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.5.0)
+             (mixnode - version 0.7.0)
 
 
 Starting mixnode...

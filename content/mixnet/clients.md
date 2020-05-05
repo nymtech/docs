@@ -31,7 +31,7 @@ $ ./target/release/nym-client
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.5.0)
+             (client - version 0.7.0)
 
     
 usage: --help to see available options.
@@ -56,7 +56,7 @@ $ ./target/release/nym-client init --id alice --socket-type websocket
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.5.0)
+             (client - version 0.7.0)
 
     
 Initialising client...
@@ -87,7 +87,7 @@ $ ./target/release/nym-client run --id alice
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.5.0)
+             (client - version 0.7.0)
 
 
 Starting websocket on port: 9001

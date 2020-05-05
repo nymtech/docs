@@ -32,7 +32,7 @@ $ ./target/release/nym-sfw-provider
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (store-and-forward provider - version 0.5.0)
+             (store-and-forward provider - version 0.7.0)
 
     
 usage: --help to see available options.
@@ -81,7 +81,7 @@ $ ./target/release/nym-sfw-provider run --id superprovider
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (store-and-forward provider - version 0.5.0)
+             (store-and-forward provider - version 0.7.0)
 
     
 Starting sfw-provider superprovider...
