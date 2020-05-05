@@ -8,13 +8,15 @@ Nym has a few core technologies, integrated into different types of networked no
 
 1. a privacy enhancing signature scheme called *Coconut*, used in the [Nym Validator](https://github.com/nymtech/nym-validator) nodes.
 2. the Sphinx packet
-3. a *mixnet*, which encrypts and *mixes* network traffic through [Nym Mixnodes](https://github.com/nymtech/nym-mixnode) <<FIX so that it cannot be determined who is communicating with whom. Our mixnet is based on the *Sphinx* cryptographic packet format and a modified version of the *Loopix* mixnet design.
+3. a *mixnet*, which encrypts and *mixes* Sphinx packet traffic so that it cannot be determined who is communicating with whom. Our mixnet is based on the *Sphinx* cryptographic packet format and a modified version of the *Loopix* mixnet design.
 
 These technologies ensure privacy at two different levels of the stack: network data transmission, and transactions.
 
-Most systems concentrate on only one layer. 
+Most systems concentrate on only one of these layers at a time.
 
-For example, zero-knowledge proof systems deal with transaction privacy. Conversely, Tor deals only with network privacy. Nym is the first system we're aware of which provides integrated protection on both layers at once. We think that this seamless approach gives the best possible privacy protections, ensuring that nothing falls through the cracks between systems.
+For example, zero knowledge proof systems deal only with transaction privacy. Conversely, Tor deals only with network privacy. 
+
+Nym is the first system we're aware of which provides integrated protection on both layers at once. We think that this seamless approach gives the best possible privacy protections, ensuring that nothing falls through the cracks between systems.
 
 ### Transaction privacy
 
@@ -28,11 +30,11 @@ Coconut is very flexible, and can ensure privacy for more than coin transfers; i
 
 The **Nym Mixnet** provides privacy at the **IP network level**.
 
-When you send any data across the internet, it can be tracked by a wide range of observers: your ISP, internet infrastructure providers, large tech companies, and governments.
+When you send data across the internet, it can be tracked by a wide range of observers: your ISP, internet infrastructure providers, large tech companies, and governments.
 
 Even if the *content* of the transaction is encrypted, observers can still see that data was transmitted, and gather metadata from unencrypted parts of the data (such as IP routing information). For a public blockchain transaction, it may then be possible to infer message content based on what then becomes visible in e.g. the chain.
 
-Even though your transaction on-chain may be private (in the case of a privacy-focused blockchain such as ZCash), you may still have problems if your transaction information was captured in transit and its metadata and timing information analyzed.
+Even though your transaction on-chain may be private (in the case of a privacy-focused blockchain such as ZCash), you may still have problems if your transaction information was captured in transit and its metadata and timing information analysed.
 
 The Nym Mixnet provides very strong security guarantees against this sort of surveillance. It *packetizes* and *mixes* together IP traffic from many users inside a *mixnet*: a decentralized system composed of many *mixnodes*.
 

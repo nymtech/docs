@@ -1,29 +1,31 @@
 ---
-title: "Providers"
+title: "Gateways"
 weight: 40
-description: "Providers provide a destination for mixnet packets. Most of the internet doesn't use encrypted Sphinx packets, so the provider is a natural point at which to translate Sphinx packets back into 'normal' IP traffic."
+description: "Gateways provide a destination for mixnet packets. Most of the internet doesn't use encrypted Sphinx packets, so the gateway acts as a destination for Sphinx traffic."
 ---
 
-### Providers
+### Gateways
 
 {{% notice info %}}
-The Nym Provider Nodes were built in the [Installation](../installation) section. If you haven't yet built the Nym Mixnet and want to run the code, go there first.
+The Nym gateway was built in the [Quickstart](https://nymtech.net/docs/quickstart). If you haven't yet built Nym and want to run the code, go there first.
 {{% /notice %}}
 
-Providers provide a destination for mixnet packets. Most of the internet doesn't use encrypted Sphinx packets, so the provider is a natural point at which to translate Sphinx packets back into "normal" IP traffic.
+Gateways provide a destination for mixnet packets. Most of the internet doesn't use encrypted Sphinx packets, so the gateway acts as a destination, sort of like a mailbox, for messages.
 
-When it starts up, the Mixnet [client](../clients) registers itself with a provider, and the provider returns an access token. The access token plus the provider's IP can then be used as a form of addressing for delivering packets.
+Service Providers or user clients can then pull messages from the gateways. 
 
-The default provider implementation included in the Nym Mixnet code is a **store-and-forward** provider: a node that holds packets for later retrieval. For many applications (such as chat), this is usable out of the box, as it provides a place that potentially offline clients can retrieve packets from. The access token allows clients to pull messages from the provider node.
+When it starts up, the Mixnet [client](../clients) registers itself with a gateway, and the gateway returns an access token. The access token plus the gateway's IP can then be used as a form of addressing for delivering packets.
 
-You can run the provider node from the top-level directory like this:
+The default gateway implementation included in the Nym platform code holds packets for later retrieval. For many applications (such as chat), this is usable out of the box, as it provides a place that potentially offline clients can retrieve packets from. The access token allows clients to pull messages from the gateway node.
 
-`./target/release/nym-sfw-provider`
+You can run the gateway from the top-level directory like this:
+
+`./target/release/nym-gateway`
 
 Output looks like this:
 
 ```shell
-$ ./target/release/nym-sfw-provider
+$ ./target/release/nym-gateway
 
 
       _ __  _   _ _ __ ___
@@ -32,7 +34,7 @@ $ ./target/release/nym-sfw-provider
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (store-and-forward provider - version 0.7.0)
+             (gateway - version 0.7.0)
 
     
 usage: --help to see available options.

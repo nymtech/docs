@@ -7,7 +7,7 @@ description: "Mixnodes accept Sphinx packets, shuffle packets together, and forw
 ### Mixnodes
 
 {{% notice info %}}
-The Nym Mixnodes were built in the [Installation](../installation) section. If you haven't yet built Nym and want to run the code, go there first.
+The Nym Mixnodes were built in the [Quickstart](../../quickstart). If you haven't yet built Nym and want to run the code, go there first.
 {{% /notice %}}
 
 You can run the Mix Node from the `nym` top-level directory like this:
@@ -41,8 +41,6 @@ Routing and delay information is chosen by the client, rather than by mixnodes.
 
 `target/release/nym-mixnode --help` provides a list of available commands. You can always see help info for a given subcommand by doing `target/release/nym-mixnode <commandname> --help`
 
-Example: `target/release/nym-mixnode init --help`
-
 #### Init the mixnode config
 
 The `init` command saves a configuration file to disk. You **must** supply 3 parameters: 
@@ -53,16 +51,16 @@ The `init` command saves a configuration file to disk. You **must** supply 3 par
 
 If you'd like, you can add in: 
 
-1. `--location` an OPTIONAL parameter that tells us where your node is located. Helpful for tracking distances between nodes, which can tell us a bit about latency. 
+1. `--location` an OPTIONAL parameter that tells us where your node is located. Helpful for tracking distances between nodes, which can tell us a bit about latency and help with debugging.
 
 Example: 
 
-`target/release/nym-mixnode init --id baby-yoda --host 91.236.6.149 --layer 1 --location London`
+`target/release/nym-mixnode init --id winston-smithnode --host 91.236.6.149 --layer 1 --location London`
 
 Results in:
 
 ```
-nym$ target/release/nym-mixnode init --id baby-yoda --host 91.236.6.149 --layer 1 --location London
+nym$ target/release/nym-mixnode init --id winston-smithnode --host 91.236.6.149 --layer 1 --location London
 
 
       _ __  _   _ _ __ ___
@@ -74,11 +72,11 @@ nym$ target/release/nym-mixnode init --id baby-yoda --host 91.236.6.149 --layer 
              (mixnode - version 0.7.0)
 
     
-Initialising mixnode baby-yoda...
- 2020-03-20T11:19:41.721 INFO  pemstore::pemstore > Written private key to "~/.nym/mixnodes/baby-yoda/data/private_sphinx.pem"
- 2020-03-20T11:19:41.721 INFO  pemstore::pemstore > Written public key to "~/.nym/mixnodes/baby-yoda/data/public_sphinx.pem"
+Initialising mixnode winston-smithnode...
+ 2020-03-20T11:19:41.721 INFO  pemstore::pemstore > Written private key to "~/.nym/mixnodes/winston-smithnode/data/private_sphinx.pem"
+ 2020-03-20T11:19:41.721 INFO  pemstore::pemstore > Written public key to "~/.nym/mixnodes/winston-smithnode/data/public_sphinx.pem"
 Saved mixnet sphinx keypair
-Saved configuration file to "~/.nym/mixnodes/baby-yoda/config/config.toml"
+Saved configuration file to "~/.nym/mixnodes/winston-smithnode/config/config.toml"
 Mixnode configuration completed.
 ```
 
@@ -98,10 +96,10 @@ The `target/release/nym-mixnode run` command runs a mixnode.
 
 Example: 
 
-`target/release/nym-mixnode run --id baby-yoda`
+`target/release/nym-mixnode run --id winston-smithnode`
 
 ```shell
-nym$  ./target/release/nym-mixnode run --id baby-yoda
+nym$  ./target/release/nym-mixnode run --id winston-smithnode
 
       _ __  _   _ _ __ ___
      | '_ \| | | | '_ \ _ \
@@ -135,7 +133,7 @@ ens4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1460
         ...
 ```
 
-The `ens4` interface has the IP `10.126.5.7`. But this isn't the public IP of the machine, it's the IP of the machine on Google's internal network. The public IP of this machine is something else, e.g. `36.68.243.18` as set by AWS.
+The `ens4` interface has the IP `10.126.5.7`. But this isn't the public IP of the machine, it's the IP of the machine on Google's internal network. Google uses virtual routing, so the public IP of this machine is something else, maybe `36.68.243.18`.
 
 `nym-mixnode init --host 10.126.5.7 --layer 1`, starts the mixnode, but no packets will be routed because `10.126.5.7` is not on the public internet.
 
@@ -147,9 +145,13 @@ This will bind the mixnode to the available host `10.126.5.7`, but announce the 
 
 #### What layer should I use?
 
-In general, we want to run a mixnet that's 3 layers deep for out testnet. Have a look at the [Nym testnet dashboard](https://dashboard.nymtech.net), and slot yourself into layer 1, 2, or 3. If you're running IPv6, please pick layer 2 or layer 3, as a lot of consumer clients still do not fully support IPv6 and may not be able to talk to your nodes.
+We are running a mixnet that's 3 layers deep for our testnet. Have a look at the [Nym testnet dashboard](https://dashboard.nymtech.net), and slot yourself into layer 1, 2, or 3. 
 
 We are currently working to eliminate the need for you to choose a layer - the system itself will soon do the job automatically.
+
+#### IPv4 vs IPv6
+
+If you're joining the testnet, please make sure that your mixnode speaks *both* IPv4 **and** IPv6. You will need to cooperate with other nodes properly in order to route traffic.
 
 #### Check the dashboard
 

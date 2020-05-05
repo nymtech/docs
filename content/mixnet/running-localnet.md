@@ -64,10 +64,10 @@ From here, you can start experimenting with running the `nym-client`, sending pa
 
 Init the client: 
 
-` ./target/release/nym-client init --id baby-yoda --directory http://localhost:8080`
+` ./target/release/nym-client init --id winston-smithnode --directory http://localhost:8080`
 
 Then run it:
 
-`./target/release/nym-client run --id baby-yoda`
+`./target/release/nym-client run --id winston-smithnode`
 
 For more info on developing with a running client, see the [client documentation](../mixnet/clients.md)
