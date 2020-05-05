@@ -26,4 +26,4 @@ Applications that need to defend against network-level monitoring can use the Ny
 
 ![mixnet](/docs/images/mixnet.png)
 
-The next few sections will discuss each piece of the puzzle. First, you'll need to build the code so you can try things out.
+The next few sections will discuss each piece of the puzzle in detail.
