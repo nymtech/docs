@@ -20,7 +20,7 @@ nym-mixnode init --id winston-smithnode --host 167.70.75.75 --layer 1 --location
 
 The `--location` flag is optional but helps us debug the testnet. 
 
-To participate in the Nym testnet, `--host` needs to be publicly routable on the internet. It can be either Ipv4 or IPv6.
+To participate in the Nym testnet, `--host` must be publicly routable on the internet. It can be either Ipv4 or IPv6.
 
 Run the mixnode: 
 
