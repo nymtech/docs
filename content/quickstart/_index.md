@@ -5,9 +5,9 @@ description: "How to build the Nym platform. Nym is relatively simple to build a
 "
 ---
 
-Nym is relatively simple to build and run on Mac OS X and Linux. We also have initial Windows support but it should be considered experimental and unsupported for now.
+Nym is relatively simple to build and run on Mac OS X and Linux. We also have initial Windows support but it should be considered experimental and unsupported for now. Windows currently works fine if you're an app developer but isn't recommended yet for running nodes.
 
-### Requirements
+### Prerequisites
 
 * on Debian/Ubuntu: `sudo apt install pkg-config build-essential libssl-dev`. 
 * [Rust](https://www.rust-lang.org/) 1.39 or later, with `cargo`. Stable works. 
