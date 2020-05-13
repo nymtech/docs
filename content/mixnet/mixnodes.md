@@ -10,7 +10,7 @@ description: "Mixnodes accept Sphinx packets, shuffle packets together, and forw
 The Nym Mixnodes were built in the [Quickstart](../../quickstart). If you haven't yet built Nym and want to run the code, go there first.
 {{% /notice %}}
 
-You can run the Mix Node from the `nym` top-level directory like this:
+You can run the mixnode from the `nym` top-level directory like this:
 
 `target/release/nym-mixnode`
 
@@ -145,13 +145,13 @@ This will bind the mixnode to the available host `10.126.5.7`, but announce the 
 
 #### What layer should I use?
 
-We are running a mixnet that's 3 layers deep for our testnet. Have a look at the [Nym testnet dashboard](https://dashboard.nymtech.net), and slot yourself into layer 1, 2, or 3. 
+We are running a mixnet that's 3 layers deep for our testnet. Have a look at the [Nym testnet dashboard](https://dashboard.nymtech.net) and slot yourself into layer 1, 2, or 3. 
 
 We are currently working to eliminate the need for you to choose a layer - the system itself will soon do the job automatically.
 
 #### IPv4 vs IPv6
 
-If you're joining the testnet, please make sure that your mixnode speaks *both* IPv4 **and** IPv6. You will need to cooperate with other nodes properly in order to route traffic.
+If you're joining the testnet, your mixnode **must speak both IPv4 and IPv6**. You will need to cooperate with other nodes in order to route traffic.
 
 #### Check the dashboard
 
