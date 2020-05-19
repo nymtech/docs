@@ -1,8 +1,8 @@
----
+<!-- ---
 title: Run a validator
 weight: 20
 description: "How to join the Nym network with a validator node"
----
+--- -->
 
 {{% notice info %}}
 The Nym validator was built in the [Quickstart](https://nymtech.net/docs/quickstart). If you haven't yet built Nym and want to run the code, go there first.

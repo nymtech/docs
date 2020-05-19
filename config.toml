@@ -14,9 +14,11 @@ defaultContentLanguageInSubdir= true
   author = "Nym Team"
   showVisitedLinks = false
   disableBreadcrumb = false
+  disableInlineCopyToClipBoard = true
+  disableLanguageSwitchingButton = true
   disableNextPrev = false
   # Change default color scheme with a variant one. Can be "red", "blue", "green".
-  themeVariant = "red"
+  themeVariant = "green"
 
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
