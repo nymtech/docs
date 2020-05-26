@@ -18,14 +18,12 @@ Next, the message is sent to another mix node and mixed again, then to a third m
 
 As long as there's enough traffic flowing through the nodes, even an adversary who can record the whole internet will not be able to trace the packet flow through the system.
 
-{{< youtube R-yEqLX_UvI >}}
-
 The Nym mixnet mitigates against packet-dropping attacks by malicious nodes, and ensures quality-of-service, via *loop* traffic. Clients send messages which *loop* back to themselves. This allows clients to assure themselves that messages are being delivered properly. It also provides *cover traffic* to ensure that enough messages are going through the system to provide privacy.
 
 Applications that need to defend against network-level monitoring can use the Nym mixnet - private messaging, VPNs, and other applications to enable strong privacy.
 
-### Our current mixnet architecture
+### An intro to Loopix mixnets
 
-![mixnet](/docs/images/mixnet.png)
+This short video features Ania discussing the Loopix mixnet design in detail at USENix 2017.
 
-The next few sections will discuss each piece of the puzzle in detail.
+{{< youtube R-yEqLX_UvI >}}
