@@ -102,11 +102,13 @@ We're depending on the `@nymproject/nym-client-wasm` npm package in `package.jso
 
 ```
   "dependencies": {
-    "@nymproject/nym-client-wasm": "^0.7.0"
+    "@nymproject/nym-client-wasm": "^0.7.3"
   }
 ```
 
-Then in our `index.js`, we import `Client` and `Identity`:
+Choose the highest SemVer patch version for the Nym network version you're connecting to. E.g. if most Nym nodes in the dashboard are running `0.7.something`, pick the newest `0.7.x` release from the [nym-client-wasm npmjs page](https://www.npmjs.com/package/@nymproject/nym-client-wasm).
+
+In our `index.js`, we import the Nym `Client` and `Identity`:
 
 ```javascript
 import {

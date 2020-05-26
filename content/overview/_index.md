@@ -4,48 +4,18 @@ weight: 2
 description: "Nym is a blockchain-based privacy platform. It provides strong network-level privacy against sophisticated end-to-end attackers, and anonymous transactions using blinded, re-randomizable, decentralized credentials."
 ---
 
-Nym has a few core technologies, integrated into different types of networked nodes.
+Nym has several core technologies, integrated into different types of networked nodes.
 
-1. a privacy enhancing signature scheme called *Coconut*, used in the [Nym Validator](https://github.com/nymtech/nym-validator) nodes.
-2. the Sphinx packet
-3. a *mixnet*, which encrypts and *mixes* Sphinx packet traffic so that it cannot be determined who is communicating with whom. Our mixnet is based on the *Sphinx* cryptographic packet format and a modified version of the *Loopix* mixnet design.
+1. a privacy enhancing signature scheme called **Coconut**, used in the Nym validator nodes. Validators also secure the network through proof of stake sybil defences.
+2. **Sphinx**, a way of transmitting armoured, layer-encrypted information packets which are indistinguishable from each other at a binary level.
+3. a **mixnet**, which encrypts and *mixes* Sphinx packet traffic so that it cannot be determined who is communicating with whom. Our mixnet is based on a modified version of the **Loopix** mixnet design.
 
 These technologies ensure privacy at two different levels of the stack: network data transmission, and transactions.
 
 Most systems concentrate on only one of these layers at a time.
 
-For example, zero knowledge proof systems deal only with transaction privacy. Conversely, Tor deals only with network privacy. 
+For example, zero knowledge proof systems deal only with on-chain transaction privacy. Conversely, Tor deals only with network privacy. 
 
 Nym is the first system we're aware of which provides integrated protection on both layers at once. We think that this seamless approach gives the best possible privacy protections, ensuring that nothing falls through the cracks between systems.
 
-### Transaction privacy
 
-**Coconut** provides **transaction privacy**. In the context of a blockchain system, this happens by transferring a coin to an address, then creating a privacy-enhanced Coconut credential which provably represents the input amount. The credential can then be "spent" anonymously, as if it were the original value. Double-spending protections apply to the credential, so it can only be spent once. Nym Validators can then unlock the value so it can be redeemed by the party holding the anonymized credential.
-
-Although there's still work to be done to integrate it against various blockchains, in principle Coconut can anonymise blockchain transactions in any system which provides multi-sig. Bitcoin and Ethereum are obvious first targets here.
-
-Coconut is very flexible, and can ensure privacy for more than coin transfers; it can ensure privacy for more complex smart contracts as well. Finally, it should be mentioned that Coconut can be applied to both blockchain and non-blockchain systems - it's a general purpose technology.
-
-### IP-layer privacy
-
-The **Nym Mixnet** provides privacy at the **IP network level**.
-
-When you send data across the internet, it can be tracked by a wide range of observers: your ISP, internet infrastructure providers, large tech companies, and governments.
-
-Even if the *content* of the transaction is encrypted, observers can still see that data was transmitted, and gather metadata from unencrypted parts of the data (such as IP routing information). For a public blockchain transaction, it may then be possible to infer message content based on what then becomes visible in e.g. the chain.
-
-Even though your transaction on-chain may be private (in the case of a privacy-focused blockchain such as ZCash), you may still have problems if your transaction information was captured in transit and its metadata and timing information analysed.
-
-The Nym Mixnet provides very strong security guarantees against this sort of surveillance. It *packetizes* and *mixes* together IP traffic from many users inside a *mixnet*: a decentralized system composed of many *mixnodes*.
-
-A mixnet can be used to secure blockchain or non-blockchain systems. Things like crypto-currency wallets are a natural fit for mixnets; but so are non-blockchain things like chat systems.
-
-If you're into comparisons, the Nym Mixnet is conceptually similar to other systems such as Tor, but provides improved protections against timing attacks. The Nym mixnet re-orders encrypted, indistinguishable [Sphinx](https://cypherpunks.ca/~iang/pubs/Sphinx_Oakland09.pdf) packets as they travel through the mixnodes. Our mixnet design based on the [Loopix Anonymity System](https://arxiv.org/abs/1703.00536), modified to provide better quality of service.
-
-### Coconut Credentials vs Mixnets
-
-An application requiring only private credential signing, but no network-level defences, can use Coconut credentials via the Nym Validators.
-
-Conversely, an application that only needs to defend against IP traffic analysis can use the Nym Mixnet by itself, without the Nym Validators.
-
-But developers that need end-to-end protection at both the IP network and transaction level can use Coconut and the mixnet together.

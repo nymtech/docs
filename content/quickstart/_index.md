@@ -5,7 +5,9 @@ description: "How to build the Nym platform. Nym is relatively simple to build a
 "
 ---
 
-Nym is relatively simple to build and run on Mac OS X and Linux. We also have initial Windows support but it should be considered experimental and unsupported for now. Windows currently works fine if you're an app developer but isn't recommended yet for running nodes.
+Nym is relatively simple to build and run on Mac OS X and Linux. 
+
+We also have initial Windows support, but it should be considered experimental and unsupported for now. Windows currently works fine if you're a PEApp developer but isn't recommended for running nodes.
 
 ### Prerequisites
 
@@ -13,7 +15,7 @@ Nym is relatively simple to build and run on Mac OS X and Linux. We also have in
 * [Rust](https://www.rust-lang.org/) 1.39 or later, with `cargo`. Stable works. 
 
 {{% notice info %}}
-Nym developers use the Rust shell script for development installation for platform development, which gives a full build environment. If you are averse to running the shell script installer,  you *may* want to install `cargo` from your package manager (e.g. `apt`). It might work, or might be too ancient, depending on your distro.
+Nym developers use the Rust shell script for development installation for platform development, which gives a full build environment. If you are averse to running the shell script installer,  you *may* want to install `cargo` from your package manager (e.g. `apt`). It might work, or might be too ancient, depending on your distro. Have a look at the Rust website docs to find an installation option that suits you.
 {{% /notice %}}
 
 To download and build:
@@ -37,7 +39,7 @@ Quite a bit of stuff gets built, but you can ignore most of it. The key working 
 3. the Nym local client, `nym-client`
 4. the Nym validator, `nym-validator`
 
-In the next sections we'll try each of these out.
+You can try some of them out quickly by following along in 
 
 {{% notice info %}}
 If you run into trouble, please ask for help in the channel **nymtech.friends#general** on [KeyBase](https://keybase.io).
