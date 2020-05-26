@@ -155,4 +155,4 @@ If you're joining the testnet, your mixnode **must speak both IPv4 and IPv6**. Y
 
 #### Check the dashboard
 
-Once you've started your mixnode, it will automatically show up in the [Nym testnet dashboard](https://dashboard.nymtech.net) unless you've specified a different directory server.
+Once you've started your mixnode and it connects to the testnet directory server at https://directory.nymtech.net, your node will automatically show up in the [Nym testnet dashboard](https://dashboard.nymtech.net).
