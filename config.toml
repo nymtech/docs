@@ -29,6 +29,11 @@ url = "https://nymtech.net"
 weight = 10
 
 [[menu.shortcuts]]
+name = "<i class='fab fa-fw fa-medium'></i> Blog"
+url = "https://medium.com/nymtech"
+weight = 15
+
+[[menu.shortcuts]]
 name = "<i class='fab fa-fw fa-github'></i> Github"
 identifier = "ds"
 url = "https://github.com/nymtech/"
