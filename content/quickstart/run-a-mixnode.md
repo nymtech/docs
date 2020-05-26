@@ -5,7 +5,7 @@ description: "How to join the Nym network by your running your own mixnode"
 ---
 
 {{% notice info %}}
-The Nym mixnode was built in the [Quickstart](https://nymtech.net/docs/quickstart). If you haven't yet built Nym and want to run the code, go there first.
+The Nym mixnode was built in the [Quickstart](/docs/quickstart). If you haven't yet built Nym and want to run the code, go there first.
 {{% /notice %}}
 
 Once you've built the code, and want to join the Nym testnet, you can do it quite easily. 

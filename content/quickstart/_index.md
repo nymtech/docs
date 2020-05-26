@@ -39,7 +39,7 @@ Quite a bit of stuff gets built, but you can ignore most of it. The key working 
 3. the Nym local client, `nym-client`
 4. the Nym validator, `nym-validator`
 
-You can try some of them out quickly by following along in 
+You can try some of them out quickly by following along in the next few sections.
 
 {{% notice info %}}
 If you run into trouble, please ask for help in the channel **nymtech.friends#general** on [KeyBase](https://keybase.io).

@@ -13,7 +13,7 @@ Nym validators do two jobs:
 1. collaborate with each other to maintain a blockchain, using [Tendermint](https://tendermint.com). This contains information about what mixnodes exist, their current levels of stake, etc.
 2. hand out Coconut credentials to clients
 
-We are moving from our old validators (in Go) to our new Rust codebase. The new Rust validators have little functionality at present. But you can still run them in order to get familiar with node operations, and get ready to run Nym.
+We are moving from our old validators (in Go) to our new Rust codebase. The new Rust validators have little functionality at present. But you can still run them in order to get familiar with node operations.
 
 To start a Nym validator once you've built the platform code, do the following.
 

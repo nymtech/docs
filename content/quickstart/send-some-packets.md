@@ -121,7 +121,7 @@ An `Identity` is a cryptographic identity containing a public/private keypair, a
 
 The `Client` is a network wrapper which talks to a Nym gateway server over a websocket.
 
-Let's see them in action.
+Let's see them in action. This is a mixnet client in JavaScript:
 
 ```javascript
 async function main() {
@@ -222,17 +222,16 @@ After exiting the mixnet, still encrypted in Sphinx, the packet reaches the dest
 
 Anonymous replies are possible using **S**ingle **U**se **R**eply **B**locks, or SURBs. They don't yet exist in the WebAssembly client, but should be available in the next release.
 
-Why would you want SURBs? It's useful to be able to reply to someone without necessarily knowing how they are. Keep in mind, recipients are not necessarily people: they can be privacy-respecting Service Providers, or people. SURBs allow Service Providers to respond to users without knowing who they are. 
+Why would you want SURBs? It's useful to be able to reply to someone without necessarily knowing who they are. Keep in mind, recipients are not necessarily people: they can be privacy-respecting Service Providers, or people. SURBs allow Service Providers to respond to users without knowing who they are. 
 
 ### JSON
 
-Sending JSON is totally possible, just stick it into the message box and send it (or send it progammatically if you're writing an application of your own).
+Sending JSON is totally possible, just stick it into the message box and send it (or send it programmatically if you're writing an application of your own).
 
 
 ### Further reading
 
 So far, we've just scratched the surface. See the mixnet docs for a discussion of anonymous replies, key storage, running mixnodes, writing Service Providers, and using other languages to talk to the mixnet.
-
 
 {{% notice info %}}
 If you run into trouble, please ask for help in the channel **nymtech.friends#general** on [KeyBase](https://keybase.io).
