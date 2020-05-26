@@ -1,8 +1,8 @@
-<!-- ---
+---
 title: Run a gateway
 weight: 30
-description: "How to join the Nym network by your running your own gateway node"
---- -->
+description: "How to run a gateway node in the Nym network"
+--- 
 
 We live in a world of intermittent connectivity.
 
@@ -11,4 +11,3 @@ Nym gateways are sort of like mailservers: if a user or service provider is curr
 {{% notice info %}}
 If you run into trouble, please ask for help in the channel **nymtech.friends#general** on [KeyBase](https://keybase.io).
 {{% /notice %}}
-
