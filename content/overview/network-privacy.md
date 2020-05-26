@@ -14,10 +14,10 @@ The Nym mixnet provides very strong security guarantees against this sort of sur
 
 A mixnet can be used to secure blockchain or non-blockchain systems. Things like crypto-currency wallets are a natural fit for mixnets; but so are non-blockchain things like chat systems.
 
-If you're into comparisons, the Nym Mixnet is conceptually similar to other systems such as Tor, but provides improved protections against timing attacks. The Nym mixnet re-orders encrypted, indistinguishable [Sphinx](https://cypherpunks.ca/~iang/pubs/Sphinx_Oakland09.pdf) packets as they travel through the mixnodes. Our mixnet design based on the [Loopix Anonymity System](https://arxiv.org/abs/1703.00536), somewhat modified to provide better quality of service.
+If you're into comparisons, the Nym mixnet is conceptually similar to other systems such as Tor, but provides improved protections against timing attacks. The Nym mixnet re-orders encrypted, indistinguishable [Sphinx](https://cypherpunks.ca/~iang/pubs/Sphinx_Oakland09.pdf) packets as they travel through the mixnodes. Our mixnet design based on the [Loopix Anonymity System](https://arxiv.org/abs/1703.00536), somewhat modified to provide better quality of service guarantees.
 
-If you'd like a simplistic, non-technical introduction to mixnets, have a look at the blog post [A Simple Introduction to Mixnets](https://constructiveproof.com/posts/2020-02-17-a-simple-introduction-to-mixnets/).
+If you'd like a simplistic, non-technical introduction to mixnets, have a look at the blog post [A Simple Introduction to Mixnets](https://constructiveproof.com/posts/2020-02-17-a-simple-introduction-to-mixnets/) by our CTO.
 
-Claudia's lightning talk from Dappcon 2019 in Berlin also gives a speedy and more intellectual overview of network privacy:
+Claudia's lightning talk from Dappcon 2019 in Berlin gives a speedy and more intellectual overview of network privacy:
 
 {{< youtube 5A378jgYXSc >}}

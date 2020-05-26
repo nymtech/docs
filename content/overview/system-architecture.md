@@ -32,7 +32,7 @@ Most Service Providers (SPs) will interact with external systems on behalf of a 
 
 There is also a special category of Service Provider, namely SPs that do not visibly interact with any external systems. You might think of these as crypto-utopiapps: they're doing something, but it's not possible from outside to say with any certainty what their function is, or who is interacting with them. 
 
-All clients (and therefore all PEApps) talk with Nym gateway nodes using Sphinx packets and/or a defined set of messages called the Nym Gateway Protocol (NGP).
+All clients (and therefore all PEApps) talk with Nym gateway nodes using Sphinx packets and/or a defined set of messages called the Nym Gateway Protocol (NGP). NGP is a defined set of control messages that can be sent to Nym gateways over websockets. 
 
 ## Current Status
 
@@ -40,8 +40,8 @@ The mixnet is now working, although there are many performance optimizations and
 
 Work on the validator code has started, but it's at a less advanced stage. The first release with some primitive staking capability is expected in June 2020. The rest of the validator code, including Coconut credential usage, should be ready to start testing in autumn 2020.
 
-There is currently a mixnet client written in Rust, which runs in a standalone fashion on desktop or servers. You can use this to writing desktop or server PEApps in any language that speaks websocket (e.g. basically all of them). 
+There is currently a mixnet client written in Rust, which runs in a standalone fashion on desktop or servers. You can use this for writing desktop or server PEApps in any language that speaks websocket (e.g. basically all of them). 
 
-Webassembly, or *wasm* clients also exist as of the 0.7.x release. Wasm clients can be used within browser or mobile apps, and again communicate with gateways via websockets. The wasm client is not complete (it does not yet send cover traffic), but it is working to a point where you should be able to use it for application development. Cover traffic, when it is set up, will happen transparently and you shouldn't need to worry about it as a PEApp developer. 
+A Webassembly, or *wasm* client also exists as of the 0.7.x release. Wasm clients can be used within browser or mobile apps, and again communicate with gateways via websockets. The wasm client is not complete (it does not yet send cover traffic), but it is working to a point where you should be able to use it for application development. Cover traffic, when it is set up, will happen transparently and you shouldn't need to worry about it as a PEApp developer. 
 
-Lastly, we are planning a SOCKS5 /  shadowsocks client so that it's easy to use cryptocurrency wallets and other existing SOSCKS-compatible applications with the Nym platform. This has not yet started.
+Lastly, we are planning a SOCKS5 /  shadowsocks client so that it's easy to retrofit cryptocurrency wallets and other existing SOSCKS-compatible applications to use Nym privacy infrastructure. This work has not yet started.
