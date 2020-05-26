@@ -37,19 +37,16 @@ $ ./target/release/nym-client
 usage: --help to see available options.
 ```
 
-There are three commands you can issue to the client.
+There are two commands you can issue to the client.
 
 1. `init` - initialize a new client instance. Requires `--id clientname` parameter.
 2. `run` - run a mixnet client process. Requires `--id clientname` as a parameter
 
 Let's try it out. First, you need to initialize a new client.
 
-`./target/release/nym-client init --id alice --socket-type websocket`
+`./target/release/nym-client init --id alice`
 
 ```
-$ ./target/release/nym-client init --id alice --socket-type websocket
-
-
       _ __  _   _ _ __ ___
      | '_ \| | | | '_ \ _ \
      | | | | |_| | | | | | |
@@ -60,12 +57,12 @@ $ ./target/release/nym-client init --id alice --socket-type websocket
 
     
 Initialising client...
- 2020-03-20T16:51:06.443 INFO  pemstore::pemstore > Written private key to "/home/dave/.nym/clients/alice/data/private_identity.pem"
- 2020-03-20T16:51:06.443 INFO  pemstore::pemstore > Written public key to "/home/dave/.nym/clients/alice/data/public_identity.pem"
+ 2020-05-26T18:45:32.098 INFO  pemstore::pemstore > Written private key to "~/.nym/clients/alice/data/private_identity.pem"
+ 2020-05-26T18:45:32.099 INFO  pemstore::pemstore > Written public key to "~/.nym/clients/alice/data/public_identity.pem"
 Saved mixnet identity keypair
-Saved configuration file to "/home/dave/.nym/clients/alice/config/config.toml"
-Unless overridden in all `nym-client run` we will be talking to the following provider: 6XphjaH2dgQS2YLJAc1Cscj5dC2P2Aa94M6iuBYennuW...
-using optional AuthToken: "DwE67JGrTzUY1ewDGp18HScHnQpXvXUT81fcBj5XTFgJ"
+Saved configuration file to "~/.nym/clients/alice/config/config.toml"
+Unless overridden in all `nym-client run` we will be talking to the following gateway: BfsNG1WGzLYNQwmSoZas969KFnXyKY9pbsQqSDmZWdyQ...
+using optional AuthToken: "9XSGi1vR1Xy1HbSaPKNzwQ8gqLgqbDDVudYFr5Khi2xq"
 Client configuration completed.
 ```
 
