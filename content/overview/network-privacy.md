@@ -1,5 +1,5 @@
 ---
-title: Network privacy
+title: Network Privacy
 weight: 30
 description: "Nym ensures network privacy using layer encrypted Sphinx packets and a Loopix mixnet."
 ---
@@ -16,7 +16,7 @@ A mixnet can be used to secure blockchain or non-blockchain systems. Things like
 
 If you're into comparisons, the Nym mixnet is conceptually similar to other systems such as Tor, but provides improved protections against timing attacks. The Nym mixnet re-orders encrypted, indistinguishable [Sphinx](https://cypherpunks.ca/~iang/pubs/Sphinx_Oakland09.pdf) packets as they travel through the mixnodes. Our mixnet design based on the [Loopix Anonymity System](https://arxiv.org/abs/1703.00536), somewhat modified to provide better quality of service guarantees.
 
-If you'd like a simplistic, non-technical introduction to mixnets, have a look at the blog post [A Simple Introduction to Mixnets](https://constructiveproof.com/posts/2020-02-17-a-simple-introduction-to-mixnets/) by our CTO.
+There is a non-technical introduction to mixnets in the blog post [A Simple Introduction to Mixnets](https://medium.com/nymtech/a-simple-introduction-to-mixnets-6783a103d20e) by our CTO.
 
 Claudia's lightning talk from Dappcon 2019 in Berlin gives a speedy and more intellectual overview of network privacy:
 
