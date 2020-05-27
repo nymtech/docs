@@ -32,4 +32,4 @@ For example, some blockchain-based systems contain zero knowledge proof systems 
 
 Conversely, Tor deals only with network privacy, and has nothing built-in to help with transaction privacy. If you include identifiable information in your Tor network requests (which can happen accidentally), the privacy protections are void.
 
-Speaking of Tor, our claim is that mixnets like Nym give much stronger security guarantees against the types end-to-end attacks that are becoming easier to operationalize, and which we'll see more of in future. 
+Speaking of Tor, our claim is that mixnets like Nym give stronger security guarantees against the end-to-end network tracing attacks that are becoming easier to operationalize, and which we'll see more of in future. 
