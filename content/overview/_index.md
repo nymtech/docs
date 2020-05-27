@@ -8,7 +8,7 @@ The internet has become essential to the functioning of modern society. Many asp
 
 But the internet we have is not the internet we wished we'd have. 
 
-Liberal democracies routinely record your internet traffic as it flows through intercontinental fibre links, and save anything interesting for later use. They now have surveillance systems which are bigger and better than anything their old-time totalitarian adversaries ever dreamed of. Meanwhile, the data cartels mine our daily activities with their own surveillance machines, building up the greatest fortunes in world history.
+Liberal democracies routinely record your internet traffic as it flows through intercontinental fibre links, and save anything interesting for later use. They now have surveillance systems which are bigger and better than anything their old-time totalitarian adversaries dreamed of. Meanwhile, the data cartels mine our daily activities with their own surveillance machines, building up the greatest fortunes in world history. And in the background, "illiberal democracies" and outright dictatorships work to subvert internet freedoms for their own citizens as well as across the wider world.
 
 The internet doesn't have be this way.
 
@@ -28,9 +28,9 @@ Nym is the first system we're aware of which provides integrated protection on b
 
 Most comparable systems concentrate on only one of these layers at a time.
 
-For example, some blockchain-based systems contain zero knowledge proof systems deal only with on-chain transaction privacy. This leaves network privacy as an exercise for the user.
+For example, some blockchain-based systems contain zero knowledge proof systems deal only with on-chain transaction privacy. This leaves network privacy as an exercise for the user. It's easy to get it wrong.
 
-Conversely, Tor deals only with network privacy, and has nothing built-in to help with transaction privacy. If you include identifiable information in your Tor network requests (which is easy to do accidentally), the privacy protections are void.
+Conversely, Tor deals only with network privacy, and has nothing built-in to help with transaction privacy. If you include identifiable information in your Tor network requests (which can happen accidentally), the privacy protections are void.
 
 Speaking of Tor, our claim is that mixnets like Nym give much stronger security guarantees against the types end-to-end attacks that are becoming easier to operationalize, and which we'll see more of in future. 
 
