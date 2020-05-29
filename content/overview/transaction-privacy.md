@@ -52,13 +52,13 @@ Let's say you have a `message` with the content `Alice controls X` in hand. In a
 
 4) *[Threshold issuance](https://en.wikipedia.org/wiki/Threshold_cryptosystem)* - allows signature generation to be split up across multiple nodes and decentralised, so that either all signers need to sign (*n of n* where *n* is the number of signers) or only a threshold number of signers need to sign a message (*t of n* where *t* is the threshold value).
 
-Taken together, these properties provide privacy for PEApps when it comes to generating and using signatures for cryptographic claims.
+Taken together, these properties provide privacy for Peaps when it comes to generating and using signatures for cryptographic claims.
 
 A slightly expanded view of Coconut is available [in this blog post](https://medium.com/nymtech/nyms-coconut-credentials-an-overview-4aa4e922cd51).
 
 ### Using Coconut for blockchain transaction privacy
 
-In the context of a blockchain currency system, Coconut allows PEApps to create a privacy-enhanced Coconut credential which provably represents an amount under control of a given entity. The credential can then be "spent" anonymously, as if it were the original value. Double-spending protections apply to the credential, so it can only be spent once. Nym Validators can then unlock the value so it can be redeemed by the party holding the anonymized credential.
+In the context of a blockchain currency system, Coconut allows Peaps to create a privacy-enhanced Coconut credential which provably represents an amount under control of a given entity. The credential can then be "spent" anonymously, as if it were the original value. Double-spending protections apply to the credential, so it can only be spent once. Nym Validators can then unlock the value so it can be redeemed by the party holding the anonymized credential.
 
 Although there's still work to be done to integrate it against various blockchains, in principle Coconut can anonymise blockchain transactions in any system which provides multi-sig. Bitcoin and Ethereum are obvious first targets here. We're also looking into [Cosmos](https://cosmos.network) integration at the moment.
 

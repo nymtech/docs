@@ -7,7 +7,7 @@ description: "How to build the Nym platform. Nym is relatively simple to build a
 
 Nym is relatively simple to build and run on Mac OS X and Linux. 
 
-We also have initial Windows support, but it should be considered experimental and unsupported for now. Windows currently works fine if you're a PEApp developer but isn't recommended for running nodes.
+We also have initial Windows support, but it should be considered experimental and unsupported for now. Windows currently works fine if you're a Peap developer but isn't recommended for running nodes.
 
 ### Prerequisites
 

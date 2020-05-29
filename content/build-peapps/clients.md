@@ -1,5 +1,5 @@
 ---
-title: "Mixnet client"
+title: "Nym client (relayer)"
 weight: 50
 description: "How to build and run the Nym mixnet-client."
 ---

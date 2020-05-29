@@ -1,5 +1,5 @@
 ---
-title: "Chat demos"
+title: "Demos"
 weight: 60
 description: "You can try out our running mixnet today using a demo application."
 ---
@@ -16,3 +16,4 @@ To demonstrate the use of a websocket, we've built an [Electron chat demo](https
 This makes it possible to interact with the mixnet from applications written in any language.
 
 ![electron client](/docs/images/electron.gif)
+

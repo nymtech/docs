@@ -4,9 +4,9 @@ weight: 30
 description: "Nym ensures network privacy using layer encrypted Sphinx packets and a Loopix mixnet."
 ---
 
-When you send data across the internet, it can be tracked by a wide range of observers: your ISP, internet infrastructure providers, large tech companies, and governments.
+When you send data across the internet, it can be recorded by a wide range of observers: your ISP, internet infrastructure providers, large tech companies, and governments.
 
-Even if the *content* of a network request is encrypted, observers can still see that data was transmitted, its size, frequency of transmission, and gather metadata from unencrypted parts of the data (such as IP routing information). Adversaries then use all the leaked information to probabilistically de-anonymize users.
+Even if the *content* of a network request is encrypted, observers can still see that data was transmitted, its size, frequency of transmission, and gather metadata from unencrypted parts of the data (such as IP routing information). Adversaries may then combine all the leaked information to probabilistically de-anonymize users.
 
 Claudia's lightning talk from Dappcon 2019 in Berlin gives a general overview of network privacy.
 
@@ -30,15 +30,15 @@ There is a very non-technical introduction to mixnets in the blog post [A Simple
 
 Assume a God-like adversary who can watch every packet on the network, record everything, and analyze everything in real-time. Is it possible to have private communications in such an environment? Intuitively, the answer is no: the adversary can watch every packet as it travels through the network, and progressively identify users with a high degree of success using probabilistic techniques.
 
-The Nym mixnet solves this problem by *mixing* messages inside network nodes which are opaque to the adversary. Each packet is encrypted, and binary-padded so that it's indistinguishable from all other packets. Incoming packets are "mixed" with all other messages inside the node. That is, the node strips a layer of packet encryption, and adds a small random transmission delays, so that messages are not emitted in the same order as which they arrived.
+The Nym mixnet solves this problem by *mixing* messages inside network nodes which are opaque to the adversary. Each packet is layer encrypted, and binary-padded so that it's indistinguishable from all other packets. Incoming packets are "mixed" with all other messages inside the node. That is, the node strips one layer of packet encryption, and adds a small random transmission delay, so that messages are not emitted in the same order as which they arrived.
 
-Next, the message is sent to another mix node and mixed again, then to a third mixnode for further mixing. Finally, the message is delivered to its destination.
+Next, the message is sent to another mix node, decrypted and mixed again, then to a third mixnode for further mixing. Finally, the message is delivered to its destination gateway.
 
 As long as there's enough traffic flowing through the nodes, even an adversary who can record the whole internet will not be able to trace the packet flow through the system.
 
 The Nym mixnet mitigates against packet-dropping attacks by malicious nodes, and ensures quality-of-service, via *loop* traffic. Clients send messages which *loop* back to themselves. This allows clients to assure themselves that messages are being delivered properly. It also provides *cover traffic* to ensure that enough messages are going through the system to provide privacy.
 
-Applications that need to defend against network-level monitoring can use the Nym mixnet - private messaging, VPNs, and other applications to enable strong privacy.
+Privacy Enhanced Applications (Peaps) that need to defend against network-level monitoring can use the Nym mixnet.
 
-The end result is that adversaries are unable to monitor Privacy Enhanced Applications (PEApps) using Nym even if they can record all internet traffic. The adversary can tell that a user's PEApp has connected to the mixnet; beyond that, it's impossible to say whether they are doing encrypted chat, file transfer, or interacting with another PEApp.
+The end result is that adversaries are unable to monitor Privacy Enhanced Applications (Peaps) using Nym even if they can record all internet traffic. The adversary can tell that a user's Peap has connected to the mixnet; beyond that, it's impossible to say whether they are doing encrypted chat, file transfer, or interacting with another Peap.
 

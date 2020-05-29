@@ -4,4 +4,6 @@ weight: 60
 description: "Tutorials for building Privacy Enhanced Applications (or integrating existing apps with Nym)"
 ---
 
-Nym is a free software project. It was started by a core team of academics, coders, and TODO
+Exciting stuff, futures so bright, I gotta wear shades. 
+
+clients, service providers, application flow overview, 2 client types

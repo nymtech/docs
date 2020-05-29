@@ -43,12 +43,12 @@ client => Gateway           X           X             => Gateway => client
 
 Packets always travel forwards through mixnet layers, and layers cannot be skipped. E.g.
 
-* the PEAPpp client sends **only** to its Gateway
+* the Peapp client sends **only** to its Gateway
 * Gateway sends to Mixnodes{1,2} (layer 1)
 * Mixnodes {1,2} send **only** to Mixnodes {3,4} (layer 2)
 * Mixnodes {3,4} send **only** to Mixnodes {5,6} (layer 3)
 * Mixnodes {5,6} send **only** to the Gateway(s).
-* PEapp client gets messages from its Gateway
+* Peap client gets messages from its Gateway
 
 From here, you can start experimenting with running the `nym-client`, sending packets through the mixnet.
 
