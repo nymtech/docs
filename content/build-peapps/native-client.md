@@ -6,10 +6,10 @@ description: "How to build and run the Nym mixnet-client."
 
 ### Nym Native Client
 
-
+There 
 
 {{% notice info %}}
-The Nym Client was built in the [Installation](../installation) section. If you haven't yet built Nym and want to run the code on this page, go there first.
+The Nym Native Client was built in the [Installation](../installation) section. If you haven't yet built Nym and want to run the code on this page, go there first.
 {{% /notice %}}
 
 From inside the `nym` directory, the `nym-client` binary got built to the `./target/release/` directory. You can run it like this:
@@ -61,7 +61,7 @@ using optional AuthToken: "9XSGi1vR1Xy1HbSaPKNzwQ8gqLgqbDDVudYFr5Khi2xq"
 Client configuration completed.
 ```
 
-Have a look at the generated files if you'd like - they contain the client name, public/private keypairs, etc.
+Have a look at the generated files if you'd like - they contain the client name, public/private keypairs, etc. The name `alice` is just a local identifier so that you can name your clients; it is never transmitted over the network. 
 
 You can run the client for user `alice` by doing this:
 
@@ -93,8 +93,4 @@ When you run the client, it immediately starts generating (fake) cover traffic a
 {{% notice info %}}
 Congratulations, you have just contributed a tiny bit of privacy to the world! `<CTRL-C>` to stop the client.
 {{% /notice %}}
-
-Try stopping and starting the client a few times. If you're interested, you should see your traffic reflected in the network traffic *sent* and *received* metrics at the [Nym Dashboard](https://dashboard.nymtech.net/). Have a look on the right hand side:
-
-![dashboard](/docs/images/dashboard.gif)
 
