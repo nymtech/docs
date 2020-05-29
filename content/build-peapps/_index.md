@@ -4,11 +4,13 @@ weight: 60
 description: "Tutorials for building Privacy Enhanced Applications (or integrating existing apps with Nym)"
 ---
 
-Privacy Enhanced Applications or peaps (pronounced *peeps*) allow you to build privacy respecting clients and services which use Nym node infrastructure. 
+You are invited to build Privacy Enhanced Applications or peaps (pronounced *peeps*)!
 
-Any peap connecting to the Nym network infrastructure automatically starts sending network *cover traffic* to the mixnet. It is apparent to any external network observer that can monitor the IP network layer that a given peap machine has connected to Nym infrastructure. Beyond that, it should not be possible to infer what activity is taking place unless there are observable network side effects (i.e. a Service Provider peap that makes network requests on behalf of some client).
+Peaps are privacy respecting clients and services which use Nym network infrastructure. 
 
-Let's take a look at a simple application. First, we need to make a peap and connect it to Nym.
+Any peap connecting to the Nym network automatically starts sending network *cover traffic* to the mixnet. It is apparent to any external network adversary that a given peap machine has connected to Nym infrastructure. Beyond that, it should not be possible to infer what activity is taking place unless there are observable network side effects (i.e. a Service Provider peap that makes network requests on behalf of a client peap).
+
+Let's take a look at a simple application. First, we need to initialize a peap and connect it to Nym.
 
 ![send to gateway](/docs/images/application-flow/send-to-gateway.png)
 
@@ -17,7 +19,7 @@ At the bottom we have a peap. It consists of two parts:
 1. application specific logic (which you write in whatever language makes sense: Python, Go, C#, Java, JavaScript, Haskell, etc) in yellow
 2. Nym client code in blue
 
-Peaps have a stable, potentially long-lasting relation to a Nym node type known as a gateway.
+Peaps have a stable, potentially long-lasting relation to a Nym node type known as a gateway. A peap registers itself with a gateway, and gets back an authentication token that it can then use to retrieve messages from the gateway.
 
 Gateways serve a few different functions:
 
@@ -26,9 +28,11 @@ Gateways serve a few different functions:
 * they send encrypted surb-acks for potentially offline recipients, to ensure reliable message delivery
 * they offer a stable addressing location for a peap, although the IP may change frequently
 
+
+
 ### Nym addresses
 
-When the peap starts, it generates and stores its own public/private keypair locally, and automatically connects to the Nym network and finds out what Nym infrastructure exists. It then chooses and connects to a Nym gateway node via websocket.
+When the peap is initialized, it generates and stores its own public/private keypair locally. When the peap starts, it automatically connects to the Nym network and finds out what Nym infrastructure exists. It then chooses and connects to a Nym gateway node via websocket.
 
 All Peaps in the Nym network therefore have an address, in the format `user-public-key@gateway-public-key`. 
 
@@ -72,3 +76,5 @@ A surb is a layer encrypted set of Sphinx headers detailing a reply path ending 
 ### Offline / Online peaps
 
 If a message arrives at a gateway address but the peap is offline, the gateway will store the messages. When the peap comes online again, it will automatically download all the messages, and they'll be deleted from the gateway disk.
+
+If a peap is online when a message arrives for it, the message is automatically pushed to the peap down the websocket, instead of being stored to disk on the gateway. 
