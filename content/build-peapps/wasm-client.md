@@ -1,6 +1,6 @@
 ---
-title: "Nym client (webassembly)"
-weight: 50
+title: "Webassembly client"
+weight: 45
 description: "How to integrate the Nym webassembly client into your own applications to enable strong privacy for your users"
 ---
 
