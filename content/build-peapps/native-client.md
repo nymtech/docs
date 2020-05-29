@@ -4,14 +4,9 @@ weight: 40
 description: "How to build and run the Nym mixnet-client."
 ---
 
+### Nym Native Client
 
-This whole clients section should be changed to a tutorial format, and separated into 3 guides:
 
-* getting started developing a desktop application
-* getting started developing a web / mobile application using WebAssembly
-* (later) getting started developing a mobile application using the cross-compiled mobile client from Roberto
-
-### Clients
 
 {{% notice info %}}
 The Nym Client was built in the [Installation](../installation) section. If you haven't yet built Nym and want to run the code on this page, go there first.
