@@ -18,9 +18,9 @@ At a high level, Nym technologies include:
 
 1. a privacy enhancing signature scheme called *Coconut*. Coconut allows a shift in thinking about authentication and authorization, from a paradigm based on *who you are* to a privacy-preserving paradigm based on *right to use*. 
 2. *Sphinx*, a way of transmitting armoured, layer-encrypted information packets which are indistinguishable from each other at a binary level.
-3. a *mixnet*, which encrypts and mixes Sphinx packet traffic so that it cannot be determined who is communicating with whom. Our mixnet is based on a modified version of the *Loopix* mixnet design.
+3. a *Loopix* mixnet, which encrypts and mixes Sphinx packet traffic so that it cannot be determined who is communicating with whom. Our mixnet is based on a modified version of the *Loopix* mixnet design.
 
-These technologies ensure privacy at two different levels of the stack: network data transmission, and transactions.
+We'll explore Coconut, Sphinx, and Loopix in detail in the next few sections. The most important thing to note is that these technologies ensure privacy at two different levels of the stack: network data transmission, and transactions.
 
 ## How does Nym compare to other systems?
 
