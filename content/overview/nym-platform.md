@@ -14,7 +14,7 @@ The mixnodes provide network security for network content *and* metadata, making
 
 The [Nym platform](https://github.com/nymtech/nym) developed by the Nym project includes mixnodes, validators, gateways, and client code used for talking to the network. All of this is run in a decentralised, trustless fashion. 
 
-But the Nym platform itself (blue) is just infrastructure. The interesting part are the Privacy Enhanced Apps, or PEApps (yellow) which can be created by privacy developers. 
+But the Nym platform itself (blue) is just infrastructure. The interesting part are the Privacy Enhanced Apps, or PEApps (yellow) which can be created by privacy developers. We've included some (fictional) examples of things we think people might build. Read our docs and use your imagination, and you may come up with many more!
 
 PEApps are new or existing software applications which use the Nym platform infrastructure. 
 
