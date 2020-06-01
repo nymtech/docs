@@ -8,7 +8,7 @@ The internet has become essential to the functioning of modern society. Many asp
 
 But the internet we have is not the internet we wished we'd have. 
 
-Liberal democracies routinely record your internet traffic as it flows through intercontinental fibre links, and save anything interesting for later use. They now have surveillance systems which are bigger and better than anything their old-time totalitarian adversaries dreamed of. Meanwhile, the data cartels mine our daily activities with their own surveillance machines, building up the greatest fortunes in world history. And in the background, "illiberal democracies" and outright dictatorships work to subvert internet freedoms for their own citizens as well as across the wider world.
+Liberal democracies routinely record your internet traffic as it flows through intercontinental fibre links, and save anything interesting for later use. They now have surveillance systems which are bigger and better than anything their old-time totalitarian adversaries dreamed of. Meanwhile, the data companies mine our daily activities with their own surveillance machines, building up the greatest fortunes in world history. And in the background, "illiberal democracies" and outright dictatorships work to subvert internet freedoms for their own citizens as well as across the wider world.
 
 The internet doesn't have be this way.
 

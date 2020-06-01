@@ -4,7 +4,7 @@ weight: 10
 description: "An overview of the Nym platform architecture"
 ---
 
-We are running a [testnet](https://dashboard.nymtech.net) with Nym validators and mixnodes. Together, the validators and mixnodes provide integrated transaction and network privacy to users of the Nym platform. They are assisted by several other platform components: multiple types of clients, and gateway nodes.
+We are currently running a [testnet](https://dashboard.nymtech.net) with Nym validators and mixnodes. Together, the validators and mixnodes provide integrated transaction and network privacy to users of the Nym platform. They are assisted by several other platform components: multiple types of clients, and gateway nodes.
 
 Here's an overview of the entire network. 
 
@@ -44,10 +44,10 @@ The mixnet is now working, although there are many performance optimizations and
 
 Work on the validator code has started, but it's at a less advanced stage. The first release with some primitive staking capability is expected in June 2020. The rest of the validator code, including Coconut credential usage, should be ready to start testing in autumn 2020.
 
-There is currently a mixnet client written in Rust, which runs in a standalone fashion on desktop or servers. You can use this for writing desktop or server Peaps in any language that speaks websocket (e.g. basically all of them). 
+There is currently a native mixnet client written in Rust. It runs in standalone fashion on desktops or servers. You can use this for writing desktop or server peaps in any language that speaks websocket (e.g. basically all of them). 
 
-A Webassembly, or *wasm* client also exists as of the 0.7.x release. Wasm clients can be used within browser or mobile apps, and again communicate with gateways via websockets and NGP. The wasm client is not complete (it does not yet send cover traffic), but it is working to a point where you should be able to use it for application development. Cover traffic, when it is set up, will happen transparently and you shouldn't need to worry about it as a Peap developer.
+A webassembly client also exists as of the 0.7.x release. Webassembly clients can be used within browser or mobile apps, and again communicate with gateways via websockets and NGP. The wasm client is not complete (it does not yet send cover traffic), but it is working to a point where you should be able to use it for application development. Cover traffic, when it is set up, will happen transparently and you shouldn't need to worry about it as a peap developer.
 
-Lastly, we are planning a SOCKS5 /  shadowsocks client so that it's easy to retrofit cryptocurrency wallets and other existing SOCKS-compatible applications to use Nym privacy infrastructure. This work has not yet started.
+Lastly, we are planning a SOCKS5 / shadowsocks client so that it's easy to retrofit cryptocurrency wallets and other existing SOCKS-compatible applications to use Nym privacy infrastructure. This work has not yet started.
 
 In the next few sections, we'll look at network privacy and resource access privacy in more detail. 

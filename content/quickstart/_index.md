@@ -5,22 +5,24 @@ description: "How to build the Nym platform. Nym is relatively simple to build a
 "
 ---
 
+### Installing pre-built binaries
+
+The Nym release page at [https://github.com/nymtech/nym/releases](https://github.com/nymtech/nym/releases) has pre-built binaries for some components. These are not guaranteed to work on all systems. 
+
+Later, when we're focused more on things like packaging, we will ensure that all components get built for all operating systems. 
+
+If the pre-built binaries don't work or are unavailable for your system, you will need to build the platform yourself.
+
+### Building the Nym platform
+
 Nym is relatively simple to build and run on Mac OS X and Linux. 
 
 We also have initial Windows support, but it should be considered experimental and unsupported for now. Windows currently works fine if you're a Peap developer but isn't recommended for running nodes.
 
-### Installing pre-built binaries
-
-The Nym release page at  [https://github.com/nymtech/nym/releases](https://github.com/nymtech/nym/releases) has pre-built binaries. These are experimental and not guaranteed to work on all systems. Later, when we're focused more on things like packaging, we'll sort out proper built versions.
-
-If the pre-built binaries don't work on your system, you will need to build the platform yourself.
-
-### Building the Nym platform yourself
-
 * on Debian/Ubuntu: `sudo apt install pkg-config build-essential libssl-dev`. 
 * Rust **1.39 or later**, with `cargo`. Stable works. 
 
-We recommend using the [Rust shell script installer](https://www.rust-lang.org/tools/install). Installing cargo from your package manager (e.g. `apt`) is not recommended as the packaged versions are usually too old. 
+We recommend using the [Rust shell script installer](https://www.rust-lang.org/tools/install). Installing cargo from your package manager (e.g. `apt`) is not recommended as the packaged versions are usually too old.
 
 If you really don't want to use the shell script installer, the [Rust installation docs](https://forge.rust-lang.org/infra/other-installation-methods.html) contain instructions for many platforms if the shell script is not for you.
 

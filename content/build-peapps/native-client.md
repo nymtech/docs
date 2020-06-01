@@ -5,7 +5,7 @@ description: "How to build and run the Nym mixnet-client."
 ---
 
 {{% notice info %}}
-The Nym Native Client was built in the [Installation](../installation) section. If you haven't yet built Nym and want to run the code on this page, go there first.
+The Nym Native Client was built in the [quickstart](/docs/quickstart) section. If you haven't yet built Nym and want to run the code on this page, go there first.
 {{% /notice %}}
 
 From inside the `nym` directory, the `nym-client` binary got built to the `./target/release/` directory. You can run it like this:

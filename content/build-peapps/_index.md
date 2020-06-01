@@ -4,9 +4,7 @@ weight: 60
 description: "Tutorials for building Privacy Enhanced Applications (or integrating existing apps with Nym)"
 ---
 
-You are invited to build **Privacy Enhanced Applications** or **peaps** (pronounced *peeps*)!
-
-## Introducing peaps
+You are invited to build Nym **Privacy Enhanced Applications** or **peaps** (pronounced **peeps**).
 
 Peaps are privacy respecting clients and services which use Nym network infrastructure. They connect to other peaps also using the Nym network. All peap-to-peap communication happens over a set of cooperating networked nodes called a mixnet. 
 

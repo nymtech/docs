@@ -223,6 +223,17 @@ The gateway translates to/from IPv4/IPv6 if necessary, and forwards the Sphinx p
 
 After exiting the mixnet, still encrypted in Sphinx, the packet reaches the destination gateway. If the recipient that the packet is addressed to is currently online, the packet will be delivered immediately. If the recipient is offline, the packet will be stored until the user comes online, and then delivered. 
 
+#### Sphinx packet creation
+
+Clients create Sphinx packets. These packets are a bit complicated, but for now all you need to know is that they have the following characteristics:
+
+1. they consist of a header and a body
+1. the header contains unencrypted routing data
+1. bodies are encrypted
+1. bodies are padded so that they're all the same size
+1. observers can't tell anything about what's inside the encrypted body
+1. the body is layer-encrypted - it may contain either another sphinx packet or a payload message
+
 ### SURBs
 
 Anonymous replies are possible using **S**ingle **U**se **R**eply **B**locks, or SURBs. They don't yet exist in the WebAssembly client, but should be available in the next release.
@@ -236,7 +247,7 @@ Sending JSON is totally possible, just stick it into the message box and send it
 
 ### Further reading
 
-So far, we've just scratched the surface. See the mixnet docs for a discussion of anonymous replies, key storage, running mixnodes, writing Service Providers, and using other languages to talk to the mixnet.
+So far, we've just scratched the surface. See the [Build Privacy Applications](/docs/build-peapps) docs for a discussion of anonymous replies, key storage, running mixnodes, writing Service Providers, and using other languages to talk to the mixnet.
 
 {{% notice info %}}
 If you run into trouble, please ask for help in the channel **nymtech.friends#general** on [KeyBase](https://keybase.io).
