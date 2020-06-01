@@ -4,16 +4,17 @@ weight: 40
 description: "Build your first Nym app, a simple chat application that works in the browser"
 ---
 
-Welcome to Nym! Before we start, the obligatory immature cryptography warning.
+Before we start, the obligatory immature cryptography warning.
 
 {{% notice warning %}}
 Please, don't depend on our code for strong privacy (yet). We are still at an early stage.{{% /notice %}}
 
 Having said that, we are aiming to bring very strong privacy guarantees to users and service providers, and you want to see how it works. So let's dance. 
 
-This quickstart demonstrates how you can use Nym from webassembly-capable browser or mobile apps. Other languages are supported via a Rust client which exposes a websocket to give you the same functionality as what we explain here - so if you want to write a Nym app in any server-side language (Python, JavaScript, C#, Java, Scala, etc) you can do that. See the mixnet section of the docs for more information.
+This quickstart demonstrates how you can use Nym from webassembly-capable browser or mobile apps. Other languages are supported via a Rust client which exposes a websocket to give you the same functionality as what we explain here - so if you want to write a Nym app in any server-side language (Python, JavaScript, C#, Java, Scala, etc) you can do that. See the [Build Privacy Applications](/docs/build-peapps) section of the docs for more information.
 
-## Sending mixnet messages using JavaScript and WebAssembly
+
+## Setup
 
 Install [npm](https://www.npmjs.com/get-npm) for your platform. Then, from the top-level `nym` directory:
 
@@ -23,9 +24,11 @@ npm install
 npm run start
 ```
 
-This will start a local webserver on [http://localhost:8001](http://localhost:8001). 
+This will install the [Nym webassembly client](https://www.npmjs.com/package/@nymproject/nym-client-wasm) and start a local webserver on [http://localhost:8001](http://localhost:8001). 
 
-It's a simple chat interface. Let's try it out.
+It's a simple chat interface, allowing you to enter a recipient address and send a message. We'll try it out in a moment, but before we do, it makes sense to talk about addressing, and the concept of Nym identities, so you can understand what an address is.
+
+## Nym identities
 
 Nym identities are denoted a bit like email addresses. But instead of being **user@host**, a Nym identity is **user-public-key@gateway-public-key**.
 
@@ -38,6 +41,8 @@ Note that there's an `@` in the middle. Your address will be different, but it w
 In my example, everything before the `@`, i.e. **71od3ZAupdCdxeFNg8sdonqfZTnZZy1E86WYKEjxD4kj** is the public key of our Nym identity.
 
 Everything after the `@`, i.e. **FWYoUrnKuXryysptnCZgUYRTauHq4FnEFu2QGn5LZWbm** is the public key of a Nym gateway where messages will be received for this identity. 
+
+## Sending mixnet messages using JavaScript and WebAssembly
 
 The simplest demo: send a packet through the mixnet to yourself. Copy the entire contents of the *Sender* field into the *Recipient* field. Then press the *Send* button.
 
@@ -102,7 +107,7 @@ We're depending on the `@nymproject/nym-client-wasm` npm package in `package.jso
 
 ```
   "dependencies": {
-    "@nymproject/nym-client-wasm": "^0.7.3"
+    "@nymproject/nym-client-wasm": "^0.7.4"
   }
 ```
 

@@ -5,7 +5,7 @@ description: "How to join the Nym network by your running your own mixnode"
 ---
 
 {{% notice info %}}
-The Nym mixnode was built in the [Quickstart](/docs/quickstart). If you haven't yet built Nym and want to run the code, go there first.
+The Nym mixnode was built in the [quickstart](/docs/quickstart). If you haven't yet built Nym and want to run the code, go there first.
 {{% /notice %}}
 
 Once you've built the code, and want to join the Nym testnet, you can do it quite easily. 
@@ -14,7 +14,7 @@ Copy the `nym-mixnode` binary from the `target/release` directory up to your ser
 
 Initialize a mixnode:
 
-```
+```shell
 nym-mixnode init --id winston-smithnode --host 167.70.75.75 --layer 1 --location YourCity
 ```
 
@@ -58,7 +58,9 @@ If everything worked, you'll see your node running at https://dashboard.nymtech.
 
 Note that your node's public key is displayed during startup, you can use it to identify your node in the list.
 
-Now that you've got it running, have a look at the [mixnode docs](../../mixnet/mixnodes) to find our more about configuration options. There are also some tips for running on AWS and other cloud providers, some of which require minor additional setup.
+Now that you've got it running, have a look at the node docs to find our more about configuration options. There are also some tips for running on AWS and other cloud providers, some of which require minor additional setup.
+
+Tip: you might want to run the node in `screen` or `tmux` if you install it on a server and want to be able to detach your ssh session.
 
 {{% notice info %}}
 If you run into trouble, please ask for help in the channel **nymtech.friends#general** on [KeyBase](https://keybase.io).

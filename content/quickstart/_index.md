@@ -9,21 +9,27 @@ Nym is relatively simple to build and run on Mac OS X and Linux.
 
 We also have initial Windows support, but it should be considered experimental and unsupported for now. Windows currently works fine if you're a Peap developer but isn't recommended for running nodes.
 
-### Prerequisites
+### Installing pre-built binaries
+
+The Nym release page at  [https://github.com/nymtech/nym/releases](https://github.com/nymtech/nym/releases) has pre-built binaries. These are experimental and not guaranteed to work on all systems. Later, when we're focused more on things like packaging, we'll sort out proper built versions.
+
+If the pre-built binaries don't work on your system, you will need to build the platform yourself.
+
+### Building the Nym platform yourself
 
 * on Debian/Ubuntu: `sudo apt install pkg-config build-essential libssl-dev`. 
-* [Rust](https://www.rust-lang.org/) 1.39 or later, with `cargo`. Stable works. 
+* Rust **1.39 or later**, with `cargo`. Stable works. 
 
-{{% notice info %}}
-Nym developers use the Rust shell script for development installation for platform development, which gives a full build environment. If you are averse to running the shell script installer,  you *may* want to install `cargo` from your package manager (e.g. `apt`). It might work, or might be too ancient, depending on your distro. Have a look at the Rust website docs to find an installation option that suits you.
-{{% /notice %}}
+We recommend using the [Rust shell script installer](https://www.rust-lang.org/tools/install). Installing cargo from your package manager (e.g. `apt`) is not recommended as the packaged versions are usually too old. 
+
+If you really don't want to use the shell script installer, the [Rust installation docs](https://forge.rust-lang.org/infra/other-installation-methods.html) contain instructions for many platforms if the shell script is not for you.
 
 To download and build:
 
 ```shell
 git clone https://github.com/nymtech/nym.git
 cd nym
-git pull # in case you've checked it out before!
+git pull # in case you've checked it out before
 git checkout tags/v0.7.0 # <-- **VERY IMPORTANT**
 cargo build --release
 ```
@@ -36,7 +42,7 @@ Quite a bit of stuff gets built, but you can ignore most of it. The key working 
 
 1. the Nym mixnode, `nym-mixnode`
 2. the Nym gateway node, `nym-gateway`
-3. the Nym local client, `nym-client`
+3. the Nym native client, `nym-client`
 4. the Nym validator, `nym-validator`
 
 You can try some of them out quickly by following along in the next few sections.

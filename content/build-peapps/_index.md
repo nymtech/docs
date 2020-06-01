@@ -4,13 +4,21 @@ weight: 60
 description: "Tutorials for building Privacy Enhanced Applications (or integrating existing apps with Nym)"
 ---
 
-You are invited to build Privacy Enhanced Applications or peaps (pronounced *peeps*)!
+You are invited to build **Privacy Enhanced Applications** or **peaps** (pronounced *peeps*)!
 
-Peaps are privacy respecting clients and services which use Nym network infrastructure. 
+## Introducing peaps
 
-Any peap connecting to the Nym network automatically starts sending network *cover traffic* to the mixnet. It is apparent to any external network adversary that a given peap machine has connected to Nym infrastructure. Beyond that, it should not be possible to infer what activity is taking place unless there are observable network side effects (i.e. a Service Provider peap that makes network requests on behalf of a client peap).
+Peaps are privacy respecting clients and services which use Nym network infrastructure. They connect to other peaps also using the Nym network. All peap-to-peap communication happens over a set of cooperating networked nodes called a mixnet. 
 
-Let's take a look at a simple application. First, we need to initialize a peap and connect it to Nym.
+Mixnets give strong privacy guarantees. 
+
+It is apparent to any external network adversary that a given peap machine has connected to Nym infrastructure. Beyond that, it should not be possible to infer what activity is taking place unless there are observable network side effects (i.e. a Service Provider peap that makes network requests on behalf of a client peap).
+
+We'll get into the technical details more deeply in the next few sections, but before we do that, let's take a look at the steps involved in building and using a simple application. 
+
+### Initialization
+
+First, we need to initialize a peap and connect it to Nym.
 
 ![send to gateway](/docs/images/application-flow/send-to-gateway.png)
 
@@ -27,8 +35,6 @@ Gateways serve a few different functions:
 * they do IPv6 translation for IPv4 Peaps
 * they send encrypted surb-acks for potentially offline recipients, to ensure reliable message delivery
 * they offer a stable addressing location for a peap, although the IP may change frequently
-
-
 
 ### Nym addresses
 
@@ -60,14 +66,25 @@ Messages are end-to-end encrypted. Although the gateway knows our peap's IP when
 
 The process for sending messages to other peaps is exactly the same, you simply specify a different recipient address. Address discovery happens outside the Nym system: in the case of a Service Provider peap, the service provider has presumably advertised its own address. If you're sending to a friend of yours, you'll need to get ahold of their address out of band, maybe through a private messaging app such as Signal.
 
-
 ![service provider messages](/docs/images/application-flow/sp-request.png)
+
+
+### Clients vs Service Providers
+
+We expect that peaps will typically fall into one of two broad categories:
+
+* client peaps
+* Service Provider peaps
+
+Client peaps expose a UI for users to interact with Nym. Typically they'll run on user devices, such as laptops, phones, or tablets.
+
+Service Provider peaps, on the other hand, will generally run on server machines. Most Service Providers will run 24/7 and take action on behalf of anonymous client peaps connected to the mixnet.
 
 ### Private Replies using surbs
 
 Surbs allow peaps to reply to other peaps anonymously.
 
-It will often be the case that a client peaps wants to interact with a Service Provider peap. It sort of defeats the purpose of the whole system if your client peap needs to reveal its own gateway public key and client public key in order to get a response from the SP peap. 
+It will often be the case that a client peap wants to interact with a Service Provider peap. It sort of defeats the purpose of the whole system if your client peap needs to reveal its own gateway public key and client public key in order to get a response from the SP peap. 
 
 Luckily, there are Single Use Reply Blocks, or *surbs*.
 
@@ -75,6 +92,6 @@ A surb is a layer encrypted set of Sphinx headers detailing a reply path ending 
 
 ### Offline / Online peaps
 
-If a message arrives at a gateway address but the peap is offline, the gateway will store the messages. When the peap comes online again, it will automatically download all the messages, and they'll be deleted from the gateway disk.
+If a message arrives at a gateway address but the peap is offline, the gateway will store the messages for later delivery. When the recipient peap comes online again, it will automatically download all the messages, and they'll be deleted from the gateway disk.
 
 If a peap is online when a message arrives for it, the message is automatically pushed to the peap down the websocket, instead of being stored to disk on the gateway. 
