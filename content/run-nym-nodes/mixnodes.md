@@ -82,8 +82,6 @@ Mixnode configuration completed.
 
 Have a look at the saved configuration files to see more configuration options.
 
-If you want to run a mixnode locally, you can run a local [directory server](../directory) on http://127.0.0.1:8080 and bind to your loopback address (127.0.0.1) or `localhost`.
-
 {{% notice info %}}
 You'll see a startup warning whenever you bind to your loopback address, because you won't be routable for clients out on the big internet.
 {{% /notice %}}

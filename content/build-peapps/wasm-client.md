@@ -20,16 +20,68 @@ As the [quickstart example](/docs/quickstart/send-some-packets) shows, it's poss
 
 We've already looked that the basics of peap creation via the webassembly client in the [quickstart](/docs/quickstart/send-some-packets). 
 
+### Initializing a new Nym identity
+
+The main methods you'll use from the NPM package are: 
+
+```js
+let identity = new Identity();
+```
+
+This generates a new Nym identity, consisting of a public/private keypair and a Nym gateway address.
 
 
+### Constructing a Nym client
+
+```js
+let client = new Client(directoryUrl, identity, authToken);
+```
+
+This returns a nym Client which connects to a Nym gateway via websocket. All communication with the Nym network happens through this client.
+
+The `directoryUrl` of the Nym testnet is `https://directory.nymtech.net`. Use that if you want to connect to the running testnet. 
+
+If you are [running a local network](/docs/build-peapps/running-localnet), use `http://127.0.0.1:8080` as your `directoryUrl`.
+
+### Running the Nym client
+
+```js
+client.start();
+```
+
+This will cause the client to retrieve a network topology from the defined `directoryUrl`, and connect to its gateway via websocket. Cover traffic is not yet sent, but message sends should work after client start. 
+
+### Sending messages
+
+```js
+client.sendMessage(message, recipient) {
+```
+
+Sends a message up the websocket to this client's Nym gateway.
+ 
+NOTE: the webassembly client currently does not implement chunking. Messages over ~1KB will cause a panic. This will be fixed in a future version.
+ 
+`message` must be a string at the moment. Binary `Blob` and `ArrayBuffer`
+will be supported soon. 
+
+`recipient` is a Nym address as a string.
+
+
+### Getting the client's address
+
+Given a client, to get its address, you can call:
+
+```js
+client.formatAsRecipient();
+```
 
 ### SURBs
 
-Anonymous replies using surbs don't yet exist in the webassembly client. They should be available in the next release (0.8.0).
+Anonymous replies using surbs don't yet work in the webassembly client. They should be available in the next release (0.8.0).
 
 ### JSON
 
-Sending JSON is fairly simple. If you're playing with the quickstart wasm example app, just stick it into the message box and send it (or send it programmatically if you're writing an application of your own).
+Sending JSON is fairly simple. If you're playing with the quickstart wasm example app, just stick it into the message box and send it (or send it programmatically as the `message` content of `client.sendMessage(message, recipient)` in your own application code.
 
 ### Think about what you're sending!
 
