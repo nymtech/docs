@@ -60,4 +60,4 @@ Then run it:
 
 `./target/release/nym-client run --id winston-smithnode`
 
-For more info on developing with a running client, see the [client documentation](../mixnet/clients.md)
+For more info on developing with a running client, see the [client documentation](/docs/build-peapps/choose-a-client)

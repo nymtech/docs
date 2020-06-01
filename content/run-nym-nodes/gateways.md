@@ -7,14 +7,14 @@ description: "Gateways provide a destination for mixnet packets. Most of the int
 ### Gateways
 
 {{% notice info %}}
-The Nym gateway was built in the [Quickstart](https://nymtech.net/docs/quickstart). If you haven't yet built Nym and want to run the code, go there first.
+The Nym gateway was built in the [quickstart](/docs/quickstart). If you haven't yet built Nym and want to run the code, go there first.
 {{% /notice %}}
 
 Gateways provide a destination for mixnet packets. Most of the internet doesn't use encrypted Sphinx packets, so the gateway acts as a destination, sort of like a mailbox, for messages.
 
 Peaps connect to gateways. Messages are automatically piped to connected clients and deleted from the gateway's disk storage. If a Peap client is offline when a message arrives, it will be stored for later retrieval. When the client connects, all messages will be delivered, and deleted from the gateway's disk. At the moment (0.7.x release) messages are stored unencrypted on the gateway. In release 0.8.0 we will have end-to-end encryption. 
 
-When it starts up, a Peap's [client](../clients) registers itself with a gateway, and the gateway returns an access token. The access token plus the gateway's IP can then be used as a form of addressing for delivering packets.
+When it starts up, a Peap's client registers itself with a gateway, and the gateway returns an access token. The access token plus the gateway's IP can then be used as a form of addressing for delivering packets.
 
 The default gateway implementation included in the Nym platform code holds packets for later retrieval. For many applications (such as chat), this is usable out of the box, as it provides a place that potentially offline clients can retrieve packets from. The access token allows clients to pull messages from the gateway node.
 

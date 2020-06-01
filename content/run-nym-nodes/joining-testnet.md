@@ -6,7 +6,7 @@ description: "Joining the testnet, recommended hardware specifications, and netw
 
 Joining the Nym testnet with a mixnode is easy.
 
-Once you've downloaded or compiled your mixnode according to the [installation](../installation) instructions, set it up on an internet-addressable server machine. It will automatically join our testnet. 
+Once you've downloaded or compiled your mixnode according to the [quickstart](/docs/quickstart) instructions, set it up on an internet-addressable server machine. It will automatically join our testnet. 
 
 ### Hardware Specs
 

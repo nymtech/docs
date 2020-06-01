@@ -135,7 +135,7 @@ By varying the message content, you can easily build sophisticated Service Provi
 
 ## Message Types
 
-There are a small number of messages that your application sends up the websocket to interact with the native client, as follows:
+There are a small number of messages that your application sends up the websocket to interact with the native client, as follows.
 
 #### Sending text
 
@@ -221,7 +221,6 @@ asyncio.get_event_loop().run_until_complete(send_file())
 ```
 
 In order to send binary messages, you format a 64-byte binary array, with the first 32 bytes being the recipient pubkey, and the second 32 bytes being the destination gateway pubkey. The remainder of the payload is the bytes of the binary data you'd like to send.  
-
 
 #### Receiving messages
 
