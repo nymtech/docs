@@ -1,5 +1,5 @@
 ---
-title: Right to use
+title: Access Control Privacy
 weight: 30
 description: "Nym ensures network privacy using layer encrypted Sphinx packets and a Loopix mixnet."
 ---
