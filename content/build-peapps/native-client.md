@@ -1,7 +1,7 @@
 ---
 title: "Native client"
 weight: 40
-description: "How to build and run the Nym mixnet-client."
+description: "How to run the Nym native network client on a desktop or server machine."
 ---
 
 {{% notice info %}}

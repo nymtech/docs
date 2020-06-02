@@ -1,8 +1,7 @@
 ---
 title: "Quickstart"
 weight: 15
-description: "How to build the Nym platform. Nym is relatively simple to build and run on Mac OS X, Linux, and Windows.
-"
+description: "How to build the Nym platform. Nym is relatively simple to build and run on Mac OS X, Linux, and Windows."
 ---
 
 ### Installing pre-built binaries

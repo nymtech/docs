@@ -1,7 +1,7 @@
 ---
 title: "Run Nym Nodes"
 weight: 20
-description: "You can run Nym platform code to provide infrastructure for Privacy Enhanced Applications (Peaps)"
+description: "You can run Nym platform code to provide infrastructure for Privacy Enhanced Applications (peaps)"
 ---
 
 ### Decentralized privacy infrastructure

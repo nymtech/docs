@@ -1,7 +1,7 @@
 ---
 title: Send messages
 weight: 40
-description: "Build your first Nym app, a simple chat application that works in the browser"
+description: "Build your first Nym privacy enhanced application, a simple chat application that works in the browser"
 ---
 
 Before we start, the obligatory immature cryptography warning.

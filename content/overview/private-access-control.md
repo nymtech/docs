@@ -1,7 +1,7 @@
 ---
 title: Access Control Privacy
 weight: 30
-description: "Nym ensures network privacy using layer encrypted Sphinx packets and a Loopix mixnet."
+description: "Nym ensures access control privacy using a sophisticated signature scheme called Coconut."
 ---
 
 ### Introducing Coconut
