@@ -4,7 +4,7 @@ weight: 10
 description: "An overview of the Nym platform architecture"
 ---
 
-We are currently running a [testnet](https://dashboard.nymtech.net) with Nym validators and mixnodes. Together, the validators and mixnodes provide integrated transaction and network privacy to users of the Nym platform. They are assisted by several other platform components: multiple types of clients, and gateway nodes.
+We are currently running a [testnet](https://dashboard.nymtech.net) with Nym validators and mixnodes. Together, the validators and mixnodes provide integrated access control and network privacy to users of the Nym platform. They are assisted by several other platform components: multiple types of clients, and gateway nodes.
 
 Here's an overview of the entire network. 
 
@@ -34,7 +34,7 @@ Most Service Providers (SPs) will interact with external systems on behalf of a 
 
 There is also a special category of Service Provider, namely SPs that do not visibly interact with any external systems. You might think of these as crypto-utopiapps: they're doing something, but it's not possible from outside to say with any certainty what their function is, or who is interacting with them.
 
-All clients (and therefore all Peaps) talk with Nym gateway nodes using Sphinx packets and a defined set of messages called the Nym Gateway Protocol (NGP). NGP is a defined set of control messages that can be sent to Nym gateways over websockets. Each Peap has a long-lived relationship with its gateway; NGP defines messages for clients registering and authenticating with gateways, as well as sending encrypted Sphinx packets in specific formats.
+All peaps talk with Nym gateway nodes using Sphinx packets and a defined set of messages called the Nym Gateway Protocol (NGP). NGP is a defined set of control messages that can be sent to Nym gateways over websockets. Each peap has a long-lived relationship with its gateway; NGP defines messages for clients registering and authenticating with gateways, as well as sending encrypted Sphinx packets in specific formats.
 
 We are currently focused on providing privacy for blockchain systems. But our ambitions are wider. In the medium term, we are actively working to bring together a range of new technologies that can enable strong privacy for the whole internet. There have not been many new widely-adopted privacy technologies to help internet users in the past 15 years. We are working hard to change that. 
 
@@ -50,4 +50,4 @@ A webassembly client also exists as of the 0.7.x release. Webassembly clients ca
 
 Lastly, we are planning a SOCKS5 / shadowsocks client so that it's easy to retrofit cryptocurrency wallets and other existing SOCKS-compatible applications to use Nym privacy infrastructure. This work has not yet started.
 
-In the next few sections, we'll look at network privacy and resource access privacy in more detail. 
+In the next few sections, we'll look at network privacy and access privacy in more detail. 
