@@ -16,7 +16,7 @@ The Nym platform knits together several privacy technologies, integrating them i
 
 At a high level, Nym technologies include:
 
-1. a privacy enhancing signature scheme called *Coconut*. Coconut allows a shift in thinking about authentication and authorization, from a paradigm based on *who you are* to a privacy-preserving paradigm based on *right to use*. 
+1. a privacy enhancing signature scheme called *Coconut*. Coconut allows a shift in thinking about resource access control, from a paradigm based on *who you are* to a privacy-preserving paradigm based on *right to use*. 
 2. *Sphinx*, a way of transmitting armoured, layer-encrypted information packets which are indistinguishable from each other at a binary level.
 3. a *Loopix* mixnet, which encrypts and mixes Sphinx packet traffic so that it cannot be determined who is communicating with whom. Our mixnet is based on a modified version of the *Loopix* mixnet design.
 
