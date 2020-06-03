@@ -35,7 +35,9 @@ git checkout tags/v0.7.0 # <-- **VERY IMPORTANT**
 cargo build --release
 ```
 
-**Note:** the default branch you'll clone from Github, `develop`, is guaranteed to be broken and incompatible with the running testnet at all times. You **must** `git checkout tags/v0.7.0` in order to join the testnet. 
+**Upgrade note:** If you are upgrading to 0.7.0 from an earlier release, you will need to [re-initialize your mixnode](/docs/quickstart/run-a-mixnode), as the config file formats have changed significantly between releases.
+
+**Note:** the default branch you'll clone from Github, `develop`, is guaranteed to be broken and incompatible with the running testnet at all times. You **must** `git checkout tags/v0.7.0` in order to join the testnet.
 
 The above commands will compile into the `target/release` directory.
 
