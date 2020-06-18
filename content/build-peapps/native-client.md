@@ -129,7 +129,7 @@ The Python code does the following.
 2. formats a message to send. Nym messages have defined JSON formats.
 3. sends the message into the websocket. The native client packages the message into a Sphinx packet and sends it to the mixnet
 4. waits for confirmation that the message was indeed sent
-5. receives the message after it's gone all the way through the mix network
+5. waits to receive messages from other Nym peaps
 
 By varying the message content, you can easily build sophisticated Service Provider peaps. For example, instead of `print("received {} from the mix network!".format(received_message))` your Service Provider might take some action on behalf of the user - perhaps initiating a network request, a blockchain transaction, or writing to a local data store. 
 
