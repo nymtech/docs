@@ -31,7 +31,7 @@ To download and build:
 git clone https://github.com/nymtech/nym.git
 cd nym
 git pull # in case you've checked it out before
-git checkout tags/v0.7.0 # <-- **VERY IMPORTANT**
+git checkout tags/v0.8.0 # <-- **VERY IMPORTANT**
 cargo build --release
 ```
 

@@ -16,6 +16,7 @@ Here are some links that may prove handy as you start exploring.
 * The [Nym Dashboard](https://dashboard.nymtech.net) shows testnet nodes and activity
 * You can get a live stream of our testnet mixnode activity by subscribing to the websocket at [wss://directory.nymtech.net/ws](wss://directory.nymtech.net/ws). View it in-browser [here](https://directory.nymtech.net)
 * The [Nym Directory](https://github.com/nymtech/nym-directory) has [Swagger Docs](https://directory.nymtech.net/swagger/index.html) with runnable documentation, so you can easily get an overview of available API methods on the directory server
+* Community member HansBricks has contributed a [Docker image](https://github.com/gyrusdentatus/nym_autoinstall) for running mixnodes.
 
 ## Academic Papers
 

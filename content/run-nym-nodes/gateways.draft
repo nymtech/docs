@@ -34,7 +34,7 @@ $ ./target/release/nym-gateway
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (gateway - version 0.7.0)
+             (gateway - version 0.8.0)
 
     
 usage: --help to see available options.
@@ -54,7 +54,7 @@ Example:
 
 `./target/release/nym-gateway init --clients-host 127.0.0.1 --mix-host 127.0.0.1 --id supergateway` starts up a gateway node with default options, running on `127.0.0.1`. Note that normally you will want to use an internet-addressable host. 
 
-#### Running a provider
+#### Running a gateway
 
 The `run` command runs the gateway.
 
@@ -73,7 +73,7 @@ Results in:
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (gateway - version 0.7.0)
+             (gateway - version 0.8.0)
 
     
 Starting gateway supergateway...

@@ -26,7 +26,7 @@ nym$ target/release/nym-mixnode
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.7.0)
+             (mixnode - version 0.8.0)
 
     usage: --help to see available options.
 ```
@@ -69,7 +69,7 @@ nym$ target/release/nym-mixnode init --id winston-smithnode --host 91.236.6.149 
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.7.0)
+             (mixnode - version 0.8.0)
 
     
 Initialising mixnode winston-smithnode...
@@ -105,7 +105,7 @@ nym$  ./target/release/nym-mixnode run --id winston-smithnode
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.7.0)
+             (mixnode - version 0.8.0)
 
 
 Starting mixnode...

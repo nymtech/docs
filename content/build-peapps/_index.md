@@ -38,7 +38,7 @@ Gateways serve a few different functions:
 
 When the peap is initialized, it generates and stores its own public/private keypair locally. When the peap starts, it automatically connects to the Nym network and finds out what Nym infrastructure exists. It then chooses and connects to a Nym gateway node via websocket.
 
-All Peaps in the Nym network therefore have an address, in the format `user-public-key@gateway-public-key`. 
+All Peaps in the Nym network therefore have an address, in the format `user-identity-key.user-encryption-key@gateway-identity-key`. Clients print out their address at startup.
 
 Our peap knows its own address, because it knows its own public key and the address of its gateway. 
 

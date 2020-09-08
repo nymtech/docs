@@ -26,6 +26,7 @@ At present, there are two Nym clients:
 
 * the native client
 * the [webassembly](https://webassembly.org/) client
+* the SOCKS5 client
 
 You need to choose which one you want incorporate into your peap. Which one you use will depend largely on your preferred programming style and the purpose of your peap. 
 
@@ -37,6 +38,10 @@ Your first option is the native client. This is a compiled program that can run 
 
 If you're working in JavaScript, or building an [edge computing](https://en.wikipedia.org/wiki/Edge_computing) peap, you'll likely want to choose the webassembly client. We expect that many client peaps will be built using the webassembly client. It's packaged and available on the npm registry, so you can `npm install` it into your JavaScript or TypeScript application.
 
+### The SOCKS5 client
+
+This is useful for allowing existing applications to use the Nym mixnet without any code changes. All that's necessary is that they can use the SOCKS5 proxy protocol (which many applications can - crypto wallets, browsers, chat applications etc). It's less flexible as a way of writing custom applications than the other clients. 
+
 ### Commonalities between clients
 
-Both Nym client packages present basically the same capabilities to the privacy application developer. They need to run as a persistent process in order to stay connected and ready to receive any incoming messages from their gateway nodes. They register and authenticate to gateways, and encrypt Sphinx packets, according to the Nym Gateway Protocol (NGP). 
+All Nym client packages present basically the same capabilities to the privacy application developer. They need to run as a persistent process in order to stay connected and ready to receive any incoming messages from their gateway nodes. They register and authenticate to gateways, and encrypt Sphinx packets, according to the Nym Gateway Protocol (NGP). 

@@ -10,7 +10,7 @@ Once you've downloaded or compiled your mixnode according to the [quickstart](/d
 
 ### Hardware Specs
 
-* Processor: 2 are fine. Get the fastest CPUs you can afford. 
+* Processors: 2 or 4 are fine. Get the fastest CPUs you can afford. 
 * RAM: Memory requirements are very low - typically a mixnode may use only a few hundred MB of RAM. 
 * Disks: The mixnodes require no disk space beyond a few bytes for the configuration files
 

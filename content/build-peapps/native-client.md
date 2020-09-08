@@ -22,7 +22,7 @@ $ ./target/release/nym-client
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.7.0)
+             (client - version 0.8.0)
 
     
 usage: --help to see available options.
