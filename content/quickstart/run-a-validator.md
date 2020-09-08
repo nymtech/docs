@@ -35,7 +35,7 @@ A successful start looks like this:
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (validator - version 0.7.0)
+             (validator - version 0.8.0)
 
     
 Starting validator my-validator...

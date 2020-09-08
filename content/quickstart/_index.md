@@ -14,16 +14,16 @@ If the pre-built binaries don't work or are unavailable for your system, you wil
 
 ### Building the Nym platform
 
-Nym is relatively simple to build and run on Mac OS X and Linux. 
+Nym is relatively simple to build and run on Mac OS X, Linux, and Windows.
 
-We also have initial Windows support, but it should be considered experimental and unsupported for now. Windows currently works fine if you're a Peap developer but isn't recommended for running nodes.
+Windows support should be considered experimental. Windows currently works fine if you're a Peap developer but isn't recommended for running nodes.
 
 * on Debian/Ubuntu: `sudo apt install pkg-config build-essential libssl-dev`. 
 * Rust **1.39 or later**, with `cargo`. Stable works. 
 
 We recommend using the [Rust shell script installer](https://www.rust-lang.org/tools/install). Installing cargo from your package manager (e.g. `apt`) is not recommended as the packaged versions are usually too old.
 
-If you really don't want to use the shell script installer, the [Rust installation docs](https://forge.rust-lang.org/infra/other-installation-methods.html) contain instructions for many platforms if the shell script is not for you.
+If you really don't want to use the shell script installer, the [Rust installation docs](https://forge.rust-lang.org/infra/other-installation-methods.html) contain instructions for many platforms.
 
 To download and build:
 
@@ -35,9 +35,9 @@ git checkout tags/v0.7.0 # <-- **VERY IMPORTANT**
 cargo build --release
 ```
 
-**Upgrade note:** If you are upgrading to 0.7.0 from an earlier release, you will need to [re-initialize your mixnode](/docs/quickstart/run-a-mixnode), as the config file formats have changed significantly between releases.
+**Upgrade note:** If you are upgrading to 0.8.0 from an earlier release, you will need to [re-initialize your mixnode](/docs/quickstart/run-a-mixnode), as the config file formats have changed significantly between releases.
 
-**Note:** the default branch you'll clone from Github, `develop`, is guaranteed to be broken and incompatible with the running testnet at all times. You **must** `git checkout tags/v0.7.0` in order to join the testnet.
+**Note:** the default branch you'll clone from Github, `develop`, is guaranteed to be broken and incompatible with the running testnet at all times. You **must** `git checkout tags/v0.8.0` in order to join the testnet.
 
 The above commands will compile into the `target/release` directory.
 
@@ -46,7 +46,6 @@ Quite a bit of stuff gets built, but you can ignore most of it. The key working 
 1. the Nym mixnode, `nym-mixnode`
 2. the Nym gateway node, `nym-gateway`
 3. the Nym native client, `nym-client`
-4. the Nym validator, `nym-validator`
 
 You can try some of them out quickly by following along in the next few sections.
 

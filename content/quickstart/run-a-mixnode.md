@@ -35,7 +35,7 @@ You should see a nice clean startup:
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.7.0)
+             (mixnode - version 0.8.0)
 
     
 Starting mixnode winston-smithnode...
