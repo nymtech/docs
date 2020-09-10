@@ -35,7 +35,7 @@ git checkout tags/v0.8.0 # <-- **VERY IMPORTANT**
 cargo build --release
 ```
 
-**Upgrade note:** If you are upgrading to 0.8.0 from an earlier release, you will need to [re-initialize your mixnode](/docs/quickstart/run-a-mixnode), as the config file formats have changed significantly between releases.
+**Upgrade note:** If you are upgrading to 0.8.0 from an earlier release, you will need to [re-initialize your mixnode](/docs/quickstart/run-a-mixnode), and any old clients you have, as the config file formats have changed significantly between releases.
 
 **Note:** the default branch you'll clone from Github, `develop`, is guaranteed to be broken and incompatible with the running testnet at all times. You **must** `git checkout tags/v0.8.0` in order to join the testnet.
 
@@ -46,6 +46,8 @@ Quite a bit of stuff gets built, but you can ignore most of it. The key working 
 1. the Nym mixnode, `nym-mixnode`
 2. the Nym gateway node, `nym-gateway`
 3. the Nym native client, `nym-client`
+4. the Nym socks5 client, `nym-socks5-client`
+5. SphinxSocks, the anonymous network requester, `sphinx-socks`
 
 You can try some of them out quickly by following along in the next few sections.
 
