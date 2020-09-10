@@ -12,7 +12,7 @@ The Nym gateway was built in the [quickstart](/docs/quickstart). If you haven't 
 
 Gateways provide a destination for mixnet packets. Most of the internet doesn't use encrypted Sphinx packets, so the gateway acts as a destination, sort of like a mailbox, for messages.
 
-Peaps connect to gateways. Messages are automatically piped to connected clients and deleted from the gateway's disk storage. If a Peap client is offline when a message arrives, it will be stored for later retrieval. When the client connects, all messages will be delivered, and deleted from the gateway's disk. At the moment (0.7.x release) messages are stored unencrypted on the gateway. In release 0.8.0 we will have end-to-end encryption. 
+Peaps connect to gateways. Messages are automatically piped to connected clients and deleted from the gateway's disk storage. If a Peap client is offline when a message arrives, it will be stored for later retrieval. When the client connects, all messages will be delivered, and deleted from the gateway's disk. In release 0.8.0 we have now added end-to-end encryption, so gateways cannot see what they're storing for their users.
 
 When it starts up, a Peap's client registers itself with a gateway, and the gateway returns an access token. The access token plus the gateway's IP can then be used as a form of addressing for delivering packets.
 
@@ -52,7 +52,8 @@ The `init` command sets up the gateway. You **must** supply 3 parameters:
 
 Example:
 
-`./target/release/nym-gateway init --clients-host 127.0.0.1 --mix-host 127.0.0.1 --id supergateway` starts up a gateway node with default options, running on `127.0.0.1`. Note that normally you will want to use an internet-addressable host. 
+`./target/release/nym-gateway init --clients-host 82.32.45.6 --mix-host 82.32.45.6 --id supergateway` starts up a gateway node with default options, running on `82.32.45.6`. Note that you need to use an internet-addressable host ip. Gateways **must** also be capable of addressing IPv6. 
+
 
 #### Running a gateway
 
@@ -100,3 +101,4 @@ Clients ledger is stored at: "~/.nym/gateways/supergateway/data/client_ledger.sl
  > Finished nym gateway startup procedure - it should now be able to receive mix and client traffic!
 ```
 
+We are currently running only one gateway, and it's going to become a bottleneck in the network. If you are interested in running a gateway for the network, please let us know. 
