@@ -18,15 +18,15 @@ Many existing wallets are able to use the SOCKS5 proxy protocol. Let's see how w
 
 After building the Nym platform code, initialize the SOCKS5 proxy:
 
-`./target/release/nym-socks5-client init --id alice --provider XXXXXXXXXXXXXX`
+`./target/release/nym-socks5-client init --id alice --provider C7cown6dYCLZpLiMFC1PaBmhvLvmJmLDJGeRTbPD45bX.CRNfBGFApq1pobU72fUwym6RCucdaudJ2H2rPWJqPPAB@D6YaMzLSY7mANtSQRKXsmMZpqgqiVkeiagKM4V4oFPFr`. 
 
-The `--provider` field needs to be filled with the Nym address of a SphinxSocks provider that can make network requests on your behalf. The client will suggest some choices for you when you run `init`.
+The `--provider` field needs to be filled with the Nym address of a SphinxSocks provider that can make network requests on your behalf. The one above is the inital Nym one, but you can run your own if you want.
 
-Then run it:
+Then run the socks5 proxy locally:
 
 `./target/release/nym-socks5-client run --id alice`
 
-This will start up a SOCKS5 proxy on your local machine, at `localhost:1080`. Now you can point your wallet at it. Here's how.
+This will start up a SOCKS5 proxy on your local machine, at `localhost:1080`. Now you can point a wallet at it. Here's how.
 
 
 ## Blockstream Green example
