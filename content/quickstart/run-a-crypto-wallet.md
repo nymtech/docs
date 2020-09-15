@@ -18,13 +18,13 @@ Many existing wallets are able to use the SOCKS5 proxy protocol. Let's see how w
 
 After building the Nym platform code, initialize the SOCKS5 proxy:
 
-`./target/release/nym-socks5-client init --id alice --provider C7cown6dYCLZpLiMFC1PaBmhvLvmJmLDJGeRTbPD45bX.CRNfBGFApq1pobU72fUwym6RCucdaudJ2H2rPWJqPPAB@D6YaMzLSY7mANtSQRKXsmMZpqgqiVkeiagKM4V4oFPFr`. 
+`./target/release/nym-socks5-client init --id nym-testnet-sphinx-socks --provider C7cown6dYCLZpLiMFC1PaBmhvLvmJmLDJGeRTbPD45bX.CRNfBGFApq1pobU72fUwym6RCucdaudJ2H2rPWJqPPAB@D6YaMzLSY7mANtSQRKXsmMZpqgqiVkeiagKM4V4oFPFr --gateway D6YaMzLSY7mANtSQRKXsmMZpqgqiVkeiagKM4V4oFPFr`. 
 
 The `--provider` field needs to be filled with the Nym address of a SphinxSocks provider that can make network requests on your behalf. The one above is the inital Nym one, but you can run your own if you want.
 
 Then run the socks5 proxy locally:
 
-`./target/release/nym-socks5-client run --id alice`
+`./target/release/nym-socks5-client run --id nym-testnet-sphinx-socks`
 
 This will start up a SOCKS5 proxy on your local machine, at `localhost:1080`. Now you can point a wallet at it. Here's how.
 
@@ -49,3 +49,7 @@ Once you start using the proxy, your wallet traffic will be sliced up into Sphin
 At the moment, we are only supporting Green and Electrum requests through the SphinxSocks proxy, because we don't want to run an open proxy which can easily be abused. 
 
 We will be adding support for additional wallets very quickly over the coming days and weeks. If you want to help us do that, follow the [SphinxSocks quickstart](/docs/quickstart/sphinx-socks).
+
+## KeyBase
+
+We have just added experimental support for KeyBase (which we use for our own internal chat). Feel free to try that out and say hello!
