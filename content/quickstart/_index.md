@@ -31,13 +31,13 @@ To download and build:
 git clone https://github.com/nymtech/nym.git
 cd nym
 git pull # in case you've checked it out before
-git checkout tags/v0.8.0 # <-- **VERY IMPORTANT**
+git checkout tags/v0.8.1 # <-- **VERY IMPORTANT**
 cargo build --release
 ```
 
-**Upgrade note:** If you are upgrading to 0.8.0 from an earlier release, you will need to [re-initialize your mixnode](/docs/quickstart/run-a-mixnode), and any old clients you have, as the config file formats have changed significantly between releases.
+**Upgrade note:** If you are upgrading to 0.8.1 from a 0.7.0 or earlier release, you will need to [re-initialize your mixnode](/docs/quickstart/run-a-mixnode), and any old clients you have, as the config file formats have changed significantly between releases.
 
-**Note:** the default branch you'll clone from Github, `develop`, is guaranteed to be broken and incompatible with the running testnet at all times. You **must** `git checkout tags/v0.8.0` in order to join the testnet.
+**Note:** the default branch you'll clone from Github, `develop`, is guaranteed to be broken and incompatible with the running testnet at all times. You **must** `git checkout tags/v0.8.1` in order to join the testnet.
 
 The above commands will compile into the `target/release` directory.
 

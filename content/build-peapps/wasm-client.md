@@ -6,12 +6,6 @@ description: "How to integrate the Nym webassembly client into your own applicat
 
 The Nym webassembly client allows any webassembly-capable runtime to build and send Sphinx packets to the Nym network. 
 
-
-{{% notice warning %}}
-The WebAssembly client is **currently being worked on** - it is not yet compatible with v0.8.0 of the Nym platform. We will have it ready very soon, as a point release (**v0.8.1**).
-{{% /notice %}}
-
-
 You can install [@nymproject/nym-client-wasm](https://www.npmjs.com/package/@nymproject/nym-client-wasm) from NPM from its package page, or 
 
 ```
@@ -83,7 +77,7 @@ client.formatAsRecipient();
 
 ### SURBs
 
-Anonymous replies using surbs don't yet work in the webassembly client. They should be available in the next release (0.8.0).
+Anonymous replies using surbs don't yet work in the webassembly client. They should be available in the next release (0.9.0).
 
 ### JSON
 

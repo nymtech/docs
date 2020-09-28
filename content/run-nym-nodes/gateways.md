@@ -12,7 +12,9 @@ The Nym gateway was built in the [quickstart](/docs/quickstart). If you haven't 
 
 Gateways provide a destination for mixnet packets. Most of the internet doesn't use encrypted Sphinx packets, so the gateway acts as a destination, sort of like a mailbox, for messages.
 
-Peaps connect to gateways. Messages are automatically piped to connected clients and deleted from the gateway's disk storage. If a Peap client is offline when a message arrives, it will be stored for later retrieval. When the client connects, all messages will be delivered, and deleted from the gateway's disk. In release 0.8.0 we have now added end-to-end encryption, so gateways cannot see what they're storing for their users.
+If you would like to run a gateway for the network, please contact us.
+
+Peaps connect to gateways. Messages are automatically piped to connected clients and deleted from the gateway's disk storage. If a Peap client is offline when a message arrives, it will be stored for later retrieval. When the client connects, all messages will be delivered, and deleted from the gateway's disk. As of release 0.8.x we have now added end-to-end encryption, so gateways cannot see what they're storing for their users.
 
 When it starts up, a Peap's client registers itself with a gateway, and the gateway returns an access token. The access token plus the gateway's IP can then be used as a form of addressing for delivering packets.
 
@@ -34,7 +36,7 @@ $ ./target/release/nym-gateway
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (gateway - version 0.8.0)
+             (gateway - version 0.8.1)
 
     
 usage: --help to see available options.
@@ -74,7 +76,7 @@ Results in:
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (gateway - version 0.8.0)
+             (gateway - version 0.8.1)
 
     
 Starting gateway supergateway...
