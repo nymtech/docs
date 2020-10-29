@@ -26,7 +26,7 @@ nym$ target/release/nym-mixnode
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.8.1)
+             (mixnode - version 0.8.0)
 
     usage: --help to see available options.
 ```
@@ -47,6 +47,7 @@ The `init` command saves a configuration file to disk. You **must** supply 3 par
 
 1. `--id` a name for this mixnode (determines where the config file will be saved, keep it to one word)
 1. `--host` needs to be an IPv4 or IPv6 address. If you're planning to join the testnet, you'll need to make sure this address is routable from the open internet. Hostnames also work but they need to be resolvable at the time you `init`. 
+1. `--layer` needs to be an integer (1, 2, or 3) to assign the mixnode to a layer in the network topology. This option will go away in a few weeks, as we're working on having the system assign layer automatically according to need.
 
 If you'd like, you can add in: 
 
@@ -54,12 +55,12 @@ If you'd like, you can add in:
 
 Example: 
 
-`target/release/nym-mixnode init --id winston-smithnode --host 91.236.6.149 --location London`
+`target/release/nym-mixnode init --id winston-smithnode --host 91.236.6.149 --layer 1 --location London`
 
 Results in:
 
 ```
-nym$ target/release/nym-mixnode init --id winston-smithnode --host 91.236.6.149 --location London
+nym$ target/release/nym-mixnode init --id winston-smithnode --host 91.236.6.149 --layer 1 --location London
 
 
       _ __  _   _ _ __ ___
@@ -68,7 +69,7 @@ nym$ target/release/nym-mixnode init --id winston-smithnode --host 91.236.6.149 
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.8.1)
+             (mixnode - version 0.8.0)
 
     
 Initialising mixnode winston-smithnode...
@@ -104,7 +105,7 @@ nym$  ./target/release/nym-mixnode run --id winston-smithnode
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.8.1)
+             (mixnode - version 0.8.0)
 
 
 Starting mixnode...
@@ -139,6 +140,10 @@ Trying `nym-mixnode init --host 36.68.243.18 --layer 1`, you'll get back a start
 The right thing to do in this situation is `nym-mixnode init --host 10.126.5.7 --announce-host 36.68.243.18 --layer 1`.
 
 This will bind the mixnode to the available host `10.126.5.7`, but announce the mixnode's public IP to the directory server as `36.68.243.18`. It's up to you as a node operator to ensure that your public and private IPs match up properly.
+
+#### What layer should I use?
+
+We are running a mixnet that's 3 layers deep for our testnet. Have a look at the [Nym testnet dashboard](https://dashboard.nymtech.net) and slot yourself into layer 1, 2, or 3. 
 
 We are currently working to eliminate the need for you to choose a layer - the system itself will soon do the job automatically.
 

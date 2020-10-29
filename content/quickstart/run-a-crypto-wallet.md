@@ -18,7 +18,7 @@ Many existing wallets are able to use the SOCKS5 proxy protocol. Let's see how w
 
 After building the Nym platform code, initialize the SOCKS5 proxy:
 
-`./target/release/nym-socks5-client init --id nym-testnet-sphinx-socks --provider C7cown6dYCLZpLiMFC1PaBmhvLvmJmLDJGeRTbPD45bX.CRNfBGFApq1pobU72fUwym6RCucdaudJ2H2rPWJqPPAB@D6YaMzLSY7mANtSQRKXsmMZpqgqiVkeiagKM4V4oFPFr`. 
+`./target/release/nym-socks5-client init --id nym-testnet-sphinx-socks --provider C7cown6dYCLZpLiMFC1PaBmhvLvmJmLDJGeRTbPD45bX.CRNfBGFApq1pobU72fUwym6RCucdaudJ2H2rPWJqPPAB@D6YaMzLSY7mANtSQRKXsmMZpqgqiVkeiagKM4V4oFPFr --gateway D6YaMzLSY7mANtSQRKXsmMZpqgqiVkeiagKM4V4oFPFr`. 
 
 The `--provider` field needs to be filled with the Nym address of a SphinxSocks provider that can make network requests on your behalf. The one above is the inital Nym one, but you can run your own if you want.
 

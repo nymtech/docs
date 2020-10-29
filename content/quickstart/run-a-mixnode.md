@@ -15,7 +15,7 @@ Copy the `nym-mixnode` binary from the `target/release` directory up to your ser
 Initialize a mixnode:
 
 ```shell
-nym-mixnode init --id winston-smithnode --host 167.70.75.75 --location YourCity
+nym-mixnode init --id winston-smithnode --host 167.70.75.75 --layer 1 --location YourCity
 ```
 
 The `--location` flag is optional but helps us debug the testnet. 
@@ -35,7 +35,7 @@ You should see a nice clean startup:
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.8.1)
+             (mixnode - version 0.8.0)
 
     
 Starting mixnode winston-smithnode...
