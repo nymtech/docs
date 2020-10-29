@@ -1,4 +1,3 @@
-# HELLO DAVE !! :p 
 # Nym Documentation
 
 Documentation for the Nym privacy platform v0.8.1. Docs can be viewed at https://nymtech.net/docs.
