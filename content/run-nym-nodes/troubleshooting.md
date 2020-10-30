@@ -1,6 +1,6 @@
 ---
 title: "Troubleshooting FAQ"
-weight: 30
+weight: 40
 description: "This page will help you find answers to common issues with setting up and maintaining mixnodes"
 ---
 
