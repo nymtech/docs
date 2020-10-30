@@ -5,10 +5,6 @@ description: "This page will help you find answers to common issues with setting
 ---
 
 
-
-
-
-
 {{< table_of_contents >}}
 
 ## How to install a mixnode?
@@ -16,12 +12,11 @@ There are multiple ways on how to install a mixnode. Depending on your experienc
 
 ### Build Nym from source
 
-For a bit more advanced users, who want to compile all Nym binaries themselves or just want to get a specific precompiled one from the official Github repository go to [Quickstart](https://nymtech.net/docs/quickstart/). 
+For a bit more advanced users, who want to compile all Nym binaries themselves or just want to get a specific pre-compiled one from the official Github repository go to [Quickstart](https://nymtech.net/docs/quickstart/). 
 
 ### Installer script
 
-This community script created by [@hansbricks](https://github.com/gyrusdentatus) installs all dependencies, downloads Nym-mixnode binaries, prompts user for the input for the mixnode configuration
-, creates a systemd.service file based on the user input, enables ufw and nym-mixnode.service and then launches the node.
+This community script created by [@hansbricks](https://github.com/gyrusdentatus) installs all dependencies, downloads Nym-mixnode binaries, prompts user for the input for the mixnode configuration, creates a systemd.service file based on the user input, enables ufw and nym-mixnode.service and then launches the node.
 Nym-mixnode is being launched by systemctl with a newly created user *nym* from */home/nym/* directory. 
 
 More info [here](https://github.com/gyrusdentatus/nym_autoinstall)
@@ -31,8 +26,6 @@ More info [here](https://github.com/gyrusdentatus/nym_autoinstall)
 We currently do not have an official Docker image, although there exist at least two community images. Decide for yourself whichever suits your needs better. 
 
 - Unofficial minimal image created by [@snekone](https://github.com/snek). You can get it from [Dockerhub](https://hub.docker.com/r/snekone/nym-mixnode-docker). Visit the page to see full documentation. 
-
-
 
 
 ## How can I tell my node is up and running and mixing traffic?
@@ -53,9 +46,9 @@ There are multiple ways how to do that.
 -  ``` telnet <IP ADDRESS> 1789<OR OTHER PORT> ```
 -  ``` nmap -p 1789 <IP ADDRESS> -Pn ```
 
-This won't tell you much but as long as your telnet connetion does not hang on "**Trying ...**" it should mean your mixnode is accessible from the outside.
+This won't tell you much but as long as your telnet connection does not hang on "**Trying ...**" it should mean your mixnode is accessible from the outside.
 
-This is how an output from above **nmap** command should look like if your mixnode is configured properly :
+This is how an output from above **nmap** command should look like if your mixnode is configured properly:
 
 ```
 hans@desktop:~$ nmap -p 1789 95.296.134.220 -Pn
@@ -88,28 +81,31 @@ or get your pub key if you know your ip
 
 
 
-## Why is my node not mixing any packets & Setting up the firewall
+## Why is my node not mixing any packets? Setting up the firewall
 
 If you are unable to see your node on the [dashboard](dashboard.nymtech.net) or with other above mentioned ways to check up on your node then it is usually quite simple and straightforward to solve this issue.
+
 The most probable reason being :
+
 * Firewall on your host machine is not configured.
-* Not using *--anounce-host* flag while running mixnode from your local machine behind NAT.
+* Not using *--announce-host* flag while running mixnode from your local machine behind NAT. This is quite important if you are using Amazon or Google virtual servers, the machine IP and public IP will be different. Check your hosting console for the correct `--announce-host`
 * You did not configure your router firewall while running the mixnode from your local machine behind NAT or you are lacking IPv6 support. Your mixnode **must speak both IPv4 and IPv6**. You will need to cooperate with other nodes in order to route traffic.
 * Mixnode is not running at all, it either exited or you closed the session without making the node persistent.
 
 **Check your firewall settings on your host machine. Easiest way on your VPS is to use ```ufw``` 
- On some systems, like Debian 10 server, ```ufw``` is not installed by default**
+
+On some systems, like Debian 10 server, ```ufw``` is not installed by default**
+
 - as a root user on Debian 10 install ufw - ```apt install ufw -y ``` 
 - On Ubuntu, first check if your ufw is enabled - ```ufw status ```
 -  ``` ufw allow 1789/tcp && ufw allow 22/tcp && ufw enable ```  - > This will allow port 1789 for the mixnode, 22 for ssh and then enables the firewall. Your node should work right after that.
 **Note**: You need to add ```sudo ``` before each ```ufw ``` command if you're not a root user. ```sudo ufw allow 1789/tcp ```. The ```&&``` symbols are used to chain together commands in Linux. 
-- The installer script takes care of the firewall settings, so if you are not sure what you're doing then simply use the install script mentioned in the first section about installation. 
-
+- The installer script takes care of the firewall settings, so if you are not sure what you're doing then simply use the install script mentioned in the first section about installation.
 
 
 ## How can I make sure my node works from my local machine if I'm behind NAT and have no fixed IP address ?
 
-First of all, your ISP has to be IPv6 ready. Sadly, in 2020, most of them are not and you won't get an IPv6 address by default from your ISP. Usually it is a extra paid service or they simply don't offer it. 
+First of all, your ISP has to be IPv6 ready. Sadly, in 2020, many of them are not and you won't get an IPv6 address by default from your ISP. Usually it is a extra paid service or they simply don't offer it. 
 
 Before you begin, check if you have IPv6 [here](https://test-ipv6.cz/). If not, then don't waste your time to run a node which won't ever be able to mix any packet due to this limitation. Call your ISP and ask for IPv6, there is a plenty of it for everyone!
 
@@ -133,6 +129,7 @@ Make sure you check if your node is really mixing. You will need a bit of luck t
 ## Can I use a different port other than 1789 ?
 
 Yes! Here is what you will need.
+
 Let's say you would like to use port **1337** for your mixnode. 
 
 ### Configuring the firewall 
@@ -143,12 +140,13 @@ Let's say you would like to use port **1337** for your mixnode.
 
 If you already have a config you created before and want to change the port, you need to stop your node if it's running and then edit your config file. 
 Assuming your node name is `nym`, the config file is located at `~/.nym/mixnodes/nym/config/config.toml`. 
+
 ```
 nano ~/.nym/mixnodes/nym/config/config.toml 
 ```
 You will need to edit two parts of the file. `announce_address` and `listening_address` in the config.toml file. Simply find these two parts, delete your former port `:1789` and append `:1337` after your IP address.
 
-To save the edit, press `CTRL+O` and then exit `CTRL+X`. Then run the node again. You should see if the mixnode is using the port you have changed in the config.toml file right after you run the node. 
+To save the edit, press `CTRL+O` and then exit `CTRL+X`. Then run the node again. You should see if the mixnode is using the port you have changed in the `config.toml` file right after you run the node. 
 
 Here is an example of a test run.
 
@@ -209,10 +207,10 @@ The directory structure looks as following:
 
 ```
 
-**Note:** If you `cat` the public_sphinx.pem key, the output will be different from the public key you will see on Nym [dashboard](dashboard.nymtech.net). Reason being `.pem` files are encoded in **base64**, however; on web they are in different encoding - **base58**. Don't be confused if your keys look different. They are the same keys, just with different encoding :). 
+**Note:** If you `cat` the `public_sphinx.pem` key, the output will be different from the public key you will see on Nym [dashboard](dashboard.nymtech.net). Reason being `.pem` files are encoded in **base64**, however; on web they are in different encoding - **base58**. Don't be confused if your keys look different. They are the same keys, just with different encoding :). 
 
 
-## I keep seeing ERROR or WARN messages in my node logs. Why is that ?
+## I keep seeing ERROR or WARN messages in my node logs. Why is that?
 
 We have seen quite a few errors from community members in our [Telegram help chat](https://t.me/nymchan_help_chat).
 
@@ -221,26 +219,25 @@ Most of them are benign. Usually you will encounter errors when your nodes tries
 As long as your node outputs `since startup mixed 1337 packets!` in your logs, you should be fine. If you want to be sure, check the Nym [dashboard](dashboard.nymtech.net) or see other ways on how to check if your node is really mixing, mentioned in section **How can I tell my node is up and running and mixing traffic?** in this wiki. 
 
 
-
-
 ## I compiled Nym from source. How do I make the mixnode run in the background?
 
-When you close current session, you kill the process and therefore the mixnode will stop. There are multiple ways on how to make it persistent even after exiting your ssh session. Tmux, screen for instance. 
+When you close current session, you kill the process and therefore the mixnode will stop. There are multiple ways on how to make it persistent even after exiting your ssh session. `tmux` or `screen` for instance. 
 
-Easy solution would be to use **nohup** -> ```nohup`./nym-mixnode run --id NYM & ``` where `--id NYM` is the id you set during the *init* command previously. 
+An easy solution would be to use **nohup** -> ```nohup`./nym-mixnode run --id NYM & ``` where `--id NYM` is the id you set during the *init* command previously. 
 
 **However**, the **most reliable** and **elegant solution** is to create a **systemd.service** file and run the nym-mixnode with `systemctl` command.
 
 Credits to [ststefa](https://github.com/ststefa) for writing this file. 
 
 Create a file with nano and copy there following. 
-**IMPORTANT:** You need to write there your node id which you set up in the init/config earlier, else it won't work!
-At line ExecStart, rewrite the --id SOMENAME with exactly the same name as you used for the config.
+
+**IMPORTANT:** You need to provide the node id which you set up in the init/config earlier, or else it won't work!
+
+At line `ExecStart`, rewrite the `--id SOMENAME` with exactly the same name as you used for the config.
 
 ``` sudo nano /etc/systemd/system/nym-mixnode.service ```
 
-Copy there this and change the id name 
-
+Copy this configuration and make sure to change the `id` name 
 
 ```
 [Unit]
@@ -258,7 +255,7 @@ Restart=on-abort
 WantedBy=multi-user.target
 ```
 
-Now pres CTRL + O to write the file, hit enter. Then exit with CTRL + W.
+Now press CTRL + O to write the file, hit enter. Then exit with CTRL + W.
 
 ```sudo systemctl enable nym-mixnode ```
 
@@ -273,7 +270,6 @@ Now pres CTRL + O to write the file, hit enter. Then exit with CTRL + W.
 - Check if the service is running properly and mixnode is mixing. 
 
 Now your node should be mixing all the time unless you restart the server!
-
 
 ## Where can I get more help?
 
