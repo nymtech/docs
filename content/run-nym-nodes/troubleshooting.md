@@ -12,15 +12,15 @@ description: "This page will help you find answers to common issues with setting
 {{< table_of_contents >}}
 
 ## How to install a mixnode?
-There are multiple ways on how to install a mixnode. Depending on your experience or needs, you may choose either option. The easiest and fastest way is to use the installer script or Docker contaier if you know some Docker basics. 
+There are multiple ways on how to install a mixnode. Depending on your experience or needs, you may choose either option. The easiest and fastest way is to use the installer script or Docker container if you know some Docker basics. 
 
 ### Build Nym from source
 
-For a bit more advanced users, who want to compile all Nym binaries themselves or just want to get a specific precompiled one from the official Github repo go to [Quickstart](https://nymtech.net/docs/quickstart/). 
+For a bit more advanced users, who want to compile all Nym binaries themselves or just want to get a specific precompiled one from the official Github repository go to [Quickstart](https://nymtech.net/docs/quickstart/). 
 
 ### Installer script
 
-This community script created by [@hansbricks](https://github.com/gyrusdentatus) installs all dependencies, downloads Nym-mixnode binaries, promts user for the input for the mixnode configuration
+This community script created by [@hansbricks](https://github.com/gyrusdentatus) installs all dependencies, downloads Nym-mixnode binaries, prompts user for the input for the mixnode configuration
 , creates a systemd.service file based on the user input, enables ufw and nym-mixnode.service and then launches the node.
 Nym-mixnode is being launched by systemctl with a newly created user *nym* from */home/nym/* directory. 
 
@@ -33,7 +33,7 @@ We currently do not have an official Docker image, although there exist at least
 - Unofficial minimal image created by [@snekone](https://github.com/snek). You can get it from [Dockerhub](https://hub.docker.com/r/snekone/nym-mixnode-docker). Visit the page to see full documentation. 
 
 
-<a name="ismixing" />
+
 
 ## How can I tell my node is up and running and mixing traffic?
 
@@ -123,7 +123,7 @@ Here is a sample of the `init` command to create the mixnode config.
 ./target/release/nym-mixnode init --id nym-nat --host 0.0.0.0 --announce-host 85.160.12.13 --layer 3 --location Mars 
 ```
 
-- `--host 0.0.0.0` should work everytime even if your local machine IPv4 address changes. For example on Monday your router gives your machine an address `192.168.0.13` and on Wednesday, the DHCP lease will end and you will be asigned `192.168.0.14`. Using `0.0.0.0` should avoid this without having to set any static ip in your router`s configuration.
+- `--host 0.0.0.0` should work every time even if your local machine IPv4 address changes. For example on Monday your router gives your machine an address `192.168.0.13` and on Wednesday, the DHCP lease will end and you will be asigned `192.168.0.14`. Using `0.0.0.0` should avoid this without having to set any static ip in your router`s configuration.
 - you can get your current IPv4 address by either using `curl ipinfo.io` if you're on MacOS or Linux or visiting [whatsmyip site](https://www.whatsmyip.org/). Simply copy it and use it as `--anounce-host` address.
 
 Make sure you check if your node is really mixing. You will need a bit of luck to set this up from your home behind NAT. 
@@ -150,10 +150,10 @@ You will need to edit two parts of the file. `announce_address` and `listening_a
 
 To save the edit, press `CTRL+O` and then exit `CTRL+X`. Then run the node again. You should see if the mixnode is using the port you have changed in the config.toml file right after you run the node. 
 
-Here is an example of my test run.
+Here is an example of a test run.
 
 ```
-hans@desktop:~/.nym/mixnodes/nym-nat/config$ ~/nym/target/release/./nym-mixnode run --id 1337
+user@desktop:~/.nym/mixnodes/nym-nat/config$ ~/nym/target/release/./nym-mixnode run --id 1337
 
 
       _ __  _   _ _ __ ___
@@ -193,13 +193,12 @@ Depending on how you installed Nym, the files will be stored here:
 
 1. Autoinstaller - `/home/nym/.nym/mixnodes/<YOURNODEID>`
 2. Built from source as your user or root - `~/.nym/mixnodes/<YOURNODEID>`
-3. Docker - .... *to be discussed tomorrow during the meeting*
+3. Docker – see the documentation of your Docker image for further info. 
 
 The directory structure looks as following:
 
 ```
-hans@desktop:~/.nym/mixnodes/nym-nat/config$ tree ../
-../
+/.nym/mixnodes/<YOUR-ID>/
 ├── config
 │   └── config.toml
 └── data
@@ -215,9 +214,9 @@ hans@desktop:~/.nym/mixnodes/nym-nat/config$ tree ../
 
 ## I keep seeing ERROR or WARN messages in my node logs. Why is that ?
 
-I have seen quite a few errors from community members in our [Telegram help chat](https://t.me/nymchan_help_chat).
+We have seen quite a few errors from community members in our [Telegram help chat](https://t.me/nymchan_help_chat).
 
-Most of them are benign. Usually you will encounter errors when your nodes tries to estabilish a connection with a "dead" node, that is misconfigured(most likely its firewall is).
+Most of them are benign. Usually you will encounter errors when your nodes tries to establish a connection with a "dead" node, that is misconfigured(most likely its firewall is).
 
 As long as your node outputs `since startup mixed 1337 packets!` in your logs, you should be fine. If you want to be sure, check the Nym [dashboard](dashboard.nymtech.net) or see other ways on how to check if your node is really mixing, mentioned in section **How can I tell my node is up and running and mixing traffic?** in this wiki. 
 
@@ -235,7 +234,7 @@ Easy solution would be to use **nohup** -> ```nohup`./nym-mixnode run --id NYM &
 Credits to [ststefa](https://github.com/ststefa) for writing this file. 
 
 Create a file with nano and copy there following. 
-**IMPORTANT:** You need to write there your node id which you set up in the config earlier, else it won't work!
+**IMPORTANT:** You need to write there your node id which you set up in the init/config earlier, else it won't work!
 At line ExecStart, rewrite the --id SOMENAME with exactly the same name as you used for the config.
 
 ``` sudo nano /etc/systemd/system/nym-mixnode.service ```
