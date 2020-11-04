@@ -19,7 +19,7 @@ Nym is relatively simple to build and run on Mac OS X, Linux, and Windows.
 Windows support should be considered experimental. Windows currently works fine if you're a Peap developer but isn't recommended for running nodes.
 
 * on Debian/Ubuntu: `sudo apt install pkg-config build-essential libssl-dev`. 
-* Rust **1.42 or later**, with `cargo`. Stable works. 
+* Rust **1.45 or later**, with `cargo`. Stable works. 
 
 We recommend using the [Rust shell script installer](https://www.rust-lang.org/tools/install). Installing cargo from your package manager (e.g. `apt`) is not recommended as the packaged versions are usually too old.
 
@@ -28,6 +28,7 @@ If you really don't want to use the shell script installer, the [Rust installati
 To download and build:
 
 ```shell
+rustup update
 git clone https://github.com/nymtech/nym.git
 cd nym
 git pull # in case you've checked it out before
