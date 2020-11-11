@@ -22,7 +22,7 @@ If you have already been running a node on the Nym network v0.8.1, you can use t
 nym-mixnode upgrade --id your-node-id --current-version 0.8.1
 ```
 
-If you are participating in the Nym incentives program, you can enter your Liquid or Nymph address during `upgrade` by using the `--incentives flag`:
+If you are participating in the Nym incentives program, you can enter your Liquid or Ether address to receive your NYMPH tokens during `upgrade` by using the `--incentives flag`:
 
 ```shell
 nym-mixnode upgrade --id your-node-id --current-version 0.8.1 --incentives-address YOURADDRESSHERE
