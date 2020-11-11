@@ -4,119 +4,108 @@ weight: 30
 description: "Mixnodes accept Sphinx packets, shuffle packets together, and forward them onwards, providing strong anonymity for internet users."
 ---
 
-### Mixnodes
 
 {{% notice info %}}
-The Nym Mixnodes were built in the [Quickstart](../../quickstart). If you haven't yet built Nym and want to run the code, go there first.
+The Nym mixnode was built in the [building nym](/docs/build-nym) section. If you haven't yet built Nym and want to run the code, go there first.
 {{% /notice %}}
 
-You can run the mixnode from the `nym` top-level directory like this:
+Once you've built the code, and want to join the Nym testnet as a mixnode, you can do it quite easily. 
 
-`target/release/nym-mixnode`
+Copy the `nym-mixnode` binary from the `target/release` directory up to your server.
 
-You should get a welcome message:
+
+### Upgrading from an earlier version
+
+If you have already been running a node on the Nym network v0.8.1, you can use the `upgrade` command to upgrade your configs in place. 
+
+```
+nym-mixnode upgrade --id your-node-id --current-version 0.8.1
+```
+
+If you are participating in the Nym incentives program, you can enter your Liquid or Nymph address during `init` by using the `--incentives flag`:
 
 ```shell
-nym$ target/release/nym-mixnode
+nym-mixnode upgrade --id your-node-id --current-version 0.8.1 --incentives-address YOURADDRESSHERE
+```
 
 
-      _ __  _   _ _ __ ___
+### Initialize a mixnode
+
+If you are new to Nym, here's how you initialize a mixnode:
+
+```shell
+nym-mixnode init --id winston-smithnode --host $(curl ifconfig.me) --location YourCity
+```
+
+
+To participate in the Nym testnet, `--host` must be publicly routable on the internet. It can be either an Ipv4 or IPv6 address. Your node *must* be able to send TCP data using *both* IPv4 and IPv6 (as other nodes you talk to will use either protocol). 
+
+The `--location` flag is optional but helps us debug the testnet. 
+
+You can pick any `--id` you want.
+
+When you run `init`, configuration files are created at `~/.nym/mixnodes/<your-id>/`. 
+
+The `init` command will refuse to destroy existing mixnode keys.
+
+If you are participating in the Nym incentives program, you can enter your Liquid, Nymph, or Bitcoin payment address during `init` by using the `--incentives flag`:
+
+```shell
+nym-mixnode init --id winston-smithnode --host $(curl ifconfig.me) --location YourCity --incentives-address YOURADDRESSHERE
+```
+
+### Run the mixnode
+
+`nym-mixnode run --id winston-smithnode`
+
+
+You should see a nice clean startup: 
+
+```
      | '_ \| | | | '_ \ _ \
      | | | | |_| | | | | | |
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.8.1)
-
-    usage: --help to see available options.
-```
-
-Mixnodes accept Sphinx packets, shuffle packets together, and forward them onwards.
-
-On receipt of a packet, the mixnode unwraps a layer of Sphinx encryption and assigns a delay timer based on information inside the unwrapped packet header. When the timer expires, the node forwards the packet payload (which is another Sphinx packet) to its next destination based on the routing information in the packet header. The process repeats, with layer-encrypted Sphinx packets being progressively unwrapped and forwarded, until the packet gets to its destination. The shuffling together of lots of packets within the nodes is what provides privacy to users.
-
-Routing and delay information is chosen by the client, rather than by mixnodes.
-
-#### Seeing available options
-
-`target/release/nym-mixnode --help` provides a list of available commands. You can always see help info for a given subcommand by doing `target/release/nym-mixnode <commandname> --help`
-
-#### Init the mixnode config
-
-The `init` command saves a configuration file to disk. You **must** supply 3 parameters: 
-
-1. `--id` a name for this mixnode (determines where the config file will be saved, keep it to one word)
-1. `--host` needs to be an IPv4 or IPv6 address. If you're planning to join the testnet, you'll need to make sure this address is routable from the open internet. Hostnames also work but they need to be resolvable at the time you `init`. 
-
-If you'd like, you can add in: 
-
-1. `--location` an OPTIONAL parameter that tells us where your node is located. Helpful for tracking distances between nodes, which can tell us a bit about latency and help with debugging.
-
-Example: 
-
-`target/release/nym-mixnode init --id winston-smithnode --host 91.236.6.149 --location London`
-
-Results in:
-
-```
-nym$ target/release/nym-mixnode init --id winston-smithnode --host 91.236.6.149 --location London
-
-
-      _ __  _   _ _ __ ___
-     | '_ \| | | | '_ \ _ \
-     | | | | |_| | | | | | |
-     |_| |_|\__, |_| |_| |_|
-            |___/
-
-             (mixnode - version 0.8.1)
+             (mixnode - version 0.9.0)
 
     
-Initialising mixnode winston-smithnode...
- 2020-03-20T11:19:41.721 INFO  pemstore::pemstore > Written private key to "~/.nym/mixnodes/winston-smithnode/data/private_sphinx.pem"
- 2020-03-20T11:19:41.721 INFO  pemstore::pemstore > Written public key to "~/.nym/mixnodes/winston-smithnode/data/public_sphinx.pem"
-Saved mixnet sphinx keypair
-Saved configuration file to "~/.nym/mixnodes/winston-smithnode/config/config.toml"
-Mixnode configuration completed.
+Starting mixnode winston-smithnode...
+
+Directory server [presence]: https://testnet-validator1.nymtech.net
+Directory server [metrics]: https://metrics.nymtech.net
+Listening for incoming packets on 167.70.75.75:1789
+Announcing the following socket address: 167.70.75.75:1789
+Public key: HHWAJ1zwpbb1uPLCvoTCUrtyUEuW9KKbUUnz3EUF1Xd9
+
+ 2020-05-05T16:01:07.802 INFO  nym_mixnode::node > Starting nym mixnode
+ 2020-05-05T16:01:08.135 INFO  nym_mixnode::node > Starting packet forwarder...
+ 2020-05-05T16:01:08.136 INFO  nym_mixnode::node > Starting metrics reporter...
+ 2020-05-05T16:01:08.136 INFO  nym_mixnode::node > Starting socket listener...
+ 2020-05-05T16:01:08.136 INFO  nym_mixnode::node > Starting presence notifier...
+ 2020-05-05T16:01:08.136 INFO  nym_mixnode::node > Finished nym mixnode startup procedure - it should now be able to receive mix traffic!
 ```
+
+If everything worked, you'll see your node running at https://explorer.nymtech.net. 
+
+Note that your node's public key is displayed during startup, you can use it to identify your node in the list.
+
+Keep reading to find our more about configuration options or troubleshooting if you're having issues. There are also some tips for running on AWS and other cloud providers, some of which require minor additional setup.
+
+{{% notice info %}}
+If you run into trouble, please ask for help in the channel **nymtech.friends#general** on [KeyBase](https://keybase.io).
+{{% /notice %}}
+
 
 Have a look at the saved configuration files to see more configuration options.
 
-{{% notice info %}}
-You'll see a startup warning whenever you bind to your loopback address, because you won't be routable for clients out on the big internet.
-{{% /notice %}}
+### Checking that your node is mixing correctly
 
-However, if you are attempting to join the Nym testnet, your `--host` parameter *must* contain a publicly routable internet address.
+Once you've started your mixnode and it connects to the testnet directory server at https://testnet-validator1.nymtech.net, your node will automatically show up in the [Nym testnet explorer](https://explorer.nymtech.net).
 
-#### Running a single mixnode
+Once a minute, the Nym network will send two test packets through your node (one IPv4, one IPv6), to ensure that it's up and mixing. In the current version, this determines your node reputation over time (and if you're participating in the incentives program, it will set your node's reputation score). 
 
-The `target/release/nym-mixnode run` command runs a mixnode.
-
-Example: 
-
-`target/release/nym-mixnode run --id winston-smithnode`
-
-```shell
-nym$  ./target/release/nym-mixnode run --id winston-smithnode
-
-      _ __  _   _ _ __ ___
-     | '_ \| | | | '_ \ _ \
-     | | | | |_| | | | | | |
-     |_| |_|\__, |_| |_| |_|
-            |___/
-
-             (mixnode - version 0.8.1)
-
-
-Starting mixnode...
-
-Public key: rbl74MfQ-xVqtBIOq2coPGWxNztlqNDqP0R0kLB9p2g=
-Directory server: https://directory.nymtech.net
-Listening for incoming packets on 91.236.6.149:1789
-Announcing the following socket address: 91.236.6.149:1789
-```
-
-`./target/release/nym-mixnode help run` shows available options.
-
+If your node is not mixing correctly, you will notice that its status is not green. Ensure that your node handles both IPv4 and IPv6 traffic, and that its public `--host` is set correctly. If you're running on cloud infrastructure, you may need to explicitly set the `--announce-host` (see next section).
 
 #### Virtual IPs, Google, AWS, and all that
 
@@ -132,20 +121,35 @@ ens4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1460
 
 The `ens4` interface has the IP `10.126.5.7`. But this isn't the public IP of the machine, it's the IP of the machine on Google's internal network. Google uses virtual routing, so the public IP of this machine is something else, maybe `36.68.243.18`.
 
-`nym-mixnode init --host 10.126.5.7 --layer 1`, starts the mixnode, but no packets will be routed because `10.126.5.7` is not on the public internet.
+`nym-mixnode init --host 10.126.5.7`, inits the mixnode, but no packets will be routed because `10.126.5.7` is not on the public internet.
 
-Trying `nym-mixnode init --host 36.68.243.18 --layer 1`, you'll get back a startup error saying `AddrNotAvailable`. This is because the mixnode doesn't know how to bind to a host that's not in the output of `ifconfig`.
+Trying `nym-mixnode init --host 36.68.243.18`, you'll get back a startup error saying `AddrNotAvailable`. This is because the mixnode doesn't know how to bind to a host that's not in the output of `ifconfig`.
 
-The right thing to do in this situation is `nym-mixnode init --host 10.126.5.7 --announce-host 36.68.243.18 --layer 1`.
+The right thing to do in this situation is `nym-mixnode init --host 10.126.5.7 --announce-host 36.68.243.18`.
 
 This will bind the mixnode to the available host `10.126.5.7`, but announce the mixnode's public IP to the directory server as `36.68.243.18`. It's up to you as a node operator to ensure that your public and private IPs match up properly.
 
-We are currently working to eliminate the need for you to choose a layer - the system itself will soon do the job automatically.
+### Viewing command help
 
-#### IPv4 vs IPv6
+See all available options by running:
 
-If you're joining the testnet, your mixnode **must speak both IPv4 and IPv6**. You will need to cooperate with other nodes in order to route traffic.
+```
+nym-mixnode --help
+```
 
-#### Check the dashboard
+Subcommand help is also available, e.g.:
 
-Once you've started your mixnode and it connects to the testnet directory server at https://directory.nymtech.net, your node will automatically show up in the [Nym testnet dashboard](https://dashboard.nymtech.net).
+```
+nym-mixnode upgrade --help
+```
+
+### Mixnode Hardware Specs
+
+For the moment, we haven't put a great amount of effort into optimizing concurrency to increase throughput. So don't bother provisioning a beastly server with many cores. 
+
+* Processors: 2 cores are fine. Get the fastest CPUs you can afford. 
+* RAM: Memory requirements are very low - typically a mixnode may use only a few hundred MB of RAM. 
+* Disks: The mixnodes require no disk space beyond a few bytes for the configuration files
+
+This will change when we get a chance to start doing performance optimizations in a more serious way. Sphinx packet decryption is CPU-bound, so once we optimise, more fast cores will be better.
+
