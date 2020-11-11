@@ -22,7 +22,7 @@ If you have already been running a node on the Nym network v0.8.1, you can use t
 nym-mixnode upgrade --id your-node-id --current-version 0.8.1
 ```
 
-If you are participating in the Nym incentives program, you can enter your Liquid or Ether address to receive your NYMPH tokens during `upgrade` by using the `--incentives flag`:
+If you are participating in the Nym incentives program, you can enter your Liquid or Ethereum address to receive your NYMPH tokens during `upgrade` by using the `--incentives flag`:
 
 ```shell
 nym-mixnode upgrade --id your-node-id --current-version 0.8.1 --incentives-address YOURADDRESSHERE
@@ -47,7 +47,7 @@ When you run `init`, configuration files are created at `~/.nym/mixnodes/<your-i
 
 The `init` command will refuse to destroy existing mixnode keys.
 
-If you are participating in the Nym incentives program, you can enter your Liquid, Nymph, or Bitcoin payment address during `init` by using the `--incentives flag`:
+If you are participating in the Nym incentives program, you can enter your Liquid or Ethereum address to receive your NYMPH tokens during `init` by using the `--incentives--address` flag:
 
 ```shell
 nym-mixnode init --id winston-smithnode --host $(curl ifconfig.me) --location YourCity --incentives-address YOURADDRESSHERE
