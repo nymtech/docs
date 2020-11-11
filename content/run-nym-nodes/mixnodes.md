@@ -37,8 +37,7 @@ If you are new to Nym, here's how you initialize a mixnode:
 nym-mixnode init --id winston-smithnode --host $(curl ifconfig.me) --location YourCity
 ```
 
-
-To participate in the Nym testnet, `--host` must be publicly routable on the internet. It can be either an Ipv4 or IPv6 address. Your node *must* be able to send TCP data using *both* IPv4 and IPv6 (as other nodes you talk to will use either protocol). 
+To participate in the Nym testnet, `--host` must be publicly routable on the internet. It can be either an Ipv4 or IPv6 address. Your node *must* be able to send TCP data using *both* IPv4 and IPv6 (as other nodes you talk to may use either protocol). The above command gets your IP automatically using an external service `$(curl ifconfig.me)`. Enter it manually if you don't have `curl` installed.
 
 The `--location` flag is optional but helps us debug the testnet. 
 
