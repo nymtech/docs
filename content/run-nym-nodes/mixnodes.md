@@ -9,16 +9,13 @@ description: "Mixnodes accept Sphinx packets, shuffle packets together, and forw
 The Nym mixnode was built in the [building nym](/docs/build-nym) section. If you haven't yet built Nym and want to run the code, go there first.
 {{% /notice %}}
 
-Once you've built the code, and want to join the Nym testnet as a mixnode, you can do it quite easily. 
-
-Copy the `nym-mixnode` binary from the `target/release` directory up to your server.
-
+To join the Nym testnet as a mixnode, copy the `nym-mixnode` binary from the `target/release` directory up to your server (or compile it on the server).
 
 ### Upgrading from an earlier version
 
 If you have already been running a node on the Nym network v0.8.1, you can use the `upgrade` command to upgrade your configs in place. 
 
-```
+```shell
 nym-mixnode upgrade --id your-node-id --current-version 0.8.1
 ```
 
@@ -85,7 +82,7 @@ Public key: HHWAJ1zwpbb1uPLCvoTCUrtyUEuW9KKbUUnz3EUF1Xd9
  2020-05-05T16:01:08.136 INFO  nym_mixnode::node > Finished nym mixnode startup procedure - it should now be able to receive mix traffic!
 ```
 
-If everything worked, you'll see your node running at https://explorer.nymtech.net. 
+If everything worked, you'll see your node running at https://testnet-explorer.nymtech.net. 
 
 Note that your node's public key is displayed during startup, you can use it to identify your node in the list.
 

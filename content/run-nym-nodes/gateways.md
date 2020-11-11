@@ -20,14 +20,14 @@ When it starts up, a client registers itself with a gateway, and the gateway ret
 
 The default gateway implementation included in the Nym platform code holds packets for later retrieval. For many applications (such as simple chat), this is usable out of the box, as it provides a place that potentially offline clients can retrieve packets from. The access token allows clients to pull messages from the gateway node.
 
-You can run the gateway from the top-level directory like this:
+You can run the gateway like this:
 
-`./target/release/nym-gateway`
+`nym-gateway`
 
 Output looks like this:
 
 ```shell
-$ ./target/release/nym-gateway
+$ ./nym-gateway
 
 
       _ __  _   _ _ __ ___
@@ -42,7 +42,7 @@ $ ./target/release/nym-gateway
 usage: --help to see available options.
 ```
 
-`./target/release/nym-gateway init --help` shows available configuration options
+`./nym-gateway init --help` shows available configuration options
 
 #### Initializing a gateway
 
@@ -54,7 +54,7 @@ The `init` command sets up the gateway. You **must** supply 3 parameters:
 
 Example:
 
-`./target/release/nym-gateway init --clients-host 82.32.45.6 --mix-host 82.32.45.6 --id supergateway` starts up a gateway node with default options, running on `82.32.45.6`. Note that you need to use an internet-addressable host ip. Gateways **must** also be capable of addressing IPv6. 
+`./nym-gateway init --clients-host 82.32.45.6 --mix-host 82.32.45.6 --id supergateway` starts up a gateway node with default options, running on `82.32.45.6`. Note that you need to use an internet-addressable host ip. Gateways **must** also be capable of addressing IPv6. 
 
 
 #### Running a gateway
@@ -63,7 +63,7 @@ The `run` command runs the gateway.
 
 Example:
 
-`./target/release/nym-gateway run --id supergateway`
+`./nym-gateway run --id supergateway`
 
 Results in: 
 

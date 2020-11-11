@@ -18,3 +18,4 @@ Nym has two main codebases:
 
 * the Nym platform ([build instructions](build-nym)), written in Rust. This contains all of our code _except_ for the validators. 
 * the Nym validators ([build instructions](validators)), written in Go.
+
