@@ -18,7 +18,7 @@ You can run the requester yourself, by taking the following steps.
 
 On your server, build Nym. Then run the following commands from the top-level `nym` directory:
 
-1. `target/release/nym-client init --gateway D6YaMzLSY7mANtSQRKXsmMZpqgqiVkeiagKM4V4oFPFr --id nym-network-requester-client`
+1. `target/release/nym-client init --gateway DiYR9o8KgeQ81woKPYVAu4LNaAEg8SWkiufDCahNnPov --id nym-network-requester-client`
 2. `target/release/nym-client run --id nym-network-requester-client`
 3. `target/release/nym-network-requester run`
 
@@ -27,7 +27,7 @@ This will start up a Nym client, and the nym-network-requester requester will at
 Make a note of the address of the client when it starts up:
 
 ```
- 2020-09-10T14:45:50.131 INFO  nym_client::client              > The address of this client is: EzvzfN4baf3ULUbAmExQELUWMQry7qqVDibSyekR31KE.4khUuTUyYTWiLki3SKbxeG2sP3mwgn9ykBhvtyaLfMdN@D6YaMzLSY7mANtSQRKXsmMZpqgqiVkeiagKM4V4oFPFr
+ 2020-09-10T14:45:50.131 INFO  nym_client::client              > The address of this client is: EzvzfN4baf3ULUbAmExQELUWMQry7qqVDibSyekR31KE.4khUuTUyYTWiLki3SKbxeG2sP3mwgn9ykBhvtyaLfMdN@DiYR9o8KgeQ81woKPYVAu4LNaAEg8SWkiufDCahNnPov
 ```
 
 Copy the whole address (format `xxx.yyy@zzz`) and keep it somewhere. You can use it yourself, give it to friends, or (if you would like to run a nym-network-requester for the whole Nym network) give it to us and we can put it in the Nym documentation.
@@ -40,23 +40,23 @@ If you want, you can just use the domains in the default `allowed.list`, by runn
 
 `cp service-providers/nym-network-requester/allowed.list.sample ~/.nym/service-providers/nym-network-requester/allowed.list`
 
-Those URLs will let through requests for the Blockstream Green and Electrum cryptocurrency wallets.
+Those URLs will let through requests for the Blockstream Green and Electrum cryptocurrency wallets, as well as the KeyBase chat client.
 
-**IMPORTANT: If you changed your allowed.list, make sure you restart nym-network-requester to pick up the new allowed request list.**
+**IMPORTANT: If you change your allowed.list, make sure you restart nym-network-requester to pick up the new allowed request list.**
 
 ## Adding URLs for other clients
 
-It would suck if Nym was restricted to only two clients. How can we add support for a new application? It's fairly easy to do. 
+It would suck if Nym was restricted to only three clients. How can we add support for a new application? It's fairly easy to do. 
 
 Have a look in your nym-network-requester config directory:
 
 ```
-ls $HOME/.nym/service-providers/sphinx-socks/
+ls $HOME/.nym/service-providers/network-requester/
 
 # returns: allowed.list  unknown.list
 ```
 
-We already know that `allowed.list` is what lets requests go through. All unknown requests are logged to `unknown.list`. If you want to try using a new client type, just start the new application, point it at your local SOCKS5 proxy (configured to use your remote nym-network-requester), and keep copying URLs from `unknown.list` into `allowed.list` (it may take multiple tries until you get all of them, depending on the complexity of the application). 
+We already know that `allowed.list` is what lets requests go through. All unknown requests are logged to `unknown.list`. If you want to try using a new client type, just start the new application, point it at your local SOCKS5 proxy (configured to use your remote `nym-network-requester`), and keep copying URLs from `unknown.list` into `allowed.list` (it may take multiple tries until you get all of them, depending on the complexity of the application). 
 
 If you add support for a new application, we'd love to hear about it: let us know or submit a commented pull request on `allowed.list.sample`
 

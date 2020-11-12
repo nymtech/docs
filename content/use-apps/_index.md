@@ -28,7 +28,7 @@ Note that the nym-network-requester we're running works only for specific applic
 
 After building the Nym platform code, initialize `nym-socks5-client`:
 
-`nym-socks5-client init --id my-socks5-client --provider C7cown6dYCLZpLiMFC1PaBmhvLvmJmLDJGeRTbPD45bX.CRNfBGFApq1pobU72fUwym6RCucdaudJ2H2rPWJqPPAB@D6YaMzLSY7mANtSQRKXsmMZpqgqiVkeiagKM4V4oFPFr`. 
+`nym-socks5-client init --id my-socks5-client --provider C7cown6dYCLZpLiMFC1PaBmhvLvmJmLDJGeRTbPD45bX.CRNfBGFApq1pobU72fUwym6RCucdaudJ2H2rPWJqPPAB@DiYR9o8KgeQ81woKPYVAu4LNaAEg8SWkiufDCahNnPov`. 
 
 The `--provider` field needs to be filled with the Nym address of a `nym-network-requester` that can make network requests on your behalf. The one above is the initial Nym one, but you can [run your own](/docs/run-nym-nodes/requester/) if you want.
 
