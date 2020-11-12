@@ -1,19 +1,19 @@
 ---
-title: "Native client"
+title: "Websocket client"
 weight: 40
-description: "How to run the Nym native network client on a desktop or server machine."
+description: "How to run the Nym websocket client on a desktop or server machine."
 ---
 
 {{% notice info %}}
-The Nym Native Client was built in the [quickstart](/docs/quickstart) section. If you haven't yet built Nym and want to run the code on this page, go there first.
+The Nym Websocket Client was built in the [building nym](/docs/build-nym) section. If you haven't yet built Nym and want to run the code on this page, go there first.
 {{% /notice %}}
 
-From inside the `nym` directory, the `nym-client` binary got built to the `./target/release/` directory. You can run it like this:
+From inside the `nym` directory, the `nym-client` binary got built to the `./target/release/` directory. You can run it like this (or add it to your $PATH):
 
-`./target/release/nym-client`
+`./nym-client`
 
 ```shell
-$ ./target/release/nym-client 
+$ ./nym-client 
 
 
       _ __  _   _ _ __ ___
@@ -22,7 +22,7 @@ $ ./target/release/nym-client
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.8.1)
+             (client - version 0.9.0)
 
     
 usage: --help to see available options.
@@ -36,12 +36,12 @@ There are two commands you can issue to the client.
 
 ## Initializing a new client instance
 
-Before you can use the client, you need to initialize a new instance of it. Each instance of the client has its own public/private keypair, and connects to its own gateway node. Taken together, these 3 things (public/private keypair + gateway node) make up a peap's identity.
+Before you can use the client, you need to initialize a new instance of it. Each instance of the client has its own public/private keypair, and connects to its own gateway node. Taken together, these 3 things (public/private keypair + gateway node) make up an app's identity.
 
-Initing a new client instance can be done with the following command:
+Initializing a new client instance can be done with the following command:
 
 ```shell
-./target/release/nym-client init --id alice
+./nym-client init --id alice
 ```
 
 When you initialize a client instance, a configuration directory will be generated and stored in `$HOME_DIR/.nym/clients/<client-name>/`. 
@@ -62,10 +62,10 @@ Have a look at the generated files if you'd like - they contain the client name,
 
 ## Running the native client
 
-You can run the client for user `alice` by doing this:
+You can run the `alice` client by doing this:
 
 ```shell
-./target/release/nym-client run --id alice
+./nym-client run --id alice
 ```
 
 When you run the client, it immediately starts generating (fake) cover traffic and sending it to the Nym testnet.
@@ -74,18 +74,17 @@ When you run the client, it immediately starts generating (fake) cover traffic a
 Congratulations, you have just contributed a tiny bit of privacy to the world! `<CTRL-C>` to stop the client.
 {{% /notice %}}
 
-When the client is first started, it will reach out to the Nym network's directory systems, and get a list of available Nym nodes (gateways, mixnodes, and validators). We call this list of nodes the network *topology*. The client does this so that it knows how to connect, register itself with the network, and know which mixnodes it can route Sphinx packets through.
+When the client is first started, it will reach out to the Nym network's validators, and get a list of available Nym nodes (gateways, mixnodes, and validators). We call this list of nodes the network *topology*. The client does this so that it knows how to connect, register itself with the network, and know which mixnodes it can route Sphinx packets through.
 
 Once the client has obtained the network topology, it automatically sends a registration request to one of the first available gateway. The gateway returns a unique authentication token that the client attaches to every subsequent request to the gateway.
 
 ### Connecting to the local websocket 
 
-The Nym native client exposes a websocket interface that your code connects to. To program your peap, choose a websocket library for whatever language you're using. The default websocket port is `1977`, you can override that in the client config if you want.
+The Nym native client exposes a websocket interface that your code connects to. To program your app, choose a websocket library for whatever language you're using. The default websocket port is `1977`, you can override that in the client config if you want.
 
 ## A simple example peap
 
-
-Let's write some code. Sometimes when you're learning something new it's easiest to see a short working example. Here's a simple peap written in Python. This example is packaged with the Nym platform, dig around in the `python-examples` directory inside `clients/native` 
+Let's write some code. Sometimes when you're learning something new it's easiest to see a short working example. Here's a simple app written in Python. This example is packaged with the Nym platform, dig around in the `python-examples` directory inside `clients/native` 
 
 ```python
 import asyncio
@@ -129,9 +128,9 @@ The Python code does the following.
 2. formats a message to send. Nym messages have defined JSON formats.
 3. sends the message into the websocket. The native client packages the message into a Sphinx packet and sends it to the mixnet
 4. waits for confirmation that the message hit the native client
-5. waits to receive messages from other Nym peaps
+5. waits to receive messages from other Nym apps
 
-By varying the message content, you can easily build sophisticated Service Provider peaps. For example, instead of `print("received {} from the mix network!".format(received_message))` your Service Provider might take some action on behalf of the user - perhaps initiating a network request, a blockchain transaction, or writing to a local data store. 
+By varying the message content, you can easily build sophisticated Service Provider apps. For example, instead of `print("received {} from the mix network!".format(received_message))` your Service Provider might take some action on behalf of the user - perhaps initiating a network request, a blockchain transaction, or writing to a local data store. 
 
 ## Message Types
 
@@ -224,7 +223,7 @@ In order to send binary messages, you format a 64-byte binary array, with the fi
 
 #### Receiving messages
 
-When another peap sends a message to you, all extraneous information is stripped and you just get the message. So if a peap sends the following message:
+When another peap sends a message to you, all extraneous information is stripped and you just get the message. So if an app sends the following message:
 
 ```json
 {
@@ -238,7 +237,7 @@ The receiving user will get only `2 + 2 = 4`.
 
 #### Getting your own address
 
-Sometimes, when you start your peap, it can be convenient to ask the native client to tell you what your own address is (from the saved configuration files). To do this, send:
+Sometimes, when you start your app, it can be convenient to ask the native client to tell you what your own address is (from the saved configuration files). To do this, send:
 
 ```json
 {
@@ -258,7 +257,7 @@ You'll get back:
 
 #### Error messages
 
-Errors from the peap's client, or from the gateway, will be sent down the websocket to your code in the following format:
+Errors from the app's client, or from the gateway, will be sent down the websocket to your code in the following format:
 
 
 ```json 

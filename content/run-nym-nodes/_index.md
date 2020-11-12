@@ -1,11 +1,21 @@
 ---
 title: "Run Nym Nodes"
-weight: 20
-description: "You can run Nym platform code to provide infrastructure for Privacy Enhanced Applications (peaps)"
+weight: 15
+description: "How to build the Nym platform. Nym is relatively simple to build and run on Mac OS X, Linux, and Windows."
 ---
 
-### Decentralized privacy infrastructure
+### Installing pre-built binaries
 
-Nym is a decentralised system that you can get involved with! We welcome people and organisations who want to run Nym platform infrastructure. 
+The Nym release page at [https://github.com/nymtech/nym/releases](https://github.com/nymtech/nym/releases) has pre-built binaries which should work on Ubuntu 20.04. These are not guaranteed to work on all systems.
 
-The following sections explain how you can run Nym mixnodes, validators, and gateways yourself, and join the network. 
+Later, when we're focused more on things like packaging, we will ensure that all components get built for all operating systems. 
+
+If the pre-built binaries don't work or are unavailable for your system, you will need to build the platform yourself.
+
+### Building Nym
+
+Nym has two main codebases:
+
+* the Nym platform ([build instructions](build-nym)), written in Rust. This contains all of our code _except_ for the validators. 
+* the Nym validators ([build instructions](validators)), written in Go.
+

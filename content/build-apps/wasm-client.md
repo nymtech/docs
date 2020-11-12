@@ -14,11 +14,11 @@ npm i @nymproject/nym-client-wasm
 
 The `nym-client-wasm` package allows easy creation of Sphinx packets from within mobile apps and browser-based client-side apps (including Electron or similar). Browser extensions should also work.
 
-As the [quickstart example](/docs/quickstart/send-some-packets) shows, it's possible to deliver web apps that build and send Sphinx packets in a solely in a web browser window. However, note that all the normal constraints of [browser-based key storage](https://pomcor.com/2017/06/02/keys-in-browser/) and same-origin rules (which are there for good reason) make it difficult to structure pure webapps apps securely. We are still assessing what can be done here, if anything.
+The webassembly client lets you deliver web apps that build and send Sphinx packets solely in a web browser window. However, note that all the normal constraints of [browser-based key storage](https://pomcor.com/2017/06/02/keys-in-browser/) and same-origin rules (which are there for good reason) make it difficult to structure pure webapps apps securely. We are still assessing what can be done here.
 
-## Building peaps with nym-client-wasm
+## Building apps with nym-client-wasm
 
-We've already looked that the basics of peap creation via the webassembly client in the [quickstart](/docs/quickstart/send-some-packets). 
+There are two example applications located in the directory `clients/webassembly` in the main Nym platform codebase. The `js-example` is a simple, bare-bones JavaScript app. The `react-example` is a nicer-looking chat app done in React and Typescript.
 
 ### Initializing a new Nym identity
 
@@ -39,9 +39,7 @@ let client = new Client(directoryUrl, identity, authToken);
 
 This returns a nym Client which connects to a Nym gateway via websocket. All communication with the Nym network happens through this client.
 
-The `directoryUrl` of the Nym testnet is `https://directory.nymtech.net`. Use that if you want to connect to the running testnet. 
-
-If you are [running a local network](/docs/build-peapps/running-localnet), use `http://127.0.0.1:8080` as your `directoryUrl`.
+The `directoryUrl` of the Nym testnet is `http://testnet-validator1.nymtech.net:8081`. Use that if you want to connect to the running testnet. 
 
 ### Running the Nym client
 
@@ -81,7 +79,7 @@ Anonymous replies using surbs don't yet work in the webassembly client. They sho
 
 ### JSON
 
-Sending JSON is fairly simple. If you're playing with the quickstart wasm example app, just stick it into the message box and send it (or send it programmatically as the `message` content of `client.sendMessage(message, recipient)` in your own application code.
+Sending JSON is fairly simple. If you're playing with the wasm example app, just stick it into the message box and send it (or send it programmatically as the `message` content of `client.sendMessage(message, recipient)` in your own application code.
 
 ### Think about what you're sending!
 

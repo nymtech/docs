@@ -12,7 +12,7 @@ The Nym platform knits together several privacy technologies, integrating them i
 
 At a high level, our technologies include:
 
-1. a privacy enhancing signature scheme called *Coconut*. Coconut allows a shift in thinking about resource access control, from a paradigm based on *who you are* to a privacy-preserving paradigm based on *right to use*. 
+1. a privacy enhancing signature scheme called *Coconut*. Coconut allows a shift in thinking about resource access control, from an identity-based paradigm based on *who you are* to a privacy-preserving paradigm based on *right to use*. 
 2. *Sphinx*, a way of transmitting armoured, layer-encrypted information packets which are indistinguishable from each other at a binary level.
 3. a *mixnet*, which encrypts and mixes Sphinx packet traffic so that it cannot be determined who is communicating with whom. Our mixnet is based on a modified version of the *Loopix* design.
 
@@ -26,6 +26,6 @@ Most comparable systems concentrate on only one of these layers at a time.
 
 For example, some blockchain-based systems contain zero knowledge proof systems that deal only with on-chain transaction privacy. This leaves network privacy as an exercise for the user. It's easy to get it wrong.
 
-Conversely, Tor deals only with network privacy, and has nothing built-in to help with access control privacy. If you include identifiable information in your Tor network requests (which can happen accidentally), the privacy protections are void.
+Conversely, Tor deals only with network privacy, and has nothing built-in to help with transaction privacy. If you include identifiable information in your Tor network requests (which can happen accidentally), the privacy protections are void.
 
-Speaking of Tor, our claim is that mixnets like Nym give stronger security guarantees against the end-to-end network tracing attacks that are becoming easier to operationalize, and which we'll see more of in future. 
+Speaking of Tor, our claim is that mixnets like Nym give stronger security guarantees against end-to-end network tracing attacks that are becoming easier to operationalize, and which we'll see more of in future. 
