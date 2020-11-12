@@ -52,6 +52,6 @@ There is currently a native mixnet client written in Rust. It runs in standalone
 
 A webassembly client also exists. Webassembly clients can be used within browser or mobile apps, and again communicate with gateways via websockets. The webassembly client is not complete (it does not yet send cover traffic), but it is working to a point where you should be able to use it for application development. Cover traffic, when it is set up, will happen transparently and you shouldn't need to worry about it as a Nym app developer.
 
-Lastly, a SOCKS5 client and Service Provider (called SphinxSocks) makes it easy to retrofit cryptocurrency wallets and other existing SOCKS-compatible applications to use Nym privacy infrastructure. 
+Lastly, a SOCKS5 client and Service Provider (called nym-network-requester) makes it easy to retrofit cryptocurrency wallets and other existing SOCKS-compatible applications to use Nym privacy infrastructure. 
 
 In the next few sections, we'll look at network privacy and access privacy in more detail. 

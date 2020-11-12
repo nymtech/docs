@@ -97,7 +97,7 @@ Have a look at the saved configuration files to see more configuration options.
 
 ### Checking that your node is mixing correctly
 
-Once you've started your mixnode and it connects to the testnet validator at http://testnet-validator1.nymtech.net, your node will automatically show up in the [Nym testnet explorer](https://explorer.nymtech.net).
+Once you've started your mixnode and it connects to the testnet validator at http://testnet-validator1.nymtech.net:8081, your node will automatically show up in the [Nym testnet explorer](https://explorer.nymtech.net).
 
 Once a minute, the Nym network will send two test packets through your node (one IPv4, one IPv6), to ensure that it's up and mixing. In the current version, this determines your node reputation over time (and if you're participating in the incentives program, it will set your node's reputation score). 
 

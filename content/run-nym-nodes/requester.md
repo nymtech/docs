@@ -22,7 +22,7 @@ On your server, build Nym. Then run the following commands from the top-level `n
 2. `target/release/nym-client run --id nym-network-requester-client`
 3. `target/release/nym-network-requester run`
 
-This will start up a Nym client, and the SphinxSocks requester will attach to it. 
+This will start up a Nym client, and the nym-network-requester requester will attach to it. 
 
 Make a note of the address of the client when it starts up:
 
