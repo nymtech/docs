@@ -97,7 +97,7 @@ Have a look at the saved configuration files to see more configuration options.
 
 ### Checking that your node is mixing correctly
 
-Once you've started your mixnode and it connects to the testnet validator at http://testnet-validator1.nymtech.net:8081, your node will automatically show up in the [Nym testnet explorer](https://explorer.nymtech.net).
+Once you've started your mixnode and it connects to the testnet validator at http://testnet-validator1.nymtech.net:8081, your node will automatically show up in the [Nym testnet explorer](https://testnet-explorer.nymtech.net).
 
 Once a minute, the Nym network will send two test packets through your node (one IPv4, one IPv6), to ensure that it's up and mixing. In the current version, this determines your node reputation over time (and if you're participating in the incentives program, it will set your node's reputation score). 
 
@@ -149,3 +149,14 @@ For the moment, we haven't put a great amount of effort into optimizing concurre
 
 This will change when we get a chance to start doing performance optimizations in a more serious way. Sphinx packet decryption is CPU-bound, so once we optimise, more fast cores will be better.
 
+### Node registration and de-registration
+
+When your node starts up, it notifies the rest of the Nym network that it is up and ready to mix traffic. Token rewards will start as soon as registration has taken place. But if your node isn't mixing properly, you'll start to incur reputation penalties (3 rep points per minute). 
+
+If you run your node in a console window, it will register when it starts up, and un-register automatically when you hit `ctrl-c` to stop it. When your node is unregistered, it will not gain reputation, but it won't lose any either. 
+
+If you kill it, though (`kill <process-number>`), the un-registration will not happen and you will incur reputation penalties. So, use `ctrl-c` instead.
+
+Most people will want to run their mixnodes as a systemd service instead of in a console. Systemd scripts by default send `KillSignal=SIGTERM`, which kills the process non-gracefully, so that the un-registration doesn't happen. 
+
+You **must** use `KillSignal=SIGINT` in your systemd scripts, under the `[Service]` block. This allows the un-registration code to run whenever your service is stopped. There's a sample systemd script in the main Nym codebase, at `scripts/systemd/nym-mixnode.service`, showing the proper use of `KillSignal`.
