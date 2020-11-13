@@ -5,7 +5,7 @@ description: "How to run the Nym SOCKS5 client."
 ---
 
 {{% notice info %}}
-The Nym Socks5 Proxy Client was built in the [building nym](/docs/build-nym) section. If you haven't yet built Nym and want to run the code on this page, go there first.
+The Nym Socks5 Proxy Client was built in the [building nym](/docs/run-nym-nodes/build-nym/) section. If you haven't yet built Nym and want to run the code on this page, go there first.
 {{% /notice %}}
 
 The Nym SOCKS5 proxy runs on your local machine and exposes a SOCKS5 network proxy on a port. You can use it just like you would any other SOCKS5 proxy: you add drop the proxy address in an application's proxy settings, and all your TCP traffic is routed through the proxy. This makes it the easiest way to enable strong network privacy in existing applications, as many apps already support SOCKS5 out of the box. In this sense it's very similar to other socks proxies.

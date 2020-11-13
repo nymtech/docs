@@ -5,7 +5,7 @@ description: "How to build the Nym platform. Nym is relatively simple to build a
 ---
 
 {{% notice info %}}
-This page details how to build the main Nym platform code, in Rust. **If you want to build and run a validator, [go here](/docs/validators) instead.**
+This page details how to build the main Nym platform code, in Rust. **If you want to build and run a validator, [go here](/docs/run-nym-nodes/validators) instead.**
 {{% /notice %}}
 
 Nym runs on Mac OS X, Linux, and Windows. Windows should be considered experimental - it works fine if you're an app developer but isn't recommended for running nodes.
@@ -41,8 +41,8 @@ Quite a bit of stuff gets built. The key working parts are:
 
 1. the [mixnode](/docs/run-nym-nodes/mixnodes): `nym-mixnode`
 2. the [gateway node](/docs/run-nym-nodes/gateways): `nym-gateway`
-3. the [websocket client](/docs/privacy-apps/websocket-client): `nym-client`
-4. the [socks5 client](/docs/privacy-apps/socks-client): `nym-socks5-client`
+3. the [websocket client](/docs/build-apps/websocket-client): `nym-client`
+4. the [socks5 client](/docs/use-apps/): `nym-socks5-client`
 5. the [network requester](/docs/run-nym-nodes/requester): `nym-network-requester`
 
 {{% notice info %}}

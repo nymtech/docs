@@ -5,7 +5,7 @@ description: "Tutorials for building Privacy Enhanced Applications (or integrati
 ---
 
 {{% notice info %}}
-The Nym SOCKS5 Client was built in the [building nym](/docs/build-nym) section. If you haven't yet built Nym and want to run the code on this page, go there first.
+The Nym SOCKS5 Client was built in the [building nym](/docs/run-nym-nodes/build-nym/) section. If you haven't yet built Nym and want to run the code on this page, go there first.
 {{% /notice %}}
 
 Nym is a general purpose system. We aim to provide the strongest possible protections for internet traffic and transactions.
