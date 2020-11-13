@@ -25,6 +25,7 @@ To download and build the Nym platform (mixnode, gateway and clients):
 rustup update
 git clone https://github.com/nymtech/nym.git
 cd nym
+git reset --hard # in case you made any changes on your branch
 git pull # in case you've checked it out before
 #
 # Note: the default branch you clone from Github, `develop`, is guaranteed to be
