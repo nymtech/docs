@@ -14,7 +14,7 @@ Here are some links that may prove handy as you start exploring.
 * The [Nym docs](https://nymtech.net/docs) tell you how to build and use the Nym platform
 * The [Nym Platform](https://github.com/nymtech/nym) code repo contains most parts of the Nym system in one convenient place
 * The [Nym Validator](https://github.com/nymtech/nym-validator) repo contains our Cosmos-based validator code
-* The [Nym Explorer](https://explorer.nymtech.net) shows testnet nodes and activity
+* The [Nym Explorer](https://testnet-explorer.nymtech.net) shows testnet nodes and activity
 * Community member HansBricks has contributed a [Docker image](https://github.com/gyrusdentatus/nym_autoinstall) for running mixnodes.
 
 ## Academic Papers
