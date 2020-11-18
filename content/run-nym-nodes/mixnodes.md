@@ -160,3 +160,41 @@ If you kill it, though (`kill <process-number>`), the un-registration will not h
 Most people will want to run their mixnodes as a systemd service instead of in a console. Systemd scripts by default send `KillSignal=SIGTERM`, which kills the process non-gracefully, so that the un-registration doesn't happen. 
 
 You **must** use `KillSignal=SIGINT` in your systemd scripts, under the `[Service]` block. This allows the un-registration code to run whenever your service is stopped. There's a sample systemd script in the main Nym codebase, at `scripts/systemd/nym-mixnode.service`, showing the proper use of `KillSignal`.
+
+### Setting ulimits for Nym nodes
+
+Linux machines have defined system limits for how many open files a user is allowed to have. This is so that processes can't run out of control and use too many resources. This is called a `ulimit`.
+
+Unfortunately, `ulimit` is typically set to quite a low value by default, typically 1024. This means that the operating system will start to give messages like this when the limit is exceeded:
+
+```
+Failed to accept incoming connection - Os { code: 24, kind: Other, message: "Too many open files" }
+```
+
+We now have many more than 1024 nodes in our network, so this is going to be quite a common problem. 
+
+Let's fix it.
+
+First check what your ulimit is, *for the user that runs your Nym node*. Assuming I run a mixnode as user `nym`, log in as that user and run `ulimit -n`: 
+
+```
+nym@localhost:~$ ulimit -n
+1024
+```
+
+In this case, we can see that the `ulimit` is set to the default 1024. 
+
+To change it, edit the file `/etc/security/limits.conf`, like this: 
+
+```
+nym             soft    nofile          65536
+nym             hard    nofile          65536
+```
+
+Here, we're setting the hard and soft `ulimit` for the user `nym` to 65536 (the highest 16 bit value).
+
+Your user may be different. For example, if you run your node under user `alice`, use that user. If you run your node as `root`, use that instead of `nym`.
+
+On Ubuntu 20.04, changes to `ulimit` in `/etc/security/limits.conf` take effect immediately. Other systems may require a reboot. 
+
+If these instructions for setting ulimit do not work on your system, you may need to do a bit of research. We will gladly accept any pull requests to our documentation so this is easy to set on different systems. 
