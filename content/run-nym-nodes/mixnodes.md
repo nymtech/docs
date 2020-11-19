@@ -95,13 +95,150 @@ If you run into trouble, please ask for help in the channel **nymtech.friends#ge
 
 Have a look at the saved configuration files to see more configuration options.
 
+### Set the ulimit and make a startup script
+
+{{% notice info %}}
+You must do the following or your node won't work properly in the testnet.
+{{% /notice %}}
+
+Linux machines limit how many open files a user is allowed to have. This is called a `ulimit`.
+
+`ulimit` is 1024 by default on most systems. It needs to be set higher, because mixnodes make and receive a lot of connections to other nodes.
+
+With your node running, first find its process ID:
+
+```
+ps aux | grep nym-mixnode
+```
+
+This should give back something like: 
+
+```
+nym        628  1.0  2.0 171432 20648 ?        Ssl  15:32   0:10 /home/nym/nym-mixnode run --id mix090
+```
+
+The first entry `nym` is the user running the process. The second entry, `628`, is the process ID. 
+
+Find out what the `ulimit` is for your process ID, by using `cat`:
+
+```
+cat /proc/628/limits # <-- substitute your process ID instead of 628
+Limit                     Soft Limit           Hard Limit           Units     
+
+Max open files            1024                 1024                 files # <-- We have a problem. ulimit too low!
+
+```
+
+Check the value for `Max open files`. If either your hard or soft limit is 1024, things aren't going to work.
+
+How you change this depends on how you're running your Nym node. You might be starting your node manually, or using a `systemd` startup script. The systemd way is recommended.
+
+#### Making a startup script
+
+```
+[Unit]
+Description=Nym Mixnode (0.9.0)
+
+[Service]
+User=nym
+ExecStart=/home/nym/nym-mixnode run --id mix090
+KillSignal=SIGINT # gracefully kill the process when stopping the service. Allows node to unregister cleanly.
+Restart=on-failure
+RestartSec=30
+StartLimitInterval=350
+StartLimitBurst=10
+LimitNOFILE=65535 # this sets a higher ulimit for your mixnode!
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Put the above file onto your system at `/etc/systemd/system/nym-mixnode.service`. 
+
+Change the path in `ExecStart` to point at your mixnode binary, and the `User` so it is the user you are running as. Typing `whoami` will tell you who your user is if you're not sure.
+
+Then run:
+
+```
+systemctl enable nym-mixnode.service
+```
+
+Then start your node: 
+
+```
+service nym-mixnode start
+```
+
+This will cause your node to start at system boot time. If you restart your machine, the node will come back up automatically. 
+
+You can also do `service nym-mixnode stop` or `service nym-mixnode restart`. 
+
+The script sets the `LimitNOFILE` for your mixnode at `65535` (which should be a high enough `ulimit` for number of open files). 
+
+#### Setting ulimits for a user when starting manually
+
+If you are just trying out Nym and don't yet want to enable it as a system service, you can just start it manually (`./nym-mixnode run --id foo`). But you'll still need to set your user's `ulimit`.
+
+As root, edit the file `/etc/security/limits.conf`, like this: 
+
+```
+nym             soft    nofile          65536
+nym             hard    nofile          65536
+```
+
+Here, we're setting the hard and soft `ulimit` for the user `nym` to 65536 (the highest 16 bit value).
+
+Your user may be different. For example, if you run your node under user `alice`, or `root`, use that instead of `nym`.
+
+On Ubuntu 20.04, changes to `ulimit` in `/etc/security/limits.conf` take effect immediately. Other systems may require a reboot. 
+
+If these instructions for setting ulimit do not work on your system, you may need to do a bit of research. We will gladly accept any pull requests to our documentation so that we catch any problems on different systems. 
+
+#### Symptoms of ulimit problems
+
+If you see any references to `Too many open files`:
+
+```
+Failed to accept incoming connection - Os { code: 24, kind: Other, message: "Too many open files" }
+```
+
+This means that the operating system is preventing network connections from being made. Raise your `ulimit`.
+
 ### Checking that your node is mixing correctly
 
 Once you've started your mixnode and it connects to the testnet validator at http://testnet-validator1.nymtech.net:8081, your node will automatically show up in the [Nym testnet explorer](https://testnet-explorer.nymtech.net).
 
-Once a minute, the Nym network will send two test packets through your node (one IPv4, one IPv6), to ensure that it's up and mixing. In the current version, this determines your node reputation over time (and if you're participating in the incentives program, it will set your node's reputation score). 
+The Nym network will periodically send two test packets through your node (one IPv4, one IPv6), to ensure that it's up and mixing. In the current version, this determines your node reputation over time (and if you're participating in the incentives program, it will set your node's reputation score). 
 
-If your node is not mixing correctly, you will notice that its status is not green. Ensure that your node handles both IPv4 and IPv6 traffic, and that its public `--host` is set correctly. If you're running on cloud infrastructure, you may need to explicitly set the `--announce-host` (see next section).
+If your node is not mixing correctly, you will notice that its status is not green. Ensure that your node handles both IPv4 and IPv6 traffic, and that its public `--host` is set correctly. If you're running on cloud infrastructure, you may need to explicitly set the `--announce-host` (see below).
+
+
+### Viewing command help
+
+See all available options by running:
+
+```
+nym-mixnode --help
+```
+
+Subcommand help is also available, e.g.:
+
+```
+nym-mixnode upgrade --help
+```
+
+
+### Node registration and de-registration
+
+When your node starts up, it notifies the rest of the Nym network that it is up and ready to mix traffic. Token rewards will start as soon as registration has taken place. But if your node isn't mixing properly, you'll start to incur reputation penalties (3 rep points per minute). 
+
+If you run your node in a console window, it will register when it starts up, and un-register automatically when you hit `ctrl-c` to stop it. When your node is unregistered, it will not gain reputation, but it won't lose any either. 
+
+If you kill it, though (`kill <process-number>`), the un-registration will not happen and you will incur reputation penalties. So, use `ctrl-c` instead.
+
+Most people will want to run their mixnodes as a systemd service instead of in a console. Systemd scripts by default send `KillSignal=SIGTERM`, which kills the process non-gracefully, so that the un-registration doesn't happen. 
+
+You **must** use `KillSignal=SIGINT` in your systemd scripts, under the `[Service]` block. This allows the un-registration code to run whenever your service is stopped. 
 
 #### Virtual IPs, Google, AWS, and all that
 
@@ -125,19 +262,7 @@ The right thing to do in this situation is `nym-mixnode init --host 10.126.5.7 -
 
 This will bind the mixnode to the available host `10.126.5.7`, but announce the mixnode's public IP to the directory server as `36.68.243.18`. It's up to you as a node operator to ensure that your public and private IPs match up properly.
 
-### Viewing command help
 
-See all available options by running:
-
-```
-nym-mixnode --help
-```
-
-Subcommand help is also available, e.g.:
-
-```
-nym-mixnode upgrade --help
-```
 
 ### Mixnode Hardware Specs
 
@@ -148,53 +273,3 @@ For the moment, we haven't put a great amount of effort into optimizing concurre
 * Disks: The mixnodes require no disk space beyond a few bytes for the configuration files
 
 This will change when we get a chance to start doing performance optimizations in a more serious way. Sphinx packet decryption is CPU-bound, so once we optimise, more fast cores will be better.
-
-### Node registration and de-registration
-
-When your node starts up, it notifies the rest of the Nym network that it is up and ready to mix traffic. Token rewards will start as soon as registration has taken place. But if your node isn't mixing properly, you'll start to incur reputation penalties (3 rep points per minute). 
-
-If you run your node in a console window, it will register when it starts up, and un-register automatically when you hit `ctrl-c` to stop it. When your node is unregistered, it will not gain reputation, but it won't lose any either. 
-
-If you kill it, though (`kill <process-number>`), the un-registration will not happen and you will incur reputation penalties. So, use `ctrl-c` instead.
-
-Most people will want to run their mixnodes as a systemd service instead of in a console. Systemd scripts by default send `KillSignal=SIGTERM`, which kills the process non-gracefully, so that the un-registration doesn't happen. 
-
-You **must** use `KillSignal=SIGINT` in your systemd scripts, under the `[Service]` block. This allows the un-registration code to run whenever your service is stopped. There's a sample systemd script in the main Nym codebase, at `scripts/systemd/nym-mixnode.service`, showing the proper use of `KillSignal`.
-
-### Setting ulimits for Nym nodes
-
-Linux machines have defined system limits for how many open files a user is allowed to have. This is so that processes can't run out of control and use too many resources. This is called a `ulimit`.
-
-Unfortunately, `ulimit` is typically set to quite a low value by default, typically 1024. This means that the operating system will start to give messages like this when the limit is exceeded:
-
-```
-Failed to accept incoming connection - Os { code: 24, kind: Other, message: "Too many open files" }
-```
-
-We now have many more than 1024 nodes in our network, so this is going to be quite a common problem. 
-
-Let's fix it.
-
-First check what your ulimit is, *for the user that runs your Nym node*. Assuming I run a mixnode as user `nym`, log in as that user and run `ulimit -n`: 
-
-```
-nym@localhost:~$ ulimit -n
-1024
-```
-
-In this case, we can see that the `ulimit` is set to the default 1024. 
-
-To change it, edit the file `/etc/security/limits.conf`, like this: 
-
-```
-nym             soft    nofile          65536
-nym             hard    nofile          65536
-```
-
-Here, we're setting the hard and soft `ulimit` for the user `nym` to 65536 (the highest 16 bit value).
-
-Your user may be different. For example, if you run your node under user `alice`, use that user. If you run your node as `root`, use that instead of `nym`.
-
-On Ubuntu 20.04, changes to `ulimit` in `/etc/security/limits.conf` take effect immediately. Other systems may require a reboot. 
-
-If these instructions for setting ulimit do not work on your system, you may need to do a bit of research. We will gladly accept any pull requests to our documentation so this is easy to set on different systems. 
