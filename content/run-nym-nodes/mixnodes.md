@@ -133,7 +133,7 @@ Check the value for `Max open files`. If either your hard or soft limit is 1024,
 
 How you change this depends on how you're running your Nym node. You might be starting your node manually, or using a `systemd` startup script. The systemd way is recommended.
 
-#### Making a startup script
+#### Making a systemd startup script
 
 ```
 [Unit]
