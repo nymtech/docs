@@ -133,7 +133,7 @@ This means that the operating system is preventing network connections from bein
 
 ### Making a systemd startup script
 
-It's useful to have the mixnode automatically start at system boot time. Here's a systemd service file to do that:
+Although it's not totally necessary, it's useful to have the mixnode automatically start at system boot time. Here's a systemd service file to do that:
 
 ```
 [Unit]
@@ -156,13 +156,17 @@ Put the above file onto your system at `/etc/systemd/system/nym-mixnode.service`
 
 Change the path in `ExecStart` to point at your mixnode binary (`nym-mixnode`), and the `User` so it is the user you are running as.
 
+If you have built nym on your server, and your username is `jetpanther`, then the start command might look like this: 
+
+`ExecStart=/home/jetpanther/nym/target/release/nym-mixnode run --id your-id`. Basically, you want the full `/path/to/nym-mixnode run --id whatever-your-node-id-is`
+
 Then run:
 
 ```
 systemctl enable nym-mixnode.service
 ```
 
-Then start your node: 
+Start your node: 
 
 ```
 service nym-mixnode start
@@ -189,6 +193,7 @@ The Nym network will periodically send two test packets through your node (one I
 
 If your node is not mixing correctly, you will notice that its status is not green. Ensure that your node handles both IPv4 and IPv6 traffic, and that its public `--host` is set correctly. If you're running on cloud infrastructure, you may need to explicitly set the `--announce-host` (see below).
 
+Nodes join the active mixing set once they have achieved a reputation score of 100 or above. 
 
 ### Viewing command help
 
