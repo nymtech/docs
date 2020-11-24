@@ -109,7 +109,7 @@ You'll get back the hard and soft limits, something like this:
 If either value is 1024, you must raise the limit. To do so, execute this as root, then reboot: 
 
 ```
-echo "DefaultLimitNOFILE=65535" >> /etc/systemd/systemd.conf
+echo "DefaultLimitNOFILE=65535" >> /etc/systemd/system.conf
 ```
 
 Reboot your machine and restart your node. When it comes back, do `cat /proc/$(pidof nym-mixnode)/limits | grep "Max open files"  again to make sure the limit has changed to 65535.
