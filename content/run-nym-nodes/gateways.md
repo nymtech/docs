@@ -36,7 +36,7 @@ $ ./nym-gateway
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (gateway - version 0.9.0)
+             (gateway - version 0.9.1)
 
     
 usage: --help to see available options.
@@ -76,7 +76,7 @@ Results in:
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (gateway - version 0.9.0)
+             (gateway - version 0.9.1)
 
     
 Starting gateway supergateway...

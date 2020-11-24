@@ -63,7 +63,7 @@ You should see a nice clean startup:
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.9.0)
+             (mixnode - version 0.9.1)
 
     
 Starting mixnode winston-smithnode...
@@ -137,7 +137,7 @@ How you change this depends on how you're running your Nym node. You might be st
 
 ```
 [Unit]
-Description=Nym Mixnode (0.9.0)
+Description=Nym Mixnode (0.9.1)
 
 [Service]
 User=nym

@@ -75,7 +75,7 @@ client.formatAsRecipient();
 
 ### SURBs
 
-Anonymous replies using surbs don't yet work in the webassembly client. They should be available in the next release (0.9.0).
+Anonymous replies using surbs don't yet work in the webassembly client. They should be available in the next release (0.9.1).
 
 ### JSON
 

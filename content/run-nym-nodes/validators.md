@@ -22,7 +22,7 @@ Build the validator node and cli:
 ```
 git clone https://github.com/nymtech/nym-validator/
 cd nym-validator
-git checkout v0.9.0 # <-- very important!
+git checkout v0.9.1 # <-- very important!
 make build
 ```
 
