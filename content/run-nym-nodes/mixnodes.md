@@ -143,7 +143,7 @@ Check the value for `Max open files`. If either your hard or soft limit is 1024,
 
 #### Symptoms of ulimit problems
 
-If you see any references to `Too many open files`:
+If you see any references to `Too many open files` in your logs:
 
 ```
 Failed to accept incoming connection - Os { code: 24, kind: Other, message: "Too many open files" }
@@ -193,10 +193,18 @@ This will cause your node to start at system boot time. If you restart your mach
 
 You can also do `service nym-mixnode stop` or `service nym-mixnode restart`. 
 
+Note: if you make any changes to your systemd script after you've enabled it, you will need to run: 
+
+```
+systemctl daemon-reload
+```
+
+This lets your operating system know it's ok to reload the service configuration.
+
 
 ### Checking that your node is mixing correctly
 
-Once you've started your mixnode and it connects to the testnet validator at http://testnet-validator1.nymtech.net:8081, your node will automatically show up in the [Nym testnet explorer](https://testnet-explorer.nymtech.net).
+Once you've started your mixnode and it connects to the testnet validator, your node will automatically show up in the [Nym testnet explorer](https://testnet-explorer.nymtech.net).
 
 The Nym network will periodically send two test packets through your node (one IPv4, one IPv6), to ensure that it's up and mixing. In the current version, this determines your node reputation over time (and if you're participating in the incentives program, it will set your node's reputation score). 
 
@@ -232,12 +240,15 @@ You **must** use `KillSignal=SIGINT` in your systemd scripts, under the `[Servic
 
 #### Manual unregister
 
-If you just want to unregister your node, you can do so with the `unregister` command:
+Sometimes it's useful to move your node between servers. But the network won't allow you to start 2 nodes with the same keys in different locations.
+
+If it's set up properly, your node should automatically unregister when you stop it. But in case it doesn't, you can unregister it manually:
 
 ```
 nym-mixnode unregister --id mix090  # substitute your node id here.
 ```
 
+This takes your node out of the network. Reputation monitoring stops. You can then move your node between servers and restart it. Registration will happen automatically when you run it again.
 
 ### Virtual IPs, Google, AWS, and all that
 
