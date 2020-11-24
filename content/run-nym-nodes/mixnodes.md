@@ -106,7 +106,7 @@ You'll get back the hard and soft limits, something like this:
 
 ```Max open files            1024               1024               files```
 
-If either value is 1024, you must raise the limit. To do so, execute this as root, then reboot: 
+If either value is 1024, you must raise the limit. To do so, execute this as root: 
 
 ```
 echo "DefaultLimitNOFILE=65535" >> /etc/systemd/system.conf
