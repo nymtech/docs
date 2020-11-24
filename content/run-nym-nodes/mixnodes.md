@@ -96,16 +96,23 @@ Have a look at the saved configuration files to see more configuration options.
 
 ### Set the ulimit
 
-You **must** set your ulimit well above 1024 or your node won't work properly in the testnet.
+You **must** set your ulimit well above 1024 or your node won't work properly in the testnet. To test the `ulimit` of your mixnode:
 
-Paste: 
+```
+cat /proc/$(pidof nym-mixnode)/limits | grep "Max open files" 
+```
 
-```DefaultLimitNOFILE=65535```
+You'll get back the hard and soft limits, something like this: 
 
-Into the end of `/etc/systemd/system.conf`
+```
+Max open files            1024               1024               files     
+```
 
+If either value is 1024, you must raise the limit. To do so: 
 
-Reboot your machine.
+```echo "DefaultLimitNOFILE=65535" >> /etc/systemd/systemd.conf```
+
+Reboot your machine and restart your node. When it comes back, do `cat /proc/$(pidof nym-mixnode)/limits | grep "Max open files"  again to make sure the limit is a minimum of 65535.
 
 #### Longer explanation
 
@@ -115,31 +122,13 @@ Linux machines limit how many open files a user is allowed to have. This is call
 
 `ulimit` is 1024 by default on most systems. It needs to be set higher, because mixnodes make and receive a lot of connections to other nodes.
 
-You will see a lot of info on the internet about how to check your `ulimit`. There is only one way that's actually reliable. With your node running, first find its process ID:
+You will see a lot of info on the internet about how to check your `ulimit`. There is only one way that's actually reliable. With your node running, do this: 
 
 ```
-ps aux | grep nym-mixnode
+cat /proc/$(pidof nym-mixnode)/limits | grep "Max open files" 
 ```
 
-This should give back something like: 
-
-```
-nym        628  1.0  2.0 171432 20648 ?        Ssl  15:32   0:10 /home/nym/nym-mixnode run --id mix090
-```
-
-The first entry `nym` is the user running the process. The second entry, `628`, is the process ID. 
-
-Find out what the `ulimit` is for that process:
-
-```
-cat /proc/628/limits # <-- substitute your process ID instead of 628
-Limit                     Soft Limit           Hard Limit           Units     
-
-Max open files            1024                 1024                 files # <-- We have a problem. ulimit of 1024 too low!
-
-```
-
-Check the value for `Max open files`. If either your hard or soft limit is 1024, things aren't going to work.
+You'll get back the hard and soft limits values for the running process. If either of those are 1024, 
 
 #### Symptoms of ulimit problems
 
