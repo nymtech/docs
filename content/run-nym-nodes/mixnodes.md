@@ -104,31 +104,21 @@ cat /proc/$(pidof nym-mixnode)/limits | grep "Max open files"
 
 You'll get back the hard and soft limits, something like this: 
 
+```Max open files            1024               1024               files```
+
+If either value is 1024, you must raise the limit. To do so, execute this as root, then reboot: 
+
 ```
-Max open files            1024               1024               files     
+echo "DefaultLimitNOFILE=65535" >> /etc/systemd/systemd.conf
 ```
 
-If either value is 1024, you must raise the limit. To do so: 
-
-```echo "DefaultLimitNOFILE=65535" >> /etc/systemd/systemd.conf```
-
-Reboot your machine and restart your node. When it comes back, do `cat /proc/$(pidof nym-mixnode)/limits | grep "Max open files"  again to make sure the limit is a minimum of 65535.
-
-#### Longer explanation
+Reboot your machine and restart your node. When it comes back, do `cat /proc/$(pidof nym-mixnode)/limits | grep "Max open files"  again to make sure the limit has changed to 65535.
 
 Changing the `DefaultLimitNOFILE` and rebooting should be all you need to do. But if you want to know what it is that you just did, read on.
 
 Linux machines limit how many open files a user is allowed to have. This is called a `ulimit`.
 
 `ulimit` is 1024 by default on most systems. It needs to be set higher, because mixnodes make and receive a lot of connections to other nodes.
-
-You will see a lot of info on the internet about how to check your `ulimit`. There is only one way that's actually reliable. With your node running, do this: 
-
-```
-cat /proc/$(pidof nym-mixnode)/limits | grep "Max open files" 
-```
-
-You'll get back the hard and soft limits values for the running process. If either of those are 1024, 
 
 #### Symptoms of ulimit problems
 
@@ -164,7 +154,7 @@ WantedBy=multi-user.target
 
 Put the above file onto your system at `/etc/systemd/system/nym-mixnode.service`. 
 
-Change the path in `ExecStart` to point at your mixnode binary, and the `User` so it is the user you are running as.
+Change the path in `ExecStart` to point at your mixnode binary (`nym-mixnode`), and the `User` so it is the user you are running as.
 
 Then run:
 
