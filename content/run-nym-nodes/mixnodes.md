@@ -92,20 +92,23 @@ Keep reading to find our more about configuration options or troubleshooting if 
 If you run into trouble, please ask for help in the channel **nymtech.friends#general** on [KeyBase](https://keybase.io).
 {{% /notice %}}
 
-
 Have a look at the saved configuration files to see more configuration options.
 
-### Set the ulimit and make a startup script
+### Set the ulimit
 
 {{% notice info %}}
-You must do the following or your node won't work properly in the testnet.
+You **must** do the following or your node won't work properly in the testnet.
 {{% /notice %}}
+
+**tl;dr:** Paste `DefaultLimitNOFILE=65535`  at the end of `/etc/systemd/system.conf` and reboot your machine.
+
+#### Longer explanation
 
 Linux machines limit how many open files a user is allowed to have. This is called a `ulimit`.
 
 `ulimit` is 1024 by default on most systems. It needs to be set higher, because mixnodes make and receive a lot of connections to other nodes.
 
-With your node running, first find its process ID:
+You will see a lot of info on the internet about how to check your `ulimit`. There is only one way that's actually reliable. With your node running, first find its process ID:
 
 ```
 ps aux | grep nym-mixnode
@@ -119,21 +122,30 @@ nym        628  1.0  2.0 171432 20648 ?        Ssl  15:32   0:10 /home/nym/nym-m
 
 The first entry `nym` is the user running the process. The second entry, `628`, is the process ID. 
 
-Find out what the `ulimit` is for your process ID, by using `cat`:
+Find out what the `ulimit` is for that process:
 
 ```
 cat /proc/628/limits # <-- substitute your process ID instead of 628
 Limit                     Soft Limit           Hard Limit           Units     
 
-Max open files            1024                 1024                 files # <-- We have a problem. ulimit too low!
+Max open files            1024                 1024                 files # <-- We have a problem. ulimit of 1024 too low!
 
 ```
 
 Check the value for `Max open files`. If either your hard or soft limit is 1024, things aren't going to work.
 
-How you change this depends on how you're running your Nym node. You might be starting your node manually, or using a `systemd` startup script. The systemd way is recommended.
+#### Symptoms of ulimit problems
 
-#### Making a systemd startup script
+If you see any references to `Too many open files`:
+
+```
+Failed to accept incoming connection - Os { code: 24, kind: Other, message: "Too many open files" }
+```
+
+This means that the operating system is preventing network connections from being made. Raise your `ulimit`.
+
+
+### Making a systemd startup script
 
 ```
 [Unit]
@@ -147,7 +159,6 @@ Restart=on-failure
 RestartSec=30
 StartLimitInterval=350
 StartLimitBurst=10
-LimitNOFILE=65535 # this sets a higher ulimit for your mixnode!
 
 [Install]
 WantedBy=multi-user.target
@@ -173,36 +184,6 @@ This will cause your node to start at system boot time. If you restart your mach
 
 You can also do `service nym-mixnode stop` or `service nym-mixnode restart`. 
 
-The script sets the `LimitNOFILE` for your mixnode at `65535` (which should be a high enough `ulimit` for number of open files). 
-
-#### Setting ulimits for a user when starting manually
-
-If you are just trying out Nym and don't yet want to enable it as a system service, you can just start it manually (`./nym-mixnode run --id foo`). But you'll still need to set your user's `ulimit`.
-
-As root, edit the file `/etc/security/limits.conf`, like this: 
-
-```
-nym             soft    nofile          65536
-nym             hard    nofile          65536
-```
-
-Here, we're setting the hard and soft `ulimit` for the user `nym` to 65536 (the highest 16 bit value).
-
-Your user may be different. For example, if you run your node under user `alice`, or `root`, use that instead of `nym`.
-
-On Ubuntu 20.04, changes to `ulimit` in `/etc/security/limits.conf` take effect immediately. Other systems may require a reboot. 
-
-If these instructions for setting ulimit do not work on your system, you may need to do a bit of research. We will gladly accept any pull requests to our documentation so that we catch any problems on different systems. 
-
-#### Symptoms of ulimit problems
-
-If you see any references to `Too many open files`:
-
-```
-Failed to accept incoming connection - Os { code: 24, kind: Other, message: "Too many open files" }
-```
-
-This means that the operating system is preventing network connections from being made. Raise your `ulimit`.
 
 ### Checking that your node is mixing correctly
 
