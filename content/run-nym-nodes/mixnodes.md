@@ -96,13 +96,20 @@ Have a look at the saved configuration files to see more configuration options.
 
 ### Set the ulimit
 
-{{% notice info %}}
-You **must** do the following or your node won't work properly in the testnet.
-{{% /notice %}}
+You **must** set your ulimit well above 1024 or your node won't work properly in the testnet.
 
-**tl;dr:** Paste `DefaultLimitNOFILE=65535`  at the end of `/etc/systemd/system.conf` and reboot your machine.
+Paste: 
+
+```DefaultLimitNOFILE=65535```
+
+Into the end of `/etc/systemd/system.conf`
+
+
+Reboot your machine.
 
 #### Longer explanation
+
+Changing the `DefaultLimitNOFILE` and rebooting should be all you need to do. But if you want to know what it is that you just did, read on.
 
 Linux machines limit how many open files a user is allowed to have. This is called a `ulimit`.
 
