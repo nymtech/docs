@@ -147,6 +147,8 @@ This means that the operating system is preventing network connections from bein
 
 ### Making a systemd startup script
 
+It's useful to have the mixnode automatically start at system boot time. Here's a systemd service file to do that:
+
 ```
 [Unit]
 Description=Nym Mixnode (0.9.1)
@@ -166,7 +168,7 @@ WantedBy=multi-user.target
 
 Put the above file onto your system at `/etc/systemd/system/nym-mixnode.service`. 
 
-Change the path in `ExecStart` to point at your mixnode binary, and the `User` so it is the user you are running as. Typing `whoami` will tell you who your user is if you're not sure.
+Change the path in `ExecStart` to point at your mixnode binary, and the `User` so it is the user you are running as.
 
 Then run:
 
