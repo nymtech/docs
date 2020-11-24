@@ -230,7 +230,7 @@ nym-mixnode upgrade --help
 
 ### Node registration and de-registration
 
-When your node starts up, it notifies the rest of the Nym network that it is up and ready to mix traffic. Token rewards will start as soon as registration has taken place. But if your node isn't mixing properly, you'll start to incur reputation penalties (3 rep points per minute). 
+When your node starts up, it notifies the rest of the Nym network that it is up and ready to mix traffic. Token rewards will start as soon as registration has taken place. But if your node isn't mixing properly, you'll start to incur reputation penalties. 
 
 If you run your node in a console window, it will register when it starts up, and un-register automatically when you hit `ctrl-c` to stop it. When your node is unregistered, it will not gain reputation, but it won't lose any either. 
 
@@ -240,7 +240,16 @@ Most people will want to run their mixnodes as a systemd service instead of in a
 
 You **must** use `KillSignal=SIGINT` in your systemd scripts, under the `[Service]` block. This allows the un-registration code to run whenever your service is stopped. 
 
-#### Virtual IPs, Google, AWS, and all that
+#### Manual unregister
+
+If you just want to unregister your node, you can do so with the `unregister` command:
+
+```
+nym-mixnode unregister --id mix090  # substitute your node id here.
+```
+
+
+### Virtual IPs, Google, AWS, and all that
 
 On some services (e.g. AWS, Google), the machine's available bind address is not the same as the public IP address. In this case, bind `--host` to the local machine address returned by `ifconfig`, but also specify `--announce-host` with the public IP. Please make sure that you pass the correct, routable `--announce-host`.
 
