@@ -63,7 +63,7 @@ You should see a nice clean startup:
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (mixnode - version 0.9.1)
+             (mixnode - version 0.9.2)
 
     
 Starting mixnode winston-smithnode...
@@ -137,7 +137,7 @@ Although it's not totally necessary, it's useful to have the mixnode automatical
 
 ```
 [Unit]
-Description=Nym Mixnode (0.9.1)
+Description=Nym Mixnode (0.9.2)
 
 [Service]
 User=nym

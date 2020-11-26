@@ -10,7 +10,7 @@ If you want to do mixnet development without connecting to our testnet, sometime
 
 You can start up a full mix network, including mixnodes, and a gateway on your local machine fairly easily.
 
-First, download, build and run the [Nym directory server](https://github.com/nymtech/nym-directory). This step will soon go away, as the directory server is about to be retired in the 0.9.1 release. But for now it's necessary. 
+First, download, build and run the [Nym directory server](https://github.com/nymtech/nym-directory). This step will soon go away, as the directory server is about to be retired in the 0.9.2 release. But for now it's necessary. 
 
 {{% notice warning %}}
 The local network **must** be able to access a directory server running on `localhost`! Make sure you install and run the directory server.

@@ -22,7 +22,7 @@ $ ./nym-client
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (client - version 0.9.1)
+             (client - version 0.9.2)
 
     
 usage: --help to see available options.
@@ -177,7 +177,7 @@ This provides an easy way for the receiving chat to then turn around and send a 
 }
 ```
 
-If that fits your security model, good. However, it may be the case that you want to send anonymous replies using Single Use Reply Blocks, or *surbs*. These will be available in the next version of Nym (0.9.1).
+If that fits your security model, good. However, it may be the case that you want to send anonymous replies using Single Use Reply Blocks, or *surbs*. These will be available in the next version of Nym (0.9.2).
 
 
 #### Sending binary data
